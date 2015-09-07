@@ -1,0 +1,8 @@
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\bin\x86\unsafe\Terraria.exe
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\bin\x86\unsafe\Terraria.pdb
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\bin\x86\unsafe\Libraries.DotNetZip.Ionic.Zip.CF.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\bin\x86\unsafe\Libraries.JSON.NET.Newtonsoft.Json.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\bin\x86\unsafe\Libraries.Steamworks.NET.Steamworks.NET.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\obj\x86\unsafe\Terraria.csprojResolveAssemblyReference.cache
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\obj\x86\unsafe\Terraria.exe
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Source\obj\x86\unsafe\Terraria.pdb
