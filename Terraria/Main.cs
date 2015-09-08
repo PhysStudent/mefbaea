@@ -1,3 +1,5 @@
+//48688 - screenpos
+
 using Microsoft.Win32;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Audio;
@@ -1110,6 +1112,14 @@ namespace Terraria
 		public static List<int> itemAnimationsRegistered = new List<int>();
 		public static Vector2 screenPosition;
 		public static Vector2 screenLastPosition;
+
+
+		public static Vector2 lockPosition = new Vector2(0, 0);
+		public static bool screenLocked = false;
+		public static bool lockTogglePressed = false;
+		public static bool lockToggleRelease = false;
+		public static float cameraSpeed = 1;
+
 		public static int screenWidth = 1152;
 		public static int screenHeight = 864;
 		public static bool screenMaximized = false;
@@ -39588,10 +39598,16 @@ namespace Terraria
 				{
 					num98 = 2;
 				}
+
 				Vector2 origin3 = Main.fontMouseText.MeasureString(Main.versionNumber);
 				origin3.X *= 0.5f;
 				origin3.Y *= 0.5f;
 				Main.spriteBatch.DrawString(Main.fontMouseText, Main.versionNumber, new Vector2(origin3.X + (float)num97 + 10f, (float)Main.screenHeight - origin3.Y + (float)num98 - 2f), color11, 0f, origin3, 1f, SpriteEffects.None, 0f);
+
+				origin3 = Main.fontMouseText.MeasureString("T-MEC Community Mod v1b");
+				origin3.X *= 0.5f;
+				origin3.Y *= 0.5f;
+				Main.spriteBatch.DrawString(Main.fontMouseText, "T-MEC Community Mod v1b", new Vector2(origin3.X + (float)num97 + 10f, (float)Main.screenHeight - origin3.Y + (float)num98 - 2f - 30f), color11, 0f, origin3, 1f, SpriteEffects.None, 0f);
 			}
 			Vector2 value = Main.DrawThickCursor(false);
 			Main.spriteBatch.Draw(Main.cursorTextures[0], new Vector2((float)Main.mouseX, (float)Main.mouseY) + value + Vector2.One, null, new Microsoft.Xna.Framework.Color((int)((float)Main.cursorColor.R * 0.2f), (int)((float)Main.cursorColor.G * 0.2f), (int)((float)Main.cursorColor.B * 0.2f), (int)((float)Main.cursorColor.A * 0.5f)), 0f, default(Vector2), Main.cursorScale * 1.1f, SpriteEffects.None, 0f);
@@ -48679,6 +48695,99 @@ namespace Terraria
 				Vector2 value = Main.screenPosition;
 				Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
 				Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+
+
+
+
+
+
+
+
+
+
+				if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest && !Main.blockInput) {
+					Keys[] pressedKeys = Main.keyState.GetPressedKeys();
+					for (int i = 0; i < pressedKeys.Length; i++)
+					{
+						string key = String.Concat(pressedKeys[i]);
+						switch (key)
+						{
+							case "L":
+								Main.lockTogglePressed = true;
+								break;
+							case "OemPlus":
+								cameraSpeed += 2f;
+								break;
+							case "OemMinus":
+								cameraSpeed -= 2f;
+								break;
+							case "Up":
+								lockPosition.Y -= 1;
+								break;
+							case "Down":
+								lockPosition.Y += 1;
+								break;
+							case "Left":
+								lockPosition.X -= 1;
+								break;
+							case "Right":
+								lockPosition.X += 1;
+								break;
+						}
+					}
+
+
+				}
+				if(Main.lockTogglePressed)
+				{
+					if (Main.lockToggleRelease)
+					{
+						if (screenLocked)
+						{
+							screenLocked = false;
+							Main.lockPosition = Main.screenPosition;
+						}
+						else
+						{
+							screenLocked = true;
+							Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+							Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+						}
+					}
+					Main.lockToggleRelease = false;
+				}
+				else
+				{
+					Main.lockToggleRelease = true;
+				}
+				
+				if (screenLocked)
+				{
+					Main.screenPosition = Main.lockPosition;
+				}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 				float num3 = 0f;
 				float num4 = 0f;
 				if ((Main.player[Main.myPlayer].noThrow <= 0 && !Main.player[Main.myPlayer].lastMouseInterface) || Main.zoomX != 0f || Main.zoomY != 0f)
