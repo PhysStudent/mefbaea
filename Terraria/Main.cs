@@ -48705,8 +48705,14 @@ namespace Terraria
 
 
 
-				if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest && !Main.blockInput) {
-					Keys[] pressedKeys = Main.keyState.GetPressedKeys();
+				//if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
+				//Main.NewText("hashtagyoloswag", 175, 75, 0, false);
+				using (System.IO.StreamWriter file =
+				new System.IO.StreamWriter(@"log.txt", true))
+				{
+					file.WriteLine("Main.draw()");
+				}
+				Keys[] pressedKeys = Main.keyState.GetPressedKeys();
 					for (int i = 0; i < pressedKeys.Length; i++)
 					{
 						string key = String.Concat(pressedKeys[i]);
@@ -48714,7 +48720,12 @@ namespace Terraria
 						{
 							case "L":
 								Main.lockTogglePressed = true;
-								break;
+							using (System.IO.StreamWriter file =
+							new System.IO.StreamWriter(@"log.txt", true))
+							{
+								file.WriteLine("l pressed");
+							}
+							break;
 							case "OemPlus":
 								cameraSpeed += 2f;
 								break;
@@ -48735,23 +48746,18 @@ namespace Terraria
 								break;
 						}
 					}
+				//}
 
-
-				}
-				if(Main.lockTogglePressed)
+				if (Main.lockTogglePressed)
 				{
 					if (Main.lockToggleRelease)
 					{
-						if (screenLocked)
+						screenLocked = !screenLocked;
+						Main.screenPosition = Main.lockPosition;
+						using (System.IO.StreamWriter file =
+						new System.IO.StreamWriter(@"log.txt", true))
 						{
-							screenLocked = false;
-							Main.lockPosition = Main.screenPosition;
-						}
-						else
-						{
-							screenLocked = true;
-							Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
-							Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+							file.WriteLine("locktogglerelaseae");
 						}
 					}
 					Main.lockToggleRelease = false;
@@ -48763,25 +48769,13 @@ namespace Terraria
 				
 				if (screenLocked)
 				{
+					using (System.IO.StreamWriter file =
+			new System.IO.StreamWriter(@"log.txt", true))
+					{
+						file.WriteLine("screenlock");
+					}
 					Main.screenPosition = Main.lockPosition;
 				}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

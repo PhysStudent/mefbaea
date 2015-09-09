@@ -381,4 +381,8 @@
     <EmbeddedResource Include="Terraria\Libraries.Steamworks.NET.Steamworks.NET.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>
+    </PostBuildEvent>
+  </PropertyGroup>
 </Project>
