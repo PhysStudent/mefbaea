@@ -39594,10 +39594,10 @@ namespace Terraria
 				origin3.Y *= 0.5f;
 				Main.spriteBatch.DrawString(Main.fontMouseText, Main.versionNumber, new Vector2(origin3.X + (float)num97 + 10f, (float)Main.screenHeight - origin3.Y + (float)num98 - 2f), color11, 0f, origin3, 1f, SpriteEffects.None, 0f);
 
-				Vector2 origin3 = Main.fontMouseText.MeasureString("T-MEC Community Mod "+tmecversion);
-				origin3.X *= 0.5f;
-				origin3.Y *= 0.5f;
-				Main.spriteBatch.DrawString(Main.fontMouseText, "T-MEC Community Mod " + tmecversion, new Vector2(origin3.X + (float)num97 + 10f, (float)Main.screenHeight - origin3.Y + (float)num98 - 2f) - 30, color11, 0f, origin3, 1f, SpriteEffects.None, 0f);
+				Vector2 tmecVec = Main.fontMouseText.MeasureString("T-MEC Community Mod "+tmecversion);
+                tmecVec.X *= 0.5f;
+                tmecVec.Y *= 0.5f;
+				Main.spriteBatch.DrawString(Main.fontMouseText, "T-MEC Community Mod " + tmecversion, new Vector2(tmecVec.X + (float)num97 + 10f, (float)Main.screenHeight - tmecVec.Y + (float)num98 - 32f), color11, 0f, tmecVec, 1f, SpriteEffects.None, 0f);
 			}
 			Vector2 value = Main.DrawThickCursor(false);
 			Main.spriteBatch.Draw(Main.cursorTextures[0], new Vector2((float)Main.mouseX, (float)Main.mouseY) + value + Vector2.One, null, new Microsoft.Xna.Framework.Color((int)((float)Main.cursorColor.R * 0.2f), (int)((float)Main.cursorColor.G * 0.2f), (int)((float)Main.cursorColor.B * 0.2f), (int)((float)Main.cursorColor.A * 0.5f)), 0f, default(Vector2), Main.cursorScale * 1.1f, SpriteEffects.None, 0f);
