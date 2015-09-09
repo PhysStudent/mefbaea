@@ -48748,12 +48748,12 @@ namespace Terraria
 					}
 				//}
 
-				if (Main.lockTogglePressed)
+				if (Main.lockTogglePressed)//player.cs line 16100
 				{
 					if (Main.lockToggleRelease)
 					{
 						screenLocked = !screenLocked;
-						Main.screenPosition = Main.lockPosition;
+						Main.lockPosition = Main.screenPosition;
 						using (System.IO.StreamWriter file =
 						new System.IO.StreamWriter(@"log.txt", true))
 						{
