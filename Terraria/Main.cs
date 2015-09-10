@@ -1116,9 +1116,8 @@ namespace Terraria
 
 		public static Vector2 lockPosition = new Vector2(0, 0);
 		public static bool screenLocked = false;
-		public static bool lockTogglePressed = false;
-		public static bool lockToggleRelease = false;
-		public static float cameraSpeed = 1;
+		public static bool lockToggle = false;
+        public static float cameraSpeed = 1;
 
 		public static int screenWidth = 1152;
 		public static int screenHeight = 864;
@@ -48707,77 +48706,55 @@ namespace Terraria
 
 				//if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
 				//Main.NewText("hashtagyoloswag", 175, 75, 0, false);
-				using (System.IO.StreamWriter file =
-				new System.IO.StreamWriter(@"log.txt", true))
-				{
-					file.WriteLine("Main.draw()");
-				}
 				Keys[] pressedKeys = Main.keyState.GetPressedKeys();
 					for (int i = 0; i < pressedKeys.Length; i++)
 					{
-						string key = String.Concat(pressedKeys[i]);
-						switch (key)
-						{
-							case "L":
-								Main.lockTogglePressed = true;
-							using (System.IO.StreamWriter file =
-							new System.IO.StreamWriter(@"log.txt", true))
-							{
-								file.WriteLine("l pressed");
-							}
-							break;
-							case "OemPlus":
-								cameraSpeed += 2f;
-								break;
-							case "OemMinus":
-								cameraSpeed -= 2f;
-								break;
-							case "Up":
-								lockPosition.Y -= 1;
-								break;
-							case "Down":
-								lockPosition.Y += 1;
-								break;
-							case "Left":
-								lockPosition.X -= 1;
-								break;
-							case "Right":
-								lockPosition.X += 1;
-								break;
-						}
+
+                    string key = pressedKeys[i].ToString();
+                    //Ugh.
+                    if (Main.keyState.IsKeyDown(Keys.L))
+                    {
+                        Main.lockToggle = true;
+                    }
+                    if (!Main.keyState.IsKeyDown(Keys.L))
+                    {
+                        Main.lockToggle = false;
+                    }
+                    //Bug free except that the camera speed can become negative and the results will be hillarious.
+                    if (key == "OemPlus")
+                    {
+                        cameraSpeed += 1f;
+                    }
+                    if (key == "OemMinus")
+                    {
+                        cameraSpeed -= 1f;
+                    }
+                    if (key == "Up")
+                    {
+                        lockPosition.Y -= cameraSpeed;
+                    }
+                    if (key == "Down")
+                    {
+                        lockPosition.Y += cameraSpeed;
+                    }
+                    if (key == "Left")
+                    {
+                        lockPosition.X -= cameraSpeed;
+                    }
+                    if (key == "Right")
+                    {
+                        lockPosition.X += cameraSpeed;
+                    }
 					}
 				//}
 
-				if (Main.lockTogglePressed)//player.cs line 16100
+				if (Main.lockToggle) //If it is on, you will be looking at the "lock" position
 				{
-					if (Main.lockToggleRelease)
-					{
-						screenLocked = !screenLocked;
-						Main.lockPosition = Main.screenPosition;
-						using (System.IO.StreamWriter file =
-						new System.IO.StreamWriter(@"log.txt", true))
-						{
-							file.WriteLine("locktogglerelaseae");
-						}
-					}
-					Main.lockToggleRelease = false;
-				}
-				else
-				{
-					Main.lockToggleRelease = true;
-				}
+                    Main.screenPosition = Main.lockPosition;  
+                } else { //If it is off, the lock position will move with your character
+                    Main.lockPosition = Main.screenPosition;
+                }
 				
-				if (screenLocked)
-				{
-					using (System.IO.StreamWriter file =
-			new System.IO.StreamWriter(@"log.txt", true))
-					{
-						file.WriteLine("screenlock");
-					}
-					Main.screenPosition = Main.lockPosition;
-				}
-
-
 
 
 
