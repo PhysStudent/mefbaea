@@ -48693,8 +48693,8 @@ namespace Terraria
 					}
 				}
 				Vector2 value = Main.screenPosition;
-				Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
-				Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+				//Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+				//Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
 
 
 
@@ -48702,20 +48702,19 @@ namespace Terraria
 
 
 
-
+				//System.IO.StreamWriter is just loggy stuff
 
 
 				//if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
-				//Main.NewText("hashtagyoloswag", 175, 75, 0, false);
 				using (System.IO.StreamWriter file =
 				new System.IO.StreamWriter(@"log.txt", true))
 				{
 					file.WriteLine("Main.draw()");
 				}
-				Keys[] pressedKeys = Main.keyState.GetPressedKeys();
-					for (int i = 0; i < pressedKeys.Length; i++)
+				Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
+					for (int i = 0; i < pressedKeys.Length; i++)//loops through
 					{
-						string key = String.Concat(pressedKeys[i]);
+						string key = String.Concat(pressedKeys[i]); //converts each key to a string
 						switch (key)
 						{
 							case "L":
@@ -48727,7 +48726,7 @@ namespace Terraria
 							}
 							break;
 							case "OemPlus":
-								cameraSpeed += 2f;
+								cameraSpeed += 2f; //currently not used
 								break;
 							case "OemMinus":
 								cameraSpeed -= 2f;
@@ -48749,16 +48748,16 @@ namespace Terraria
 				//}
 
 				if (Main.lockTogglePressed)//player.cs line 16100
-				{
+				{						   //lockTogglePressed is just if it's being held down - so lockToggleRelease lets us tell when it changes
 					if (Main.lockToggleRelease)
 					{
 						screenLocked = !screenLocked;
-						Main.lockPosition = Main.screenPosition;
+						Main.lockPosition = Main.screenPosition; //set the lock pos to where the screen is
 						using (System.IO.StreamWriter file =
 						new System.IO.StreamWriter(@"log.txt", true))
 						{
 							file.WriteLine("locktogglerelaseae");
-						}
+						}	
 					}
 					Main.lockToggleRelease = false;
 				}
@@ -48775,6 +48774,12 @@ namespace Terraria
 						file.WriteLine("screenlock");
 					}
 					Main.screenPosition = Main.lockPosition;
+				} else
+				{
+					//default code
+					Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+					Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+
 				}
 
 
