@@ -118,7 +118,13 @@ namespace Terraria
 		public static string versionNumber = "v1.3.0.8";
 		public static string versionNumber2 = "v1.3.0.8";
 		public static string tmecversion = "v1"; //Line 39600
-		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
+        //Camera lock
+        public static Vector2 lockPosition = new Vector2(0, 0);
+        public static bool screenLocked = false;
+        public static bool lockTogglePressed = false;
+        public static bool lockToggleReleased = false;
+        public static float cameraSpeed = 1;
+        public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
 		public static Vector2 destroyerHB = new Vector2(0f, 0f);
 		public static FavoritesFile LocalFavoriteData = new FavoritesFile(Main.SavePath + "/favorites.json", false);
 		public static FavoritesFile CloudFavoritesData = new FavoritesFile("/favorites.json", true);
@@ -48683,9 +48689,73 @@ namespace Terraria
 					}
 				}
 				Vector2 value = Main.screenPosition;
-				Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
-				Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
-				float num3 = 0f;
+
+
+                Main.lockTogglePressed = false;
+
+
+                //System.IO.StreamWriter is just loggy stuff
+
+
+                //if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
+                Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
+                for (int i = 0; i < pressedKeys.Length; i++)//loops through
+                {
+                    string key = String.Concat(pressedKeys[i]); //converts each key to a string
+                    switch (key)
+                    {
+                        case "L":
+                            Main.lockTogglePressed = true;
+                            break;
+                        case "OemPlus":
+                            cameraSpeed += cameraSpeed * .03f;
+                            break;
+                        case "OemMinus":
+                            cameraSpeed -= cameraSpeed * .03f;
+                            break;
+                        case "Up":
+                            lockPosition.Y -= cameraSpeed;
+                            break;
+                        case "Down":
+                            lockPosition.Y += cameraSpeed;
+                            break;
+                        case "Left":
+                            lockPosition.X -= cameraSpeed;
+                            break;
+                        case "Right":
+                            lockPosition.X += cameraSpeed;
+                            break;
+                    }
+                }
+                //}
+
+                if (Main.lockTogglePressed)//player.cs line 16100
+                {                          //lockTogglePressed is just if it's being held down - so lockToggleReleased lets us tell when it changes
+                    if (Main.lockToggleReleased)
+                    {
+                        screenLocked = !screenLocked;
+                        Main.lockPosition = Main.screenPosition; //set the lock pos to where the screen is
+                    }
+                    Main.lockToggleReleased = false;
+                }
+                else
+                {
+                    Main.lockToggleReleased = true;
+                }
+
+                if (screenLocked)
+                {
+                    Main.screenPosition.X = (int)Math.Floor(Main.lockPosition.X);
+                    Main.screenPosition.Y = (int)Math.Floor(Main.lockPosition.Y);
+                }
+                else
+                {
+                    //default code
+                    Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+                    Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+
+                }
+                float num3 = 0f;
 				float num4 = 0f;
 				if ((Main.player[Main.myPlayer].noThrow <= 0 && !Main.player[Main.myPlayer].lastMouseInterface) || Main.zoomX != 0f || Main.zoomY != 0f)
 				{
