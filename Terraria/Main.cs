@@ -48720,6 +48720,7 @@ namespace Terraria
                     {
                         Main.lockToggle = false;
                     }
+
                     //Bug free except that the camera speed can become negative and the results will be hillarious.
                     if (key == "OemPlus")
                     {
