@@ -48692,8 +48692,8 @@ namespace Terraria
 					}
 				}
 				Vector2 value = Main.screenPosition;
-				Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
-				Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+				//Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+				//Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
 
 
 
@@ -48701,10 +48701,11 @@ namespace Terraria
 
 
 
-
+				//System.IO.StreamWriter is just loggy stuff
 
 
 				//if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
+<<<<<<< HEAD
 				//Main.NewText("hashtagyoloswag", 175, 75, 0, false);
 				Keys[] pressedKeys = Main.keyState.GetPressedKeys();
 					for (int i = 0; i < pressedKeys.Length; i++)
@@ -48756,6 +48757,85 @@ namespace Terraria
                     Main.lockPosition = Main.screenPosition;
                 }
 				
+=======
+				using (System.IO.StreamWriter file =
+				new System.IO.StreamWriter(@"log.txt", true))
+				{
+					file.WriteLine("Main.draw()");
+				}
+				Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
+					for (int i = 0; i < pressedKeys.Length; i++)//loops through
+					{
+						string key = String.Concat(pressedKeys[i]); //converts each key to a string
+						switch (key)
+						{
+							case "L":
+								Main.lockTogglePressed = true;
+							using (System.IO.StreamWriter file =
+							new System.IO.StreamWriter(@"log.txt", true))
+							{
+								file.WriteLine("l pressed");
+							}
+							break;
+							case "OemPlus":
+								cameraSpeed += 2f; //currently not used
+								break;
+							case "OemMinus":
+								cameraSpeed -= 2f;
+								break;
+							case "Up":
+								lockPosition.Y -= 1;
+								break;
+							case "Down":
+								lockPosition.Y += 1;
+								break;
+							case "Left":
+								lockPosition.X -= 1;
+								break;
+							case "Right":
+								lockPosition.X += 1;
+								break;
+						}
+					}
+				//}
+
+				if (Main.lockTogglePressed)//player.cs line 16100
+				{						   //lockTogglePressed is just if it's being held down - so lockToggleRelease lets us tell when it changes
+					if (Main.lockToggleRelease)
+					{
+						screenLocked = !screenLocked;
+						Main.lockPosition = Main.screenPosition; //set the lock pos to where the screen is
+						using (System.IO.StreamWriter file =
+						new System.IO.StreamWriter(@"log.txt", true))
+						{
+							file.WriteLine("locktogglerelaseae");
+						}	
+					}
+					Main.lockToggleRelease = false;
+				}
+				else
+				{
+					Main.lockToggleRelease = true;
+				}
+				
+				if (screenLocked)
+				{
+					using (System.IO.StreamWriter file =
+			new System.IO.StreamWriter(@"log.txt", true))
+					{
+						file.WriteLine("screenlock");
+					}
+					Main.screenPosition = Main.lockPosition;
+				} else
+				{
+					//default code
+					Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+					Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+
+				}
+
+
+>>>>>>> origin/camlock
 
 
 
