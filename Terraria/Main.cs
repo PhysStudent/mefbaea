@@ -48699,18 +48699,13 @@ namespace Terraria
 
 
 
-
+				Main.lockTogglePressed = false;
 
 
 				//System.IO.StreamWriter is just loggy stuff
 
 
 				//if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
-				using (System.IO.StreamWriter file =
-				new System.IO.StreamWriter(@"log.txt", true))
-				{
-					file.WriteLine("Main.draw()");
-				}
 				Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
 					for (int i = 0; i < pressedKeys.Length; i++)//loops through
 					{
@@ -48719,29 +48714,24 @@ namespace Terraria
 						{
 							case "L":
 								Main.lockTogglePressed = true;
-							using (System.IO.StreamWriter file =
-							new System.IO.StreamWriter(@"log.txt", true))
-							{
-								file.WriteLine("l pressed");
-							}
 							break;
 							case "OemPlus":
-								cameraSpeed += 2f; //currently not used
+								cameraSpeed += cameraSpeed * .03f;
 								break;
 							case "OemMinus":
-								cameraSpeed -= 2f;
+								cameraSpeed -= cameraSpeed * .03f;
 								break;
 							case "Up":
-								lockPosition.Y -= 1;
+								lockPosition.Y -= cameraSpeed;
 								break;
 							case "Down":
-								lockPosition.Y += 1;
+								lockPosition.Y += cameraSpeed;
 								break;
 							case "Left":
-								lockPosition.X -= 1;
+								lockPosition.X -= cameraSpeed;
 								break;
 							case "Right":
-								lockPosition.X += 1;
+								lockPosition.X += cameraSpeed;
 								break;
 						}
 					}
@@ -48753,11 +48743,6 @@ namespace Terraria
 					{
 						screenLocked = !screenLocked;
 						Main.lockPosition = Main.screenPosition; //set the lock pos to where the screen is
-						using (System.IO.StreamWriter file =
-						new System.IO.StreamWriter(@"log.txt", true))
-						{
-							file.WriteLine("locktogglerelaseae");
-						}	
 					}
 					Main.lockToggleRelease = false;
 				}
@@ -48768,12 +48753,8 @@ namespace Terraria
 				
 				if (screenLocked)
 				{
-					using (System.IO.StreamWriter file =
-			new System.IO.StreamWriter(@"log.txt", true))
-					{
-						file.WriteLine("screenlock");
-					}
-					Main.screenPosition = Main.lockPosition;
+					Main.screenPosition.X = (int)Math.Floor(Main.lockPosition.X);
+					Main.screenPosition.Y = (int)Math.Floor(Main.lockPosition.Y);
 				} else
 				{
 					//default code
