@@ -117,6 +117,7 @@ namespace Terraria
 		public static int curRelease = 156;
 		public static string versionNumber = "v1.3.0.8";
 		public static string versionNumber2 = "v1.3.0.8";
+
 		public static string tmecversion = "v1"; //Line 39600
         //Camera lock
         public static Vector2 lockPosition = new Vector2(0, 0);
@@ -124,6 +125,11 @@ namespace Terraria
         public static bool lockTogglePressed = false;
         public static bool lockToggleReleased = false;
         public static float cameraSpeed = 1;
+		//Block Placing
+		public static Vector2 playerFoot;
+		public static int blockType;
+		
+
         public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
 		public static Vector2 destroyerHB = new Vector2(0f, 0f);
 		public static FavoritesFile LocalFavoriteData = new FavoritesFile(Main.SavePath + "/favorites.json", false);
@@ -11868,6 +11874,10 @@ namespace Terraria
 							Main.player[Main.myPlayer].chatOverhead.NewMessage(Main.chatText, Main.chatLength / 2);
 							Main.NewText(newText, white.R, white.G, white.B, false);
 						}
+
+						//doTheThing
+
+						Main.checkForTMecModChat(Main.chatText);
 						Main.chatText = "";
 						Main.chatMode = false;
 						Main.chatRelease = false;
@@ -11876,7 +11886,7 @@ namespace Terraria
 						Main.PlaySound(11, -1, -1, 1);
 					}
 				}
-				if (Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter) && Main.netMode == 1 && !Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftAlt) && !Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.RightAlt) && Main.hasFocus)
+				if (Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Enter) && !Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.LeftAlt) && !Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.RightAlt) && Main.hasFocus)
 				{
 					if (Main.chatRelease && !Main.chatMode && !Main.editSign && !Main.editChest && !Main.gameMenu && !Main.keyState.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Escape))
 					{
@@ -12543,6 +12553,15 @@ namespace Terraria
 				}
 			}
 			base.Update(gameTime);
+		}
+		public static void checkForTMecModChat(string text)
+		{
+			if(text == "/place")
+			{
+				playerFoot = new Vector2( (int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3));
+			
+
+			}
 		}
 		private static void UpdateMenu()
 		{
@@ -53277,5 +53296,8 @@ namespace Terraria
 				Main._hasPendingNetmodeChange = true;
 			}
 		}
+
+		
+
 	}
 }
