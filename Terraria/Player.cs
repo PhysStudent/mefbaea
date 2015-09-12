@@ -24042,24 +24042,31 @@ namespace Terraria
 				this.fallStart = (int)(this.position.Y / 16f);
 				if (this.whoAmI == Main.myPlayer)
 				{
-					if (num < new Vector2((float)Main.screenWidth, (float)Main.screenHeight).Length() / 2f + 100f)
-					{
-						int time = 0;
-						if (Style == 1)
-						{
-							time = 10;
-						}
-						Main.SetCameraLerp(0.1f, time);
+                    if (num < new Vector2((float)Main.screenWidth, (float)Main.screenHeight).Length() / 2f + 100f)
+                    {
+                        int time = 0;
+                        if (Style == 1)
+                        {
+                            time = 10;
+                        }
+                        if (Main.screenLocked) { //Edited
+                            Main.SetCameraLerp(0.1f, 0);
+                        } else { 
+                            Main.SetCameraLerp(0.1f, time);
+                        }
 					}
 					else
 					{
-						Main.BlackFadeIn = 255;
-						Lighting.BlackOut();
-						Main.screenLastPosition = Main.screenPosition;
-						Main.screenPosition.X = this.position.X + (float)(this.width / 2) - (float)(Main.screenWidth / 2);
-						Main.screenPosition.Y = this.position.Y + (float)(this.height / 2) - (float)(Main.screenHeight / 2);
-						Main.quickBG = 10;
-					}
+                        if (!Main.screenLocked)
+                        {
+                            Main.BlackFadeIn = 255;
+                            Lighting.BlackOut();
+                            Main.quickBG = 10;
+                        }
+                        Main.screenLastPosition = Main.screenPosition;
+                        Main.screenPosition.X = this.position.X + (float)(this.width / 2) - (float)(Main.screenWidth / 2);
+                        Main.screenPosition.Y = this.position.Y + (float)(this.height / 2) - (float)(Main.screenHeight / 2);
+                    }
 					if (Main.mapTime < 5)
 					{
 						Main.mapTime = 5;
