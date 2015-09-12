@@ -11873,11 +11873,12 @@ namespace Terraria
 							newText = NameTagHandler.GenerateTag(Main.player[Main.myPlayer].name) + " " + Main.chatText;
 							Main.player[Main.myPlayer].chatOverhead.NewMessage(Main.chatText, Main.chatLength / 2);
 							Main.NewText(newText, white.R, white.G, white.B, false);
+							Main.checkForTMecModChat(Main.chatText);
 						}
 
 						//doTheThing
 
-						Main.checkForTMecModChat(Main.chatText);
+						
 						Main.chatText = "";
 						Main.chatMode = false;
 						Main.chatRelease = false;
@@ -12556,11 +12557,38 @@ namespace Terraria
 		}
 		public static void checkForTMecModChat(string text)
 		{
-			if(text == "/place")
-			{
-				playerFoot = new Vector2( (int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3));
-			
-
+			string[] textArray = text.Split();
+			int count;
+			if(textArray[2] == "/place" && textArray[2] != "set")
+			{         //Format: /place <type> to <dir> <count>
+					  //           0     1    2    3      4
+				playerFoot = new Vector2( (int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
+				if(!int.TryParse(textArray[1], out blockType) || !int.TryParse(textArray[4], out count)) //if type or count aren't a number, fail
+				{
+					Main.NewText("Invalid format. /place [ set | <type> to <direction> <count>]", 213, 0, 0);
+					return;
+				}
+				
+				
+				for(int i = 0; i <= count; i++)
+				{
+					switch(textArray[3])
+					{
+						case "left":
+							WorldGen.PlaceTile((int) playerFoot.X + i, (int) playerFoot.Y, blockType);
+							break;
+						case "right":
+							WorldGen.PlaceTile((int) playerFoot.X - i, (int) playerFoot.Y, blockType);
+							break;
+						case "down":
+							WorldGen.PlaceTile((int) playerFoot.X, (int) playerFoot.Y + 1, blockType);
+							break;
+						case "up":
+							WorldGen.PlaceTile((int) playerFoot.X, (int) playerFoot.Y - i, blockType);
+							break;
+					}
+					
+				}
 			}
 		}
 		private static void UpdateMenu()

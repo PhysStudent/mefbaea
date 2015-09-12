@@ -7,5 +7,3 @@ C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Librari
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.csprojResolveAssemblyReference.cache
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.exe
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.pdb
-C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Terraria.exe.CodeAnalysisLog.xml
-C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Terraria.exe.lastcodeanalysissucceeded
