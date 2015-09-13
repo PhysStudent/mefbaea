@@ -12619,10 +12619,10 @@ namespace Terraria
 								coords = new Vector2((int)playerFoot.X + i, (int)playerFoot.Y);
 								break;
 							case "down":
-								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y - i);
+								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y + i);
 								break;
 							case "up":
-								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y + i);
+								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y - i);
 								break;
 						}
 						Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
