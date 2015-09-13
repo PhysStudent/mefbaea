@@ -11884,7 +11884,8 @@ namespace Terraria
 			}
 			if (num13 > 0)
 			{
-				if (Main.player[this.owner].sonarPotion)
+                num13 = (new Random().Next(1, 3602));
+                if (Main.player[this.owner].sonarPotion)
 				{
 					Item item = new Item();
 					item.SetDefaults(num13, false);
