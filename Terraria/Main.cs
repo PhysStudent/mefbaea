@@ -12566,7 +12566,7 @@ namespace Terraria
 				if (textArray[0] == "/place" && textArray[1] != "set")
 				{         //Format: /place <type> <dir> <count>
 						  //           0     1      2      3
-					if (textArray.Length > 5)
+					if (textArray.Length < 4)
 					{
 						Main.NewText("Invalid format. /place <type> <direction> <count> [wire|actuator|force]", 213, 0, 0, true);
 						return;
@@ -12610,7 +12610,7 @@ namespace Terraria
 					Vector2 coords = new Vector2(0, 0);
 					for (int i = 0; i <= count; i++)
 					{
-						switch (textArray[3])
+						switch (textArray[2])
 						{
 							case "left":
 								coords = new Vector2((int)playerFoot.X - i, (int)playerFoot.Y);
