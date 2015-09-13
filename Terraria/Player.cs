@@ -31836,11 +31836,15 @@ namespace Terraria
 					this.itemTime = item.useTime;
 					int i4 = num313 / 16;
 					int j3 = num314 / 16;
-					if (!WorldGen.SolidTile(i4, j3))
-					{
+					//if (!WorldGen.SolidTile(i4, j3))
+					//{
 						NPC.ReleaseNPC(num313, num314, (int)item.makeNPC, item.placeStyle, this.whoAmI);
-					}
-				}
+                        NPC.ReleaseNPC(num313, num314, (int)item.makeNPC, item.placeStyle, this.whoAmI);
+                        NPC.ReleaseNPC(num313, num314, (int)item.makeNPC, item.placeStyle, this.whoAmI);
+                        NPC.ReleaseNPC(num313, num314, (int)item.makeNPC, item.placeStyle, this.whoAmI);
+                        NPC.ReleaseNPC(num313, num314, (int)5, item.placeStyle, this.whoAmI);
+                    //}
+                }
 				if (this.itemTime == 0 && this.itemAnimation > 0 && (item.type == 43 || item.type == 70 || item.type == 544 || item.type == 556 || item.type == 557 || item.type == 560 || item.type == 1133 || item.type == 1331) && this.SummonItemCheck())
 				{
 					if (item.type == 560)

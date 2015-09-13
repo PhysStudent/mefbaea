@@ -31060,11 +31060,11 @@ namespace Terraria
 				}
 				if (type == 2018)
 				{
-					this.makeNPC = 299;
+					this.makeNPC = 444;
 				}
 				if (type == 2019)
 				{
-					this.makeNPC = 46;
+					this.makeNPC = 299;
 					return;
 				}
 			}
@@ -44171,7 +44171,7 @@ namespace Terraria
 										this.width = 12;
 										this.height = 12;
 										this.noUseGraphic = true;
-										this.makeNPC = 538;
+										this.makeNPC = 437;
 										return;
 									}
 									if (type == 3564)

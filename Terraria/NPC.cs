@@ -57457,7 +57457,7 @@ namespace Terraria
 				NetMessage.SendData(71, -1, -1, "", x, (float)y, (float)Type, (float)Style, 0, 0, 0);
 				return;
 			}
-			if (Main.npcCatchable[Type] && NPC.CanReleaseNPCs(who))
+			if (NPC.CanReleaseNPCs(who))
 			{
 				if (Type == 148)
 				{
