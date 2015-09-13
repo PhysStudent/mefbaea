@@ -12555,40 +12555,92 @@ namespace Terraria
 			}
 			base.Update(gameTime);
 		}
-		public static void checkForTMecModChat(string text)
+		public static void checkForTMecModChat(string text) //tmec checkForTMecModChat
 		{
 			string[] textArray = text.Split();
-			int count;
-			if(textArray[2] == "/place" && textArray[2] != "set")
-			{         //Format: /place <type> to <dir> <count>
-					  //           0     1    2    3      4
-				playerFoot = new Vector2( (int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
-				if(!int.TryParse(textArray[1], out blockType) || !int.TryParse(textArray[4], out count)) //if type or count aren't a number, fail
-				{
-					Main.NewText("Invalid format. /place [ set | <type> to <direction> <count>]", 213, 0, 0);
-					return;
-				}
-				
-				
-				for(int i = 0; i <= count; i++)
-				{
-					switch(textArray[3])
+
+			//if(textArray.Length)
+			try
+			{
+
+				if (textArray[0] == "/place" && textArray[1] != "set")
+				{         //Format: /place <type> <dir> <count>
+						  //           0     1      2      3
+					if (textArray.Length > 5)
 					{
-						case "left":
-							WorldGen.PlaceTile((int) playerFoot.X + i, (int) playerFoot.Y, blockType);
-							break;
-						case "right":
-							WorldGen.PlaceTile((int) playerFoot.X - i, (int) playerFoot.Y, blockType);
-							break;
-						case "down":
-							WorldGen.PlaceTile((int) playerFoot.X, (int) playerFoot.Y + 1, blockType);
-							break;
-						case "up":
-							WorldGen.PlaceTile((int) playerFoot.X, (int) playerFoot.Y - i, blockType);
-							break;
+						Main.NewText("Invalid format. /place <type> <direction> <count> [wire|actuator|force]", 213, 0, 0, true);
+						return;
 					}
-					
+					int count;
+					playerFoot = new Vector2((int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
+					if (!int.TryParse(textArray[1], out blockType) || !int.TryParse(textArray[3], out count)) //if type or count aren't a number, fail
+					{
+						Main.NewText("Invalid format. /place <type> <direction> <count>", 213, 0, 0);
+						return;
+					}
+
+					bool forceIt = false;
+					bool wire = false;
+					bool actu = false;
+					try
+					{
+						for (int i = 3; i < textArray.Length; i++)
+						{
+							switch (textArray[i])
+							{
+								case "force":
+								case "f":
+									forceIt = true;
+									Main.NewText("force", 0, 0, 213);
+                                    break;
+								case "wire":
+								case "w":
+									wire = true;
+									break;
+								case "actuator":
+								case "act":
+								case "a":
+									actu = true;
+									break;
+							}
+						}
+					}
+					catch { }
+
+					Vector2 coords = new Vector2(0, 0);
+					for (int i = 0; i <= count; i++)
+					{
+						switch (textArray[3])
+						{
+							case "left":
+								coords = new Vector2((int)playerFoot.X - i, (int)playerFoot.Y);
+								break;
+							case "right":
+								coords = new Vector2((int)playerFoot.X + i, (int)playerFoot.Y);
+								break;
+							case "down":
+								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y - i);
+								break;
+							case "up":
+								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y + i);
+								break;
+						}
+						Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
+						Main.NewText("coords: " + coords.ToString(), 255, 213, 0);
+
+						WorldGen.PlaceTile((int)coords.X, (int)coords.Y, blockType, false, forceIt);
+						if (wire)
+							WorldGen.PlaceWire((int)coords.X, (int)coords.Y);
+						if (actu)
+							WorldGen.PlaceActuator((int)coords.X, (int)coords.Y);
+					}
+
+
 				}
+			}
+			catch (Exception e)
+			{
+				Main.NewText(e.ToString(), 255, 128, 128);
 			}
 		}
 		private static void UpdateMenu()
