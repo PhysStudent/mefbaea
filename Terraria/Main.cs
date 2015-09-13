@@ -118,6 +118,8 @@ namespace Terraria
 		public static string versionNumber = "v1.3.0.8";
 		public static string versionNumber2 = "v1.3.0.8";
 
+
+		//tmec defs
 		public static string tmecversion = "v1"; //Line 39600
         //Camera lock
         public static Vector2 lockPosition = new Vector2(0, 0);
@@ -126,8 +128,9 @@ namespace Terraria
         public static bool lockToggleReleased = false;
         public static float cameraSpeed = 1;
 		//Block Placing
-		public static Vector2 playerFoot;
+		public static Vector2 placePosition;
 		public static int blockType;
+		public static bool listeningforPlace = false;
 		
 
         public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -12562,6 +12565,14 @@ namespace Terraria
 			//if(textArray.Length)
 			try
 			{
+				if (textArray[0] == "/place" && textArray[1] == "set")
+				{
+					listeningforPlace = true;
+				}
+				if (textArray[0] == "/place" && textArray[1] == "reset")
+				{
+					placePosition = new Vector2(0, 0);
+				}
 
 				if (textArray[0] == "/place" && textArray[1] != "set")
 				{         //Format: /place <type> <dir> <count>
@@ -12572,7 +12583,8 @@ namespace Terraria
 						return;
 					}
 					int count;
-					playerFoot = new Vector2((int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
+					if(placePosition.X == 0f && placePosition.Y == 0f)
+						placePosition = new Vector2((int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
 					if (!int.TryParse(textArray[1], out blockType) || !int.TryParse(textArray[3], out count)) //if type or count aren't a number, fail
 					{
 						Main.NewText("Invalid format. /place <type> <direction> <count>", 213, 0, 0);
@@ -12613,16 +12625,16 @@ namespace Terraria
 						switch (textArray[2])
 						{
 							case "left":
-								coords = new Vector2((int)playerFoot.X - i, (int)playerFoot.Y);
+								coords = new Vector2((int)placePosition.X - i, (int)placePosition.Y);
 								break;
 							case "right":
-								coords = new Vector2((int)playerFoot.X + i, (int)playerFoot.Y);
+								coords = new Vector2((int)placePosition.X + i, (int)placePosition.Y);
 								break;
 							case "down":
-								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y + i);
+								coords = new Vector2((int)placePosition.X, (int)placePosition.Y + i);
 								break;
 							case "up":
-								coords = new Vector2((int)playerFoot.X, (int)playerFoot.Y - i);
+								coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
 								break;
 						}
 						Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
@@ -33907,6 +33919,44 @@ namespace Terraria
 		}
 		protected void DrawInterface(GameTime gameTime)
 		{
+			//tmec drawinterface
+			if (Main.listeningforPlace)
+			{
+
+
+				Vector2 vector = (new Vector2(Main.mouseX, Main.mouseY) + Main.screenPosition);
+				vector.X -= vector.X % 16;
+				vector.Y -= vector.Y % 16;
+				vector -= Main.screenPosition;
+				Microsoft.Xna.Framework.Color newColor = Color.White;
+				Microsoft.Xna.Framework.Rectangle value = new Microsoft.Xna.Framework.Rectangle(0, 0, 1, 1);
+				float r = 0.3f;
+				float g = 1f;
+				float b = 0.5f;
+				float a = 1f;
+				float scale = 0.6f;
+				Main.spriteBatch.Draw(Main.magicPixel, vector, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, 8f, SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.UnitX * 8f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, 8f, SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.UnitY * 8f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, 8f, SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.One * 8f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, 8f, SpriteEffects.None, 0f);
+				r = 0.1f;
+				g = 0.1f;
+				scale = (a = 1f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.UnitX * -2f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, new Vector2(2f, 16f), SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.UnitX * 16f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, new Vector2(2f, 16f), SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.UnitY * -2f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, new Vector2(16f, 2f), SpriteEffects.None, 0f);
+				Main.spriteBatch.Draw(Main.magicPixel, vector + Vector2.UnitY * 16f, new Microsoft.Xna.Framework.Rectangle?(value), Main.buffColor(newColor, r, g, b, a) * scale, 0f, Vector2.Zero, new Vector2(16f, 2f), SpriteEffects.None, 0f);
+				if (Main.mouseLeft)
+				{
+					listeningforPlace = false;
+					placePosition = (vector + Main.screenPosition) / 16;
+
+					//placePosition.Y = vector.Y;
+				}
+			}
+
+
+
 			EmoteBubble.DrawAll(Main.spriteBatch);
 			if (Main.smartDigShowing && !Main.player[Main.myPlayer].dead)
 			{
@@ -48795,7 +48845,7 @@ namespace Terraria
 
                 //System.IO.StreamWriter is just loggy stuff
 
-
+				//tmec update
                 //if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
                 Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
                 for (int i = 0; i < pressedKeys.Length; i++)//loops through
@@ -48854,6 +48904,15 @@ namespace Terraria
                     Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
 
                 }
+
+
+
+
+				
+
+
+
+
                 float num3 = 0f;
 				float num4 = 0f;
 				if ((Main.player[Main.myPlayer].noThrow <= 0 && !Main.player[Main.myPlayer].lastMouseInterface) || Main.zoomX != 0f || Main.zoomY != 0f)
