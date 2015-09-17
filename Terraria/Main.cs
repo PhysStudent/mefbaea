@@ -12594,6 +12594,7 @@ namespace Terraria
 					bool forceIt = false;
 					bool wire = false;
 					bool actu = false;
+					int slope = 0;
 					try
 					{
 						for (int i = 3; i < textArray.Length; i++)
@@ -12604,7 +12605,7 @@ namespace Terraria
 								case "f":
 									forceIt = true;
 									Main.NewText("force", 0, 0, 213);
-                                    break;
+									break;
 								case "wire":
 								case "w":
 									wire = true;
@@ -12615,9 +12616,20 @@ namespace Terraria
 									actu = true;
 									break;
 							}
+							
+							if (textArray[i][0] == 'h')
+							{
+								Main.NewText(textArray[i].Substring(1, 2) + textArray[i], 0, 213, 0);
+								if ( !int.TryParse(textArray[i].Substring(1,2), out slope) || slope <= 5)
+								{
+									Main.NewText("Error: Hoik format: h1|h5" + slope.ToString(), 213, 0, 0, false);
+								}
+							}
+
 						}
 					}
 					catch { }
+					Main.NewText("/place " + blockType.ToString() + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString() + ""+slope.ToString(), 0, 213, 0, true);
 
 					Vector2 coords = new Vector2(0, 0);
 					for (int i = 0; i <= count; i++)
@@ -12637,14 +12649,15 @@ namespace Terraria
 								coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
 								break;
 						}
-						Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
-						Main.NewText("coords: " + coords.ToString(), 255, 213, 0);
+					//	Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
+					//	Main.NewText("coords: " + coords.ToString(), 255, 213, 0);
 
 						WorldGen.PlaceTile((int)coords.X, (int)coords.Y, blockType, false, forceIt);
 						if (wire)
 							WorldGen.PlaceWire((int)coords.X, (int)coords.Y);
 						if (actu)
 							WorldGen.PlaceActuator((int)coords.X, (int)coords.Y);
+						WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
 					}
 
 
