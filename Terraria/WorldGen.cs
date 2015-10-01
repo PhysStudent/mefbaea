@@ -38933,6 +38933,46 @@ namespace Terraria
 				current.Update();
 			}
 			TileEntity.UpdateEnd();
+
+			//tmec updateworld :p
+			try
+			{
+				for (int i = 0; i < 1000; i++)
+				{
+					TETrainingDummy dummy = null;
+					try
+					{
+						if (TileEntity.ByID.ContainsKey(i) && TileEntity.ByID[i] is TETrainingDummy)
+							dummy = (TETrainingDummy)TileEntity.ByID[i];
+						else
+							continue;
+					}
+					catch { }
+					if (dummy != null)
+					{
+						if (Main.npc[dummy.npc].active)
+						{
+							Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 255, 0);
+							Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
+							Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
+							Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+							Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+						}
+					}
+				}
+				LoggingUtils.log(LoggingUtils.writePath + "DummyLog-WorldGen.UpdateWorld.txt", "Succeeded: Dummies: " + TileEntity.ByID.Count);
+			}
+			catch (Exception e)
+			{
+				LoggingUtils.PrintToFile(e, "DummyLog - WorldGen.UpdateWorld.txt");
+            }
+			Main.trainingDummies = TETrainingDummy.ByID;
+			//Vector2 tmecVec = Main.fontMouseText.MeasureString(TETrainingDummy.ByID.Count.ToString());
+            //tmecVec.X *= 0.5f;
+			//tmecVec.Y *= 0.5f;
+			//Main.spriteBatch.DrawString(Main.fontMouseText, TETrainingDummy.ByID.Count.ToString(), new Vector2(tmecVec.X + 10f, (float)Main.screenHeight - tmecVec.Y - 32f), Color.White, 0f, tmecVec, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+
+
 			WorldGen.UpdateLunarApocalypse();
 			if (Main.netMode != 1)
 			{

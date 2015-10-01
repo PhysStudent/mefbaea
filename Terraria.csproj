@@ -297,6 +297,7 @@
     <Compile Include="Terraria.UI\UIScrollWheelEvent.cs" />
     <Compile Include="Terraria.UI\UIState.cs" />
     <Compile Include="Terraria.UI\UserInterface.cs" />
+    <Compile Include="Terraria.Utilities\LoggingUtils.cs" />
     <Compile Include="Terraria.Utilities\CrashDump.cs" />
     <Compile Include="Terraria.Utilities\FileOperationAPIWrapper.cs" />
     <Compile Include="Terraria.Utilities\FileUtilities.cs" />
@@ -381,4 +382,10 @@
     <EmbeddedResource Include="Terraria\Libraries.Steamworks.NET.Steamworks.NET.dll" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>copy /Y "$(TargetPath)" "%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
+copy /Y "$(TargetDir)\Terraria.pdb" "%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
+cd %USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\
+Terraria</PostBuildEvent>
+  </PropertyGroup>
 </Project>

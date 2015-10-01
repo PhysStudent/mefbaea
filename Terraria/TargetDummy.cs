@@ -105,7 +105,7 @@ namespace Terraria
 				TargetDummy targetDummy = TargetDummy.dummies[i];
 				if (targetDummy != null && (int)targetDummy.x == x && (int)targetDummy.y == y)
 				{
-					TargetDummy.dummies[i] = null;
+					TargetDummy.dummies[i] = null;//todo wat
 				}
 			}
 		}
