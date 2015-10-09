@@ -1,0 +1,14 @@
+17/09/2015 15:47:14
+System.DllNotFoundException: Unable to load DLL 'CSteamworks': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+   at Steamworks.NativeMethods.SteamAPI_RestartAppIfNecessary(AppId_t unOwnAppID)
+   at Terraria.Social.Steam.CoreSocialModule.Initialize() in C:\Users\stefan\Documents\GitHub\mefbaea\Terraria.Social.Steam\CoreSocialModule.cs:line 18
+   at Terraria.Social.SocialAPI.Initialize(Nullable`1 mode) in C:\Users\stefan\Documents\GitHub\mefbaea\Terraria.Social\SocialAPI.cs:line 36
+   at Terraria.Program.LaunchGame(String[] args) in C:\Users\stefan\Documents\GitHub\mefbaea\Terraria\Program.cs:line 83
+
+26/09/2015 11:25:27
+System.DllNotFoundException: Unable to load DLL 'CSteamworks': The specified module could not be found. (Exception from HRESULT: 0x8007007E)
+   at Steamworks.NativeMethods.SteamAPI_RestartAppIfNecessary(AppId_t unOwnAppID)
+   at Terraria.Social.Steam.CoreSocialModule.Initialize() in C:\Users\stefan\Documents\GitHub\mefbaea\Terraria.Social.Steam\CoreSocialModule.cs:line 18
+   at Terraria.Social.SocialAPI.Initialize(Nullable`1 mode) in C:\Users\stefan\Documents\GitHub\mefbaea\Terraria.Social\SocialAPI.cs:line 36
+   at Terraria.Program.LaunchGame(String[] args) in C:\Users\stefan\Documents\GitHub\mefbaea\Terraria\Program.cs:line 83
+

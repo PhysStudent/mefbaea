@@ -7,3 +7,10 @@ C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Librari
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.csprojResolveAssemblyReference.cache
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.exe
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.pdb
+C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Release\Terraria.exe
+C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Release\Terraria.pdb
+C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Terraria.exe
+C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Terraria.pdb
+C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Libraries.DotNetZip.Ionic.Zip.CF.dll
+C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Libraries.JSON.NET.Newtonsoft.Json.dll
+C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Libraries.Steamworks.NET.Steamworks.NET.dll
