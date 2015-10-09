@@ -131,9 +131,12 @@ namespace Terraria
 		public static Vector2 placePosition;
 		public static int blockType;
 		public static bool listeningforPlace = false;
+		//Dummy Ghost
+		public static Texture2D dummyGhostTexture;
+		public static Dictionary<int, TileEntity> trainingDummies = new Dictionary<int, TileEntity>();
 		
 
-        public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
+		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
 		public static Vector2 destroyerHB = new Vector2(0f, 0f);
 		public static FavoritesFile LocalFavoriteData = new FavoritesFile(Main.SavePath + "/favorites.json", false);
 		public static FavoritesFile CloudFavoritesData = new FavoritesFile("/favorites.json", true);
@@ -378,7 +381,7 @@ namespace Terraria
 		public bool gammaTest;
 		public static int fountainColor = -1;
 		public static int monolithType = -1;
-		public static bool showSplash = true;
+		public static bool showSplash = false;
 		public static bool ignoreErrors = true;
 		public static string defaultIP = "";
 		public static int dayRate = 1;
@@ -6586,6 +6589,11 @@ namespace Terraria
 				Main.musicVolume = 0f;
 				Main.soundVolume = 0f;
 			}
+
+			//tmec texture
+			Main.dummyGhostTexture = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "DummyGhost");
+
+
 			Main.tileCrackTexture = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "TileCracks");
 			Main.chestStackTexture[0] = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "ChestStack_0");
 			Main.chestStackTexture[1] = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "ChestStack_1");
@@ -12594,6 +12602,7 @@ namespace Terraria
 					bool forceIt = false;
 					bool wire = false;
 					bool actu = false;
+					int slope = 0;
 					try
 					{
 						for (int i = 3; i < textArray.Length; i++)
@@ -12604,7 +12613,7 @@ namespace Terraria
 								case "f":
 									forceIt = true;
 									Main.NewText("force", 0, 0, 213);
-                                    break;
+									break;
 								case "wire":
 								case "w":
 									wire = true;
@@ -12615,9 +12624,20 @@ namespace Terraria
 									actu = true;
 									break;
 							}
+							
+							if (textArray[i][0] == 'h')
+							{
+								Main.NewText(textArray[i].Substring(1, 2) + textArray[i], 0, 213, 0);
+								if ( !int.TryParse(textArray[i].Substring(1,2), out slope) || slope <= 5)
+								{
+									Main.NewText("Error: Hoik format: h1|h5" + slope.ToString(), 213, 0, 0, false);
+								}
+							}
+
 						}
 					}
 					catch { }
+					Main.NewText("/place " + blockType.ToString() + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString() + ""+slope.ToString(), 0, 213, 0, true);
 
 					Vector2 coords = new Vector2(0, 0);
 					for (int i = 0; i <= count; i++)
@@ -12637,14 +12657,15 @@ namespace Terraria
 								coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
 								break;
 						}
-						Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
-						Main.NewText("coords: " + coords.ToString(), 255, 213, 0);
+					//	Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
+					//	Main.NewText("coords: " + coords.ToString(), 255, 213, 0);
 
 						WorldGen.PlaceTile((int)coords.X, (int)coords.Y, blockType, false, forceIt);
 						if (wire)
 							WorldGen.PlaceWire((int)coords.X, (int)coords.Y);
 						if (actu)
 							WorldGen.PlaceActuator((int)coords.X, (int)coords.Y);
+						WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
 					}
 
 
@@ -39748,7 +39769,8 @@ namespace Terraria
 				origin3.X *= 0.5f;
 				origin3.Y *= 0.5f;
 				Main.spriteBatch.DrawString(Main.fontMouseText, Main.versionNumber, new Vector2(origin3.X + (float)num97 + 10f, (float)Main.screenHeight - origin3.Y + (float)num98 - 2f), color11, 0f, origin3, 1f, SpriteEffects.None, 0f);
-
+				
+				//tmec titletext
 				Vector2 tmecVec = Main.fontMouseText.MeasureString("T-MEC Community Mod "+tmecversion);
                 tmecVec.X *= 0.5f;
                 tmecVec.Y *= 0.5f;
@@ -48708,6 +48730,32 @@ namespace Terraria
 		}
 		protected override void Draw(GameTime gameTime)
 		{
+			//try
+			//{
+			//	for (int i = 0; i < 1000; i++)
+			//	{
+			//		TETrainingDummy dummy = (TETrainingDummy)TileEntity.ByID[i];
+			//		if (dummy != null)
+			//		{
+			//			if (Main.npc[dummy.npc].active)
+			//			{
+			//				Main.NewText(String.Concat(new object[] { Main.npc[dummy.npc].ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 213, 0);
+			//				Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
+			//				Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
+			//				Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+			//				Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+			//			}
+			//		}
+			//	}
+			//}
+			//catch (Exception e)
+			//{
+			//	using (System.IO.StreamWriter file =
+			//	new System.IO.StreamWriter(@"%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\Logs\DummyLog-WorldGen.UpdateWorld.txt"))
+			//	{
+			//		file.WriteLine(e.ToString());
+			//	}
+			//}
 			if (Main._drawCycleCounter == 0uL)
 			{
 				Main._tileFrameSeed = Utils.RandomNextSeed(Main._tileFrameSeed);
@@ -49987,7 +50035,7 @@ namespace Terraria
 				Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(Main.mouseX, Main.mouseY, 1, 1);
 				Main.sunModY = (short)((double)Main.sunModY * 0.999);
 				Main.moonModY = (short)((double)Main.moonModY * 0.999);
-				if (Main.gameMenu && Main.netMode != 1)
+				if (/*Main.gameMenu &&*/ Main.netMode != 1)
 				{
 					if (Main.mouseLeft && Main.hasFocus)
 					{
@@ -50928,6 +50976,42 @@ namespace Terraria
 						Main.spriteBatch.Draw(Main.loTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Microsoft.Xna.Framework.Color(0, 0, 0, num89));
 					}
 					this.DrawFPS();
+					try
+					{
+						for (int i = 0; i < 1000; i++)
+						{
+							TETrainingDummy dummy = null;
+							try
+							{
+								if (Main.trainingDummies.ContainsKey(i) && Main.trainingDummies[i] is TETrainingDummy)
+									dummy = (TETrainingDummy)Main.trainingDummies[i];
+								else
+									continue;
+							}
+							catch { }
+
+							if (dummy != null)
+							{
+								if (Main.npc[dummy.npc].active)
+								{
+									Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 200, 0);
+									Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
+									Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
+									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+
+								}
+							}
+						}
+						LoggingUtils.log(LoggingUtils.writePath + "DummyLog-Main.Draw.txt", "Succeeded: Dummies: " + Main.trainingDummies.Count);
+					}
+					catch (Exception e)
+					{
+						LoggingUtils.PrintToFile(e, "DummyLog-Main.Draw.txt");
+					}
+					Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+					Main.spriteBatch.DrawString(Main.fontMouseText, Main.trainingDummies.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 48), Color.Orange, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+
 					if (!Main.mapFullscreen)
 					{
 						if (Main.ignoreErrors)
@@ -50944,6 +51028,7 @@ namespace Terraria
 							}
 						}
 						this.DrawInterface(gameTime);
+
 					}
 					IL_5B16:
 					TimeLogger.DetailedDrawTime(27);
@@ -50989,6 +51074,9 @@ namespace Terraria
 			this.DrawMap();
 			this.DrawFPS();
 			this.DrawPlayerChat();
+
+			
+
 			TimeLogger.MapDrawTime(stopwatch.Elapsed.TotalMilliseconds);
 			TimeLogger.EndDrawFrame();
 			CaptureManager.Instance.Update();
