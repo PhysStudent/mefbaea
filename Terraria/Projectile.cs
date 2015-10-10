@@ -6961,20 +6961,7 @@ namespace Terraria
                 file.Close();
             }*/
 
-            /*if (Type == 17)
-            {
-                System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Users\\stefan\\Desktop\\test.txt");
-                try { 
-                file.WriteLine(Environment.StackTrace + "\n" + Main.tile[(int)X, (int)Y].type);
-                }catch (Exception e)
-                {
-                    
-                    file.WriteLine("ERROR" + e);
-                }
-                file.Close();
-                //MessageBox.Show("Main.tile[(int)X, (int)Y].type.ToString()", "");
-
-            }*/
+            
             int num = 1000;
             for (int i = 0; i < 1000; i++)
             {
@@ -7001,7 +6988,8 @@ namespace Terraria
             projectile.gfxOffY = 0f;
             projectile.stepSpeed = 1f;
             projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
-            if (Type == 17) {
+            if (Type == 17)
+            {
                 projectile.whatTile = tileID;
             }
             if (projectile.ignoreWater)
