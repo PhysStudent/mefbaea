@@ -38935,37 +38935,67 @@ namespace Terraria
 			TileEntity.UpdateEnd();
 
 			//tmec updateworld :p
-			try
-			{
-				for (int i = 0; i < 1000; i++)
+			//try
+			//{
+				//Main.spriteBatch.Begin();
+				int derp = 0;
+				int derp2 = 0;
+				int derp3 = 0;
+				//foreach (KeyValuePair<int, Rectangle> current in TETrainingDummy.playerBox)
+				//for (int i = 0; i < 1000; i++)
+				foreach (TileEntity tentity in TileEntity.ByID.Values)
 				{
+					
 					TETrainingDummy dummy = null;
 					try
 					{
-						if (TileEntity.ByID.ContainsKey(i) && TileEntity.ByID[i] is TETrainingDummy)
-							dummy = (TETrainingDummy)TileEntity.ByID[i];
+						if (tentity is TETrainingDummy)
+							dummy = (TETrainingDummy)tentity;
 						else
 							continue;
 					}
 					catch { }
+					derp++;
 					if (dummy != null)
 					{
+						derp2++;
+						try {
 						if (Main.npc[dummy.npc].active)
 						{
-							Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 255, 0);
-							Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
-							Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
-							Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-							Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+							derp3++;
+
+
+							//Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 255, 0);
+							new SpritebatchQueue().Draw(Main.dummyGhostTexture, Main.npc[dummy.npc].position, Color.White);
+							//Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
+							new SpritebatchQueue().DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Yellow);
+							new SpritebatchQueue().DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green/*, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f*/);
 						}
+						}catch{ }
 					}
 				}
-				LoggingUtils.log(LoggingUtils.writePath + "DummyLog-WorldGen.UpdateWorld.txt", "Succeeded: Dummies: " + TileEntity.ByID.Count);
-			}
+				new SpritebatchQueue().DrawString(Main.fontMouseText, derp.ToString() + " dummies " + derp2.ToString() + " " + derp3.ToString(), new Vector2(4, Main.screenHeight - 48), Color.Orange);
+
+
+
+				using (System.IO.StreamWriter file =
+				new System.IO.StreamWriter(System.IO.Path.Combine(LoggingUtils.writePath, "DummyLog WorldGen.txt"), true))
+				{
+					file.WriteLine("Succeeded: Dummies: " + TileEntity.ByID.Count.ToString());
+                }
+				Console.WriteLine("Succeeded: Dummies: " + TileEntity.ByID.Count);
+			/*}
 			catch (Exception e)
 			{
-				LoggingUtils.PrintToFile(e, "DummyLog - WorldGen.UpdateWorld.txt");
-            }
+				LoggingUtils.PrintToFile(e, "DummyLog WorldGen.txt");
+				Console.WriteLine("whoops");
+				
+				throw e;
+			}
+			finally
+			{
+				//Main.spriteBatch.End();
+			}*/
 			Main.trainingDummies = TETrainingDummy.ByID;
 			//Vector2 tmecVec = Main.fontMouseText.MeasureString(TETrainingDummy.ByID.Count.ToString());
             //tmecVec.X *= 0.5f;

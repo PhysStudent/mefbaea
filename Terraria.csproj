@@ -297,6 +297,7 @@
     <Compile Include="Terraria.UI\UIScrollWheelEvent.cs" />
     <Compile Include="Terraria.UI\UIState.cs" />
     <Compile Include="Terraria.UI\UserInterface.cs" />
+    <Compile Include="Terraria.Utilities\SpritebatchQueue.cs" />
     <Compile Include="Terraria.Utilities\LoggingUtils.cs" />
     <Compile Include="Terraria.Utilities\CrashDump.cs" />
     <Compile Include="Terraria.Utilities\FileOperationAPIWrapper.cs" />
@@ -383,9 +384,10 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>copy /Y "$(TargetPath)" "%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
-copy /Y "$(TargetDir)\Terraria.pdb" "%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
-cd %USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\
+    <PostBuildEvent>copy /Y "$(TargetPath)" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
+copy /Y "$(TargetDir)\Terraria.pdb" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
+cd %25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\
+echo Done.
 Terraria</PostBuildEvent>
   </PropertyGroup>
 </Project>

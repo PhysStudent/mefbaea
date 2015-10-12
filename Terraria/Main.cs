@@ -48730,32 +48730,6 @@ namespace Terraria
 		}
 		protected override void Draw(GameTime gameTime)
 		{
-			//try
-			//{
-			//	for (int i = 0; i < 1000; i++)
-			//	{
-			//		TETrainingDummy dummy = (TETrainingDummy)TileEntity.ByID[i];
-			//		if (dummy != null)
-			//		{
-			//			if (Main.npc[dummy.npc].active)
-			//			{
-			//				Main.NewText(String.Concat(new object[] { Main.npc[dummy.npc].ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 213, 0);
-			//				Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
-			//				Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
-			//				Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-			//				Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-			//			}
-			//		}
-			//	}
-			//}
-			//catch (Exception e)
-			//{
-			//	using (System.IO.StreamWriter file =
-			//	new System.IO.StreamWriter(@"%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\Logs\DummyLog-WorldGen.UpdateWorld.txt"))
-			//	{
-			//		file.WriteLine(e.ToString());
-			//	}
-			//}
 			if (Main._drawCycleCounter == 0uL)
 			{
 				Main._tileFrameSeed = Utils.RandomNextSeed(Main._tileFrameSeed);
@@ -50976,42 +50950,118 @@ namespace Terraria
 						Main.spriteBatch.Draw(Main.loTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Microsoft.Xna.Framework.Color(0, 0, 0, num89));
 					}
 					this.DrawFPS();
-					try
-					{
-						for (int i = 0; i < 1000; i++)
+
+						int derp = 0;
+						int derp2 = 0;
+						int derp3 = 0;
+					//try
+					//{
+
+						//for (int i = 0; i < 1000; i++)
+						//{
+						//	TETrainingDummy dummy = null;
+						//	try
+						//	{
+						//		if (Main.trainingDummies.ContainsKey(i) && Main.trainingDummies[i] is TETrainingDummy)
+						//			dummy = (TETrainingDummy)Main.trainingDummies[i];
+						//		else
+						//			continue;
+						//	}
+						//	catch { }
+						foreach (TileEntity tentity in TETrainingDummy.ByID.Values)
 						{
+
 							TETrainingDummy dummy = null;
 							try
 							{
-								if (Main.trainingDummies.ContainsKey(i) && Main.trainingDummies[i] is TETrainingDummy)
-									dummy = (TETrainingDummy)Main.trainingDummies[i];
+								if (tentity is TETrainingDummy)
+									dummy = (TETrainingDummy)tentity;
 								else
 									continue;
 							}
 							catch { }
+							derp++;
+							if (dummy != null)
+							{
+								derp2++;
+							Console.WriteLine("dummy lel " + dummy.npc.ToString());
+							try
+							{
+								if (Main.npc[dummy.npc].active)
+								{
+									derp3++;
 
+									//Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 200, 0);
+									Main.spriteBatch.Draw(Main.dummyGhostTexture, Main.npc[dummy.npc].position, Color.White);
+									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red);
+									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green);
+								}
+							}
+
+							catch { }
+
+							}
+						}
+						LoggingUtils.log(Path.Combine(LoggingUtils.writePath, "DummyLog-Main.Draw.txt"), "Succeeded: Dummies: " + Main.trainingDummies.Count);
+					/*}
+					catch (Exception e)
+					{
+						LoggingUtils.PrintToFile(e, "DummyLog Main.txt");
+						Console.WriteLine(":(");
+						throw e;
+					}*/
+					Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+					//	Main.spriteBatch.DrawString(Main.fontMouseText, Main.trainingDummies.Keys.ToString() + " dummies", new Vector2(4, Main.screenHeight - 48), Color.Orange, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+					Main.spriteBatch.DrawString(Main.fontMouseText, derp.ToString() + " dummies " + derp2.ToString() + " " + derp3.ToString(), new Vector2(4, Main.screenHeight - 72), Color.Blue, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+
+					foreach (SpritebatchQueue gonnaDraw in SpritebatchQueue.queue)
+					{
+						if(gonnaDraw.type == "texture")
+						{
+							Main.spriteBatch.Draw(gonnaDraw.t, gonnaDraw.v, gonnaDraw.c);
+						}
+						else if (gonnaDraw.type == "string")
+						{
+							Main.spriteBatch.DrawString(gonnaDraw.s, gonnaDraw.x, gonnaDraw.v, gonnaDraw.c);
+                        }
+					}
+					SpritebatchQueue.queue.Clear();
+					/*
+					try
+					{
+						//foreach (KeyValuePair<int, Rectangle> current in TETrainingDummy.playerBox)
+						//for (int i = 0; i < 1000; i++)
+						foreach (KeyValuePair<int, TileEntity> keypair in TETrainingDummy.ByID)
+						{
+							TETrainingDummy dummy = null;
+							try
+							{
+								if (dummy is TETrainingDummy)
+									dummy = (TETrainingDummy)keypair.Value;
+								else
+									continue;
+							}
+							catch { }
 							if (dummy != null)
 							{
 								if (Main.npc[dummy.npc].active)
 								{
-									Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 200, 0);
-									Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
+									Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 255, 0);
+									Main.spriteBatch.Draw(Main.dummyGhostTexture, Main.npc[dummy.npc].position, Color.White);
 									Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
 									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
 									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-
 								}
 							}
 						}
-						LoggingUtils.log(LoggingUtils.writePath + "DummyLog-Main.Draw.txt", "Succeeded: Dummies: " + Main.trainingDummies.Count);
+						LoggingUtils.log(LoggingUtils.writePath + "DummyLog-WorldGen.UpdateWorld.txt", "Succeeded: Dummies: " + TileEntity.ByID.Count);
 					}
 					catch (Exception e)
 					{
-						LoggingUtils.PrintToFile(e, "DummyLog-Main.Draw.txt");
+						LoggingUtils.PrintToFile(e, "DummyLog - WorldGen.UpdateWorld.txt");
 					}
-					Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-					Main.spriteBatch.DrawString(Main.fontMouseText, Main.trainingDummies.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 48), Color.Orange, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-
+					Main.trainingDummies = TETrainingDummy.ByID;
+					*/
 					if (!Main.mapFullscreen)
 					{
 						if (Main.ignoreErrors)
