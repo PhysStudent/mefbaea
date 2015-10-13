@@ -387,7 +387,7 @@
     <PostBuildEvent>copy /Y "$(TargetPath)" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
 copy /Y "$(TargetDir)\Terraria.pdb" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
 cd %25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\
-echo Done.
+echo Done...!!
 Terraria</PostBuildEvent>
   </PropertyGroup>
 </Project>
