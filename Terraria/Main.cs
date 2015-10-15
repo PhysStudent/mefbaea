@@ -133,10 +133,12 @@ namespace Terraria
 		public static bool listeningforPlace = false;
 		//Dummy Ghost
 		public static Texture2D dummyGhostTexture;
+		public static Texture2D dummyGhostThickTexture;
 		public static Dictionary<int, TileEntity> trainingDummies = new Dictionary<int, TileEntity>();
 		public static bool dummyLightPressed = false;
 		public static bool dummyLightReleased = false;
 		public static bool dummyLightToggle = true;
+
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
 		public static Vector2 destroyerHB = new Vector2(0f, 0f);
 		public static FavoritesFile LocalFavoriteData = new FavoritesFile(Main.SavePath + "/favorites.json", false);
@@ -382,7 +384,7 @@ namespace Terraria
 		public bool gammaTest;
 		public static int fountainColor = -1;
 		public static int monolithType = -1;
-		public static bool showSplash = false;
+		public static bool showSplash = true;
 		public static bool ignoreErrors = true;
 		public static string defaultIP = "";
 		public static int dayRate = 1;
@@ -6593,6 +6595,7 @@ namespace Terraria
 
 			//tmec texture
 			Main.dummyGhostTexture = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "DummyGhost");
+			Main.dummyGhostThickTexture = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "DummyGhostThick");
 
 
 			Main.tileCrackTexture = base.Content.Load<Texture2D>("Images" + Path.DirectorySeparatorChar + "TileCracks");
@@ -53491,7 +53494,7 @@ namespace Terraria
 			int derp = 0;
 			int derp2 = 0;
 			int derp3 = 0;
-
+			Texture2D theThing = Main.dummyLightToggle ? Main.dummyGhostTexture : Main.dummyGhostThickTexture;
 			foreach (TileEntity tentity in TETrainingDummy.ByID.Values) //All the dummies.
 			{
 
@@ -53517,7 +53520,7 @@ namespace Terraria
 							/*get light color of npc pos*/
 							Color lightNPC = Lighting.GetColor((int)Main.npc[dummy.npc].position.X / 16, (int)Main.npc[dummy.npc].position.Y / 16);
 							/*draw ghost texture*/
-							Main.spriteBatch.Draw(Main.dummyGhostTexture, Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 1, 1, .3f) : new Color(255, 255, 255, 76));
+							Main.spriteBatch.Draw(theThing, Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 1, 1, .3f) : new Color(255, 255, 255, 76));
 							/*draw ID*/
 							Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc - 100).ToString(), Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 0, 0, .3f) : new Color(255, 0, 0, 76));
 							/*tile pos*/
@@ -53527,7 +53530,7 @@ namespace Terraria
 							{
 								/*draw ID on tile loc*/
 								Color lightTile = Lighting.GetColor((int)dummy.Position.X, (int)dummy.Position.Y);
-								Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc - 100).ToString(), pos - Main.screenPosition, Main.dummyLightToggle ? Main.buffColor(lightTile, 0, 1, 0, .3f) : new Color(0,255,0,76);
+								Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc - 100).ToString(), pos - Main.screenPosition, Main.dummyLightToggle ? Main.buffColor(lightTile, 0, 1, 0, .3f) : new Color(0,255,0,76));
 
 							}
 						}

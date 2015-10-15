@@ -40117,8 +40117,20 @@ namespace Terraria
                     {
                         int num715 = (int)(this.position.X + (float)(this.width / 2)) / 16;
                         int num716 = (int)(this.position.Y + (float)(this.width / 2)) / 16;
-                        int num717 = whatTile;
-                        int num718 = 2;
+                        int num717 = whatTile; //?
+						int num718 = 2;
+
+						Item item = new Item();
+						for (int i = 0; i < ItemID.Count; i++)
+						{
+							item.SetDefaults(i, true);
+							if(item.createTile == this.whatTile)
+							{
+								num718 = i;
+								break;
+							}
+						}
+                        
                         if (this.type == 109)
                         {
                             num717 = 147;
