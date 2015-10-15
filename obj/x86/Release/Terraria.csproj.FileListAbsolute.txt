@@ -4,9 +4,23 @@ C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Terrari
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Libraries.DotNetZip.Ionic.Zip.CF.dll
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Libraries.JSON.NET.Newtonsoft.Json.dll
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Libraries.Steamworks.NET.Steamworks.NET.dll
-C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.csprojResolveAssemblyReference.cache
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.exe
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.pdb
+<<<<<<< HEAD
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Game.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Xact.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Game.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Xact.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.csprojResolveAssemblyReference.cache
+=======
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Release\Terraria.exe
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Release\Terraria.pdb
 C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Terraria.exe
@@ -14,3 +28,4 @@ C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Terraria.pdb
 C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Libraries.DotNetZip.Ionic.Zip.CF.dll
 C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Libraries.JSON.NET.Newtonsoft.Json.dll
 C:\Users\stefan\Documents\GitHub\mefbaea\bin\Release\Libraries.Steamworks.NET.Steamworks.NET.dll
+>>>>>>> origin/master

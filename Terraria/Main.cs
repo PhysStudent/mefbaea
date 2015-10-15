@@ -134,8 +134,9 @@ namespace Terraria
 		//Dummy Ghost
 		public static Texture2D dummyGhostTexture;
 		public static Dictionary<int, TileEntity> trainingDummies = new Dictionary<int, TileEntity>();
-		
-
+		public static bool dummyLightPressed = false;
+		public static bool dummyLightReleased = false;
+		public static bool dummyLightToggle = true;
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
 		public static Vector2 destroyerHB = new Vector2(0f, 0f);
 		public static FavoritesFile LocalFavoriteData = new FavoritesFile(Main.SavePath + "/favorites.json", false);
@@ -48730,32 +48731,6 @@ namespace Terraria
 		}
 		protected override void Draw(GameTime gameTime)
 		{
-			//try
-			//{
-			//	for (int i = 0; i < 1000; i++)
-			//	{
-			//		TETrainingDummy dummy = (TETrainingDummy)TileEntity.ByID[i];
-			//		if (dummy != null)
-			//		{
-			//			if (Main.npc[dummy.npc].active)
-			//			{
-			//				Main.NewText(String.Concat(new object[] { Main.npc[dummy.npc].ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 213, 0);
-			//				Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
-			//				Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
-			//				Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-			//				Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-			//			}
-			//		}
-			//	}
-			//}
-			//catch (Exception e)
-			//{
-			//	using (System.IO.StreamWriter file =
-			//	new System.IO.StreamWriter(@"%USERPROFILE%\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\Logs\DummyLog-WorldGen.UpdateWorld.txt"))
-			//	{
-			//		file.WriteLine(e.ToString());
-			//	}
-			//}
 			if (Main._drawCycleCounter == 0uL)
 			{
 				Main._tileFrameSeed = Utils.RandomNextSeed(Main._tileFrameSeed);
@@ -48904,6 +48879,9 @@ namespace Terraria
                         case "L":
                             Main.lockTogglePressed = true;
                             break;
+						case "K":
+							Main.dummyLightPressed = true;
+							break;
                         case "OemPlus":
                             cameraSpeed += cameraSpeed * .03f;
                             break;
@@ -48954,14 +48932,26 @@ namespace Terraria
                 }
 
 
+				if (Main.dummyLightPressed)
+				{                          
+					if (Main.dummyLightReleased)
+					{
+						dummyLightToggle = !dummyLightToggle;
+					}
+					Main.dummyLightReleased = false;
+				}
+				else
+				{
+					Main.dummyLightReleased = true;
+				}//Why did I put this here?
+				 //I like to pretend to be organized. 
 
 
-				
 
 
 
 
-                float num3 = 0f;
+				float num3 = 0f;
 				float num4 = 0f;
 				if ((Main.player[Main.myPlayer].noThrow <= 0 && !Main.player[Main.myPlayer].lastMouseInterface) || Main.zoomX != 0f || Main.zoomY != 0f)
 				{
@@ -50976,41 +50966,73 @@ namespace Terraria
 						Main.spriteBatch.Draw(Main.loTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Microsoft.Xna.Framework.Color(0, 0, 0, num89));
 					}
 					this.DrawFPS();
-					try
-					{
-						for (int i = 0; i < 1000; i++)
+
+					int derp = 0;
+					int derp2 = 0;
+					int derp3 = 0;
+
+					foreach (TileEntity tentity in TETrainingDummy.ByID.Values) //All the dummies.
 						{
+
 							TETrainingDummy dummy = null;
 							try
 							{
-								if (Main.trainingDummies.ContainsKey(i) && Main.trainingDummies[i] is TETrainingDummy)
-									dummy = (TETrainingDummy)Main.trainingDummies[i];
+								if (tentity is TETrainingDummy)
+									dummy = (TETrainingDummy)tentity;
 								else
 									continue;
 							}
 							catch { }
-
+							derp++; //counters
 							if (dummy != null)
 							{
-								if (Main.npc[dummy.npc].active)
+								derp2++;
+								//Console.WriteLine("dummy lel " + dummy.npc.ToString());
+								try
 								{
-									Main.NewText(String.Concat(new object[] { dummy.npc.ToString(), Main.npc[dummy.npc].position.ToString() }), 0, 200, 0);
-									Main.spriteBatch.Draw(Main.bubbleTexture, Main.npc[dummy.npc].position, Color.White);
-									Vector2 textOrigin = Main.fontItemStack.MeasureString(dummy.npc.ToString()) * 0.5f;
-									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), Main.npc[dummy.npc].position - Main.screenPosition, Color.Red, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-									Main.spriteBatch.DrawString(Main.fontItemStack, dummy.npc.ToString(), new Vector2(dummy.Position.X, dummy.Position.Y) - Main.screenPosition, Color.Green, 0f, textOrigin, 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+									if (Main.npc[dummy.npc].active)
+									{
+										derp3++;
+		/*get light color of npc pos*/	Color lightNPC = Lighting.GetColor((int)Main.npc[dummy.npc].position.X / 16, (int)Main.npc[dummy.npc].position.Y / 16);
+		/*draw ghost texture*/			Main.spriteBatch.Draw(Main.dummyGhostTexture, Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8,8), Main.dummyLightToggle ? Main.buffColor(lightNPC,1,1,1,.5f) : new Color(255,255,255,128));
+		/*draw ID*/						Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc - 100).ToString(), Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8,8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 0, 0, .5f) : new Color(255,0,0,128));
+		/*tile pos*/					Vector2 pos = (new Vector2(dummy.Position.X, dummy.Position.Y) * 16);
+		/* if the npc is 2 tiles away*/	if(Math.Abs(Math.Max(pos.X - Main.npc[dummy.npc].position.X, pos.Y - Main.npc[dummy.npc].position.Y)) > 16)
+										{
+		/*draw ID on tile loc*/				Color lightTile = Lighting.GetColor((int)dummy.Position.X, (int)dummy.Position.Y);
+											Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc-100).ToString(), pos - Main.screenPosition, Main.dummyLightToggle ? Main.buffColor(lightTile, 0,1,0,128) : Color.Green);
 
+										}
+									}
 								}
+
+								catch { }
+
 							}
 						}
-						LoggingUtils.log(LoggingUtils.writePath + "DummyLog-Main.Draw.txt", "Succeeded: Dummies: " + Main.trainingDummies.Count);
-					}
-					catch (Exception e)
+					//LoggingUtils.log(Path.Combine(LoggingUtils.writePath, "DummyLog-Main.Draw.txt"), "Succeeded: Dummies: " + Main.trainingDummies.Count);
+					//Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White);
+					if (Main.showFrameRate)
 					{
-						LoggingUtils.PrintToFile(e, "DummyLog-Main.Draw.txt");
+						Main.spriteBatch.DrawString(Main.fontMouseText, derp.ToString() + " dummies, " + derp3.ToString() + " active", new Vector2(4, Main.screenHeight - 24), Color.Blue);
 					}
-					Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-					Main.spriteBatch.DrawString(Main.fontMouseText, Main.trainingDummies.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 48), Color.Orange, 0f, default(Vector2), 1f, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+
+					foreach (SpritebatchQueue gonnaDraw in SpritebatchQueue.queue)
+					{
+						if(gonnaDraw.type == "texture")
+						{
+							Main.spriteBatch.Draw(gonnaDraw.t, gonnaDraw.v, gonnaDraw.c);
+						}
+						else if (gonnaDraw.type == "string")
+						{
+							Main.spriteBatch.DrawString(gonnaDraw.s, gonnaDraw.x, gonnaDraw.v, gonnaDraw.c);
+                        }
+					}
+					SpritebatchQueue.queue.Clear();
+					
+
+					//YES. DONE.
+
 
 					if (!Main.mapFullscreen)
 					{
