@@ -27695,10 +27695,6 @@ namespace Terraria
                         num22 = (int)(Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY) / 16;
                     }
                     Tile tile = Main.tile[num21, num22];
-                    System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Users\\stefan\\Desktop\\test1.txt");
-                    file.WriteLine(tile.blockType()+"\n"+tile.bTileHeader + "\n" + tile.bTileHeader2 + "\n" + tile.bTileHeader3 + "\n" + tile.sTileHeader + "\n" + tile.type);
-                    file.WriteLine("Eh?");
-                    file.Close();
                     if (tile.active() /*&& (tile.type == 0 || tile.type == 2 || tile.type == 23 || tile.type == 109 || tile.type == 199)*/)//Edited
                     {
                         tileID = (int) tile.type;
