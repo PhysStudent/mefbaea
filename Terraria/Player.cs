@@ -26965,7 +26965,7 @@ namespace Terraria
         }
         public void ItemCheck(int i)
         {
-            int tileID = 0;
+            Tile dirtRodTile = null;
             if (this.webbed || this.frozen || this.stoned)
             {
                 return;
@@ -27697,7 +27697,7 @@ namespace Terraria
                     Tile tile = Main.tile[num21, num22];
                     if (tile.active() /*&& (tile.type == 0 || tile.type == 2 || tile.type == 23 || tile.type == 109 || tile.type == 199)*/)//Edited
                     {
-                        tileID = (int) tile.type;
+                        dirtRodTile = new Tile(tile);
                         WorldGen.KillTile(num21, num22, false, false, true);
                         if (!Main.tile[num21, num22].active())
                         {
@@ -29963,7 +29963,7 @@ namespace Terraria
                         }
                         else
                         {
-                            int num204 = Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, num71, num73, num74, i, 0f, 0f, tileID); //Add block id!
+                            int num204 = Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, num71, num73, num74, i, 0f, 0f, dirtRodTile); //Add block id!
                             if (item.type == 726)
                             {
                                 Main.projectile[num204].magic = true;

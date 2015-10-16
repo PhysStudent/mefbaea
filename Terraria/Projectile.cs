@@ -72,7 +72,7 @@ namespace Terraria
         public int frame;
         public bool manualDirectionChange;
         public int projUUID = -1;
-        public int whatTile = 0;
+        public Tile whatTile = null;
         public float Opacity
         {
             get
@@ -6950,7 +6950,7 @@ namespace Terraria
             }
             return result;
         }
-        public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = 255, float ai0 = 0f, float ai1 = 0f, int tileID = 0)
+        public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = 255, float ai0 = 0f, float ai1 = 0f, Tile tileID = null)
         {
             /*if (Type == 17)
             {
@@ -40105,7 +40105,7 @@ namespace Terraria
                     {
                         int num715 = (int)(this.position.X + (float)(this.width / 2)) / 16;
                         int num716 = (int)(this.position.Y + (float)(this.width / 2)) / 16;
-                        int num717 = whatTile;
+                        int num717 = (int) whatTile.type;
                         int num718 = 2;
                         if (this.type == 109)
                         {
@@ -40233,11 +40233,13 @@ namespace Terraria
                             }
                             else if (num718 > 0)
                             {
+                                WorldGen.whatItem(num715, num716, whatTile);
                                 num714 = Item.NewItem((int)this.position.X, (int)this.position.Y, this.width, this.height, num718, 1, false, 0, false, false);
                             }
                         }
                         else if (num718 > 0)
                         {
+                            WorldGen.whatItem(num715, num716, whatTile);
                             num714 = Item.NewItem((int)this.position.X, (int)this.position.Y, this.width, this.height, num718, 1, false, 0, false, false);
                         }
                     }
