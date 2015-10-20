@@ -72,7 +72,7 @@ namespace Terraria
         public int frame;
         public bool manualDirectionChange;
         public int projUUID = -1;
-        public int whatTile = 0;
+        public Tile whatTile = null;
         public float Opacity
         {
             get
@@ -6950,7 +6950,7 @@ namespace Terraria
             }
             return result;
         }
-        public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = 255, float ai0 = 0f, float ai1 = 0f, int tileID = 0)
+        public static int NewProjectile(float X, float Y, float SpeedX, float SpeedY, int Type, int Damage, float KnockBack, int Owner = 255, float ai0 = 0f, float ai1 = 0f, Tile tileID = null)
         {
             /*if (Type == 17)
             {
@@ -6961,20 +6961,7 @@ namespace Terraria
                 file.Close();
             }*/
 
-            /*if (Type == 17)
-            {
-                System.IO.StreamWriter file = new System.IO.StreamWriter("C:\\Users\\stefan\\Desktop\\test.txt");
-                try { 
-                file.WriteLine(Environment.StackTrace + "\n" + Main.tile[(int)X, (int)Y].type);
-                }catch (Exception e)
-                {
-                    
-                    file.WriteLine("ERROR" + e);
-                }
-                file.Close();
-                //MessageBox.Show("Main.tile[(int)X, (int)Y].type.ToString()", "");
-
-            }*/
+            
             int num = 1000;
             for (int i = 0; i < 1000; i++)
             {
@@ -7001,7 +6988,8 @@ namespace Terraria
             projectile.gfxOffY = 0f;
             projectile.stepSpeed = 1f;
             projectile.wet = Collision.WetCollision(projectile.position, projectile.width, projectile.height);
-            if (Type == 17) {
+            if (Type == 17)
+            {
                 projectile.whatTile = tileID;
             }
             if (projectile.ignoreWater)
@@ -40117,20 +40105,8 @@ namespace Terraria
                     {
                         int num715 = (int)(this.position.X + (float)(this.width / 2)) / 16;
                         int num716 = (int)(this.position.Y + (float)(this.width / 2)) / 16;
-                        int num717 = whatTile; //?
-						int num718 = 2;
-
-						Item item = new Item();
-						for (int i = 0; i < ItemID.Count; i++)
-						{
-							item.SetDefaults(i, true);
-							if(item.createTile == this.whatTile)
-							{
-								num718 = i;
-								break;
-							}
-						}
-                        
+                        int num717 = (int) whatTile.type;
+                        int num718 = 2;
                         if (this.type == 109)
                         {
                             num717 = 147;
@@ -40257,11 +40233,13 @@ namespace Terraria
                             }
                             else if (num718 > 0)
                             {
+                                WorldGen.whatItem(num715, num716, whatTile);
                                 num714 = Item.NewItem((int)this.position.X, (int)this.position.Y, this.width, this.height, num718, 1, false, 0, false, false);
                             }
                         }
                         else if (num718 > 0)
                         {
+                            WorldGen.whatItem(num715, num716, whatTile);
                             num714 = Item.NewItem((int)this.position.X, (int)this.position.Y, this.width, this.height, num718, 1, false, 0, false, false);
                         }
                     }
