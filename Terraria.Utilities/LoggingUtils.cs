@@ -19,7 +19,7 @@ namespace Terraria.Utilities
         }
         public static void PrintToFile(Exception e, String path, bool full = true, bool lines = true)
 		{
-#if !LOG
+#if (!LOG)
 			return;
 #endif
 			//writepath += path;

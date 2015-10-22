@@ -138,6 +138,18 @@ namespace Terraria
 		public static bool dummyLightPressed = false;
 		public static bool dummyLightReleased = false;
 		public static bool dummyLightToggle = true;
+		//Pause
+		public static bool manualPause = false;
+		public static bool manualPausePressed = false;
+		public static bool manualPauseReleased = false;
+		//Slomo
+		public static int SLOMO_RATE = 2;
+		public static float slomoCount = 0f;
+		public static bool slomoToggle;
+		public static bool slomoPressed;
+        public static bool slomoReleased;
+
+
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
 		public static Vector2 destroyerHB = new Vector2(0f, 0f);
@@ -10639,7 +10651,7 @@ namespace Terraria
 			}
 			if (!Main.dedServ)
 			{
-				if (Main.superFast)
+				if (Main.superFast) //todo timing
 				{
 					base.IsFixedTimeStep = false;
 					Main.graphics.SynchronizeWithVerticalRetrace = false;
@@ -10820,8 +10832,18 @@ namespace Terraria
 						Main.mapTimeMax = 0;
 					}
 					int arg_69A_0 = Main.netMode;
-				}
-				if (Main.terrariasFixedTiming)
+				}//tmec slomo
+				if (Main.slomoToggle)
+				{
+					//MessageBox.Show("bruh we in " + slomoCount.ToString() + " " + (!(Main.slomoCount >= Main.SLOMO_RATE)).ToString());
+					Main.slomoCount++;
+					if (Main.slomoCount >= Main.SLOMO_RATE)
+					{
+						Main.slomoCount -= Main.SLOMO_RATE;
+					}
+					else return;
+                }
+				if (Main.terrariasFixedTiming && !Main.slomoToggle)
 				{
 					float num2 = 16f;
 					float num3 = (float)Main.updateTimer.ElapsedMilliseconds;
@@ -12074,7 +12096,7 @@ namespace Terraria
 			{
 				Main.clientPlayer = (Player)Main.player[Main.myPlayer].clientClone();
 			}
-			if (Main.netMode == 0 && (Main.playerInventory || Main.npcChatText != "" || Main.player[Main.myPlayer].sign >= 0 || Main.ingameOptionsWindow || Main.achievementsWindow) && Main.autoPause)
+			if ((Main.netMode == 0 && (Main.playerInventory || Main.npcChatText != "" || Main.player[Main.myPlayer].sign >= 0 || Main.ingameOptionsWindow || Main.achievementsWindow) && Main.autoPause) || Main.manualPause)
 			{
 				if (!Main.chatMode && !Main.editSign && !Main.editChest && !Main.blockInput)
 				{
@@ -12257,7 +12279,7 @@ namespace Terraria
 				Main.gamePaused = true;
 				return;
 			}
-			Main.gamePaused = false;
+			Main.gamePaused = false; // I know I could use this but just to be safe bruh 
 			if (!Main.dedServ && (double)Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0 && Main.netMode != 2)
 			{
 				Star.UpdateStars();
@@ -12577,6 +12599,11 @@ namespace Terraria
 			//if(textArray.Length)
 			try
 			{
+
+				if (textArray[0] == "/slomo" || textArray[0] == "/sm")
+					int.TryParse(textArray[1], out Main.SLOMO_RATE);
+
+
 				if (textArray[0] == "/place" && textArray[1] == "set")
 				{
 					listeningforPlace = true;
@@ -48895,7 +48922,8 @@ namespace Terraria
 
                 Main.lockTogglePressed = false;
 				Main.dummyLightPressed = false;
-
+				Main.slomoPressed = false;
+				Main.manualPausePressed = false;
                 //System.IO.StreamWriter is just loggy stuff
 
 				//tmec update
@@ -48911,6 +48939,12 @@ namespace Terraria
                             break;
 						case "K":
 							Main.dummyLightPressed = true;
+							break;
+						case "O":
+							Main.slomoPressed = true;
+							break;
+						case "P":
+							Main.manualPausePressed = true;
 							break;
                         case "OemPlus":
                             cameraSpeed += cameraSpeed * .03f;
@@ -48977,7 +49011,30 @@ namespace Terraria
 				 //I like to pretend to be organized. 
 
 
-
+				if (Main.slomoPressed)
+				{
+					if (Main.slomoReleased)
+					{
+						slomoToggle = !slomoToggle;
+					}
+					Main.slomoReleased = false;
+				}
+				else
+				{
+					Main.slomoReleased = true;
+				}
+				if (Main.manualPausePressed)
+				{
+					if (Main.manualPauseReleased)
+					{
+						manualPause = !manualPause;
+					}
+					Main.manualPauseReleased = false;
+				}
+				else
+				{
+					Main.manualPauseReleased = true;
+				}
 
 
 
@@ -53547,7 +53604,7 @@ namespace Terraria
 							/*get light color of npc pos*/
 							Color lightNPC = Lighting.GetColor((int)Main.npc[dummy.npc].position.X / 16, (int)Main.npc[dummy.npc].position.Y / 16);
 							/*draw ghost texture*/
-							Main.spriteBatch.Draw(theThing, (Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8)), null, Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 1, 1, .3f) : new Color(255, 255, 255, 76), 0f, default(Vector2), 0f, ((Main.tile[dummy.Position.X, dummy.Position.Y].frameX != 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally), 0f);
+							Main.spriteBatch.Draw(theThing, (Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8)), null, Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 1, 1, .3f) : new Color(255, 255, 255, 76), 0f, default(Vector2), 1f, ((Main.tile[dummy.Position.X, dummy.Position.Y].frameX != 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally), 0f);
 							/*draw ID*/
 							Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc - 100).ToString(), Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 0, 0, .3f) : new Color(255, 0, 0, 76));
 							/*tile pos*/
@@ -53563,9 +53620,11 @@ namespace Terraria
 						}
 					}
 
-					catch { }
+					catch (Exception e) {
 
-				}
+					}
+
+					}
 			}
 			//LoggingUtils.log(Path.Combine(LoggingUtils.writePath, "DummyLog-Main.Draw.txt"), "Succeeded: Dummies: " + Main.trainingDummies.Count);
 			//Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White);
