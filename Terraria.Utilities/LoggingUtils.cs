@@ -19,8 +19,11 @@ namespace Terraria.Utilities
         }
         public static void PrintToFile(Exception e, String path, bool full = true, bool lines = true)
 		{
-            //writepath += path;
-            String pathWeGonnaWriteTo = writePath + path;
+#if !LOG
+			return;
+#endif
+			//writepath += path;
+			String pathWeGonnaWriteTo = writePath + path;
 			String stringWeGonnaWriteWith = "";
 			StackTrace st = new StackTrace(true);
 			stringWeGonnaWriteWith += "framecount: " + st.FrameCount.ToString() + "\r\n";

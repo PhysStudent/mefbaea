@@ -120,13 +120,13 @@ namespace Terraria
 
 
 		//tmec defs
-		public static string tmecversion = "v1"; //Line 39600
+		public static string tmecversion = "v1.18"; //Line 39600
         //Camera lock
         public static Vector2 lockPosition = new Vector2(0, 0);
         public static bool screenLocked = false;
         public static bool lockTogglePressed = false;
         public static bool lockToggleReleased = false;
-        public static float cameraSpeed = 1;
+        public static float cameraSpeed = 4;
 		//Block Placing
 		public static Vector2 placePosition;
 		public static int blockType;
@@ -12599,7 +12599,7 @@ namespace Terraria
 						placePosition = new Vector2((int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
 					if (!int.TryParse(textArray[1], out blockType) || !int.TryParse(textArray[3], out count)) //if type or count aren't a number, fail
 					{
-						Main.NewText("Invalid format. /place <type> <direction> <count>", 213, 0, 0);
+						Main.NewText("Invalid format. /place <type> <direction> <count> [wire|actuator|force]", 213, 0, 0);
 						return;
 					}
 
@@ -12669,16 +12669,43 @@ namespace Terraria
 							WorldGen.PlaceWire((int)coords.X, (int)coords.Y);
 						if (actu)
 							WorldGen.PlaceActuator((int)coords.X, (int)coords.Y);
-						WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
 					}
 
+					//doing it again to avoid it murdering everything
+					if (slope != 0)
+					{
+						WorldGen.gen = true;
+						for (int i = 0; i <= count; i++)
+						{
+							switch (textArray[2])
+							{
+								case "left":
+									coords = new Vector2((int)placePosition.X - i, (int)placePosition.Y);
+									break;
+								case "right":
+									coords = new Vector2((int)placePosition.X + i, (int)placePosition.Y);
+									break;
+								case "down":
+									coords = new Vector2((int)placePosition.X, (int)placePosition.Y + i);
+									break;
+								case "up":
+									coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
+									break;
+							}
+							WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
+							Main.NewText(slope.ToString());
+						}
+						WorldGen.gen = false;
+					}
 
 				}
 			}
 			catch (Exception e)
 			{
-				Main.NewText(e.ToString(), 255, 128, 128);
+				//Main.NewText(e.ToString(), 255, 128, 128);
+				MessageBox.Show(e.ToString(),"0h n0e sp00ky sleket0n");
 			}
+
 		}
 		private static void UpdateMenu()
 		{
@@ -53520,7 +53547,7 @@ namespace Terraria
 							/*get light color of npc pos*/
 							Color lightNPC = Lighting.GetColor((int)Main.npc[dummy.npc].position.X / 16, (int)Main.npc[dummy.npc].position.Y / 16);
 							/*draw ghost texture*/
-							Main.spriteBatch.Draw(theThing, Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 1, 1, .3f) : new Color(255, 255, 255, 76));
+							Main.spriteBatch.Draw(theThing, (Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8)), null, Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 1, 1, .3f) : new Color(255, 255, 255, 76), 0f, default(Vector2), 0f, ((Main.tile[dummy.Position.X, dummy.Position.Y].frameX != 0) ? SpriteEffects.None : SpriteEffects.FlipHorizontally), 0f);
 							/*draw ID*/
 							Main.spriteBatch.DrawString(Main.fontItemStack, (dummy.npc - 100).ToString(), Main.npc[dummy.npc].position - Main.screenPosition - new Vector2(8, 8), Main.dummyLightToggle ? Main.buffColor(lightNPC, 1, 0, 0, .3f) : new Color(255, 0, 0, 76));
 							/*tile pos*/

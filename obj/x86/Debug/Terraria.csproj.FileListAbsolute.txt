@@ -6,3 +6,5 @@ C:\Users\stefan\Documents\GitHub\mefbaea\bin\Debug\Libraries.Steamworks.NET.Stea
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.exe
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.pdb
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.csprojResolveAssemblyReference.cache
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Debug\Terraria.exe
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Debug\Terraria.pdb

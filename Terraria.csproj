@@ -27,9 +27,26 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DefineConstants>DEBUG;LOG</DefineConstants>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
     <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'release +log|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x86\release +log\</OutputPath>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <DefineConstants>LOG</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>tmec.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Libraries.DotNetZip.Ionic.Zip.CF">
@@ -382,12 +399,15 @@
     <EmbeddedResource Include="Terraria\Libraries.JSON.NET.Newtonsoft.Json.dll" />
     <EmbeddedResource Include="Terraria\Libraries.Steamworks.NET.Steamworks.NET.dll" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="tmec.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>copy /Y "$(TargetPath)" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
 copy /Y "$(TargetDir)\Terraria.pdb" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
 cd %25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\
 echo Done...!!
-Terraria</PostBuildEvent>
+::Terraria</PostBuildEvent>
   </PropertyGroup>
 </Project>

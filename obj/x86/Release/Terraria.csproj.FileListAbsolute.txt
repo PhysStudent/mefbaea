@@ -1,4 +1,3 @@
-C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Terraria.exe
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Terraria.pdb
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Libraries.DotNetZip.Ionic.Zip.CF.dll
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Libraries.JSON.NET.Newtonsoft.Json.dll
@@ -16,5 +15,6 @@ C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microso
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.GamerServices.xml
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Microsoft.Xna.Framework.Input.Touch.xml
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.csprojResolveAssemblyReference.cache
-C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.exe
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.pdb
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Release\Terraria.exe
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Release\Terraria.exe
