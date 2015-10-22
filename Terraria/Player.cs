@@ -24049,16 +24049,19 @@ namespace Terraria
                         {
                             time = 10;
                         }
-                        Main.SetCameraLerp(0.1f, time);
+                        Main.SetCameraLerp(0.1f, 0); //edit
                     }
                     else
                     {
-                        Main.BlackFadeIn = 255;
-                        Lighting.BlackOut();
+						if (false)
+						{
+							Main.BlackFadeIn = 255;
+							Lighting.BlackOut();
+							Main.quickBG = 10;
+						}
                         Main.screenLastPosition = Main.screenPosition;
                         Main.screenPosition.X = this.position.X + (float)(this.width / 2) - (float)(Main.screenWidth / 2);
                         Main.screenPosition.Y = this.position.Y + (float)(this.height / 2) - (float)(Main.screenHeight / 2);
-                        Main.quickBG = 10;
                     }
                     if (Main.mapTime < 5)
                     {
@@ -30302,7 +30305,7 @@ namespace Terraria
                             this.toolTime = (int)((float)item.useTime * this.pickSpeed);
                         }
                     }
-                }
+                }//tmec infinite range?
                 if ((item.pick > 0 || item.axe > 0 || item.hammer > 0) && this.position.X / 16f - (float)Player.tileRangeX - (float)item.tileBoost <= (float)Player.tileTargetX && (this.position.X + (float)this.width) / 16f + (float)Player.tileRangeX + (float)item.tileBoost - 1f >= (float)Player.tileTargetX && this.position.Y / 16f - (float)Player.tileRangeY - (float)item.tileBoost <= (float)Player.tileTargetY && (this.position.Y + (float)this.height) / 16f + (float)Player.tileRangeY + (float)item.tileBoost - 2f >= (float)Player.tileTargetY)
                 {
                     int num222 = 0;
