@@ -8,12 +8,13 @@ This name really annoys me.
 
 
 #Todo list:
-- The dirt rod (Fix the item drops..)
+- Zooming!! 
+- S-l-o-w m-o-t-i-o-n m-o-d-e (Hard to read! :P)
+- A mefbaea config file
 - Toggle-able infinity wire/actuators/etc
 - Remove wrench/wire cutter limit
 - Stop wire/actuators/etc being dropped if you are using the "infinity mode" 
 - Blocks in mid air 
-- Zooming (Seems like an interesting challenge) 
 - Infinity health/mana 
 - Placing dummy ghosts/other mobs (Dummy counter)
 - Inventory editor? (Seems like a lot of work...) 
