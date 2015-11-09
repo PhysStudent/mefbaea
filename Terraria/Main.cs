@@ -120,7 +120,7 @@ namespace Terraria
 
 
 		//tmec defs
-		public static string tmecversion = "v1.18"; //Line 39600
+		public static string tmecversion = String.Format("v1.21 ({0}-{1})", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString()); //Line 39600
         //Camera lock
         public static Vector2 lockPosition = new Vector2(0, 0);
         public static bool screenLocked = false;
@@ -148,7 +148,7 @@ namespace Terraria
 		public static bool slomoToggle;
 		public static bool slomoPressed;
         public static bool slomoReleased;
-
+		
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -12592,7 +12592,7 @@ namespace Terraria
 			}
 			base.Update(gameTime);
 		}
-		public static void checkForTMecModChat(string text) //tmec checkForTMecModChat
+		public static bool checkForTMecModChat(string text) //tmec checkForTMecModChat
 		{
 			string[] textArray = text.Split();
 
@@ -12601,16 +12601,22 @@ namespace Terraria
 			{
 
 				if (textArray[0] == "/slomo" || textArray[0] == "/sm")
-					int.TryParse(textArray[1], out Main.SLOMO_RATE);
-
+				{
+					int newSlomoRate = 60;
+					if(int.TryParse(textArray[1], out newSlomoRate))
+						Main.SLOMO_RATE = 60/newSlomoRate;
+					return true;
+				}
 
 				if (textArray[0] == "/place" && textArray[1] == "set")
 				{
 					listeningforPlace = true;
+					return true;
 				}
 				if (textArray[0] == "/place" && textArray[1] == "reset")
 				{
 					placePosition = new Vector2(0, 0);
+					return true;
 				}
 
 				if (textArray[0] == "/place" && textArray[1] != "set")
@@ -12719,12 +12725,13 @@ namespace Terraria
 									coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
 									break;
 							}
-							WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
+							//WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
+							Main.tile[coords.X, coords.Y].slope(slope);
 							Main.NewText(slope.ToString());
 						}
 						WorldGen.gen = false;
 					}
-
+					return true;
 				}
 			}
 			catch (Exception e)
@@ -12732,6 +12739,7 @@ namespace Terraria
 				//Main.NewText(e.ToString(), 255, 128, 128);
 				MessageBox.Show(e.ToString(),"0h n0e sp00ky sleket0n");
 			}
+			return false;
 
 		}
 		private static void UpdateMenu()
@@ -46298,10 +46306,10 @@ namespace Terraria
 			{
 				for (int j = num; j < num2; j++)
 				{
-					if (Main.tile[j, i].wire() && Lighting.Brightness(j, i) > 0f)
+					if (Main.tile[j, i].wire() && (Main.dummyLightToggle || Lighting.Brightness(j, i) > 0f))
 					{
 						Microsoft.Xna.Framework.Rectangle value = new Microsoft.Xna.Framework.Rectangle(0, 0, 16, 16);
-						bool flag = Main.tile[j, i - 1].wire();
+						bool flag = Main.tile[j, i - 1].wire();//tmec wirelighting
 						bool flag2 = Main.tile[j, i + 1].wire();
 						bool flag3 = Main.tile[j - 1, i].wire();
 						bool flag4 = Main.tile[j + 1, i].wire();
@@ -46390,10 +46398,10 @@ namespace Terraria
 						{
 							value = new Microsoft.Xna.Framework.Rectangle(0, 54, 16, 16);
 						}
-						Microsoft.Xna.Framework.Color color = Lighting.GetColor(j, i);
+						Microsoft.Xna.Framework.Color color = Main.dummyLightToggle ? Color.White : Lighting.GetColor(j, i);
 						Main.spriteBatch.Draw(Main.wireTexture, new Vector2((float)(j * 16 - (int)Main.screenPosition.X), (float)(i * 16 - (int)Main.screenPosition.Y)) + zero, new Microsoft.Xna.Framework.Rectangle?(value), color, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 					}
-					if (Main.tile[j, i].wire2() && Lighting.Brightness(j, i) > 0f)
+					if (Main.tile[j, i].wire2() && (Main.dummyLightToggle || Lighting.Brightness(j, i) > 0f))
 					{
 						Microsoft.Xna.Framework.Rectangle value2 = new Microsoft.Xna.Framework.Rectangle(0, 0, 16, 16);
 						bool flag5 = Main.tile[j, i - 1].wire2();
@@ -46485,7 +46493,7 @@ namespace Terraria
 						{
 							value2 = new Microsoft.Xna.Framework.Rectangle(0, 54, 16, 16);
 						}
-						Microsoft.Xna.Framework.Color color2 = Lighting.GetColor(j, i);
+						Microsoft.Xna.Framework.Color color2 = Main.dummyLightToggle ? Color.White : Lighting.GetColor(j, i);
 						int num5 = 1;
 						if (Main.tile[j, i].wire())
 						{
@@ -46499,7 +46507,7 @@ namespace Terraria
 						color2 = new Microsoft.Xna.Framework.Color((int)r, (int)g, (int)b, (int)a);
 						Main.spriteBatch.Draw(Main.wire2Texture, new Vector2((float)(j * 16 - (int)Main.screenPosition.X), (float)(i * 16 - (int)Main.screenPosition.Y)) + zero, new Microsoft.Xna.Framework.Rectangle?(value2), color2, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 					}
-					if (Main.tile[j, i].wire3() && Lighting.Brightness(j, i) > 0f)
+					if (Main.tile[j, i].wire3() && (Main.dummyLightToggle || Lighting.Brightness(j, i) > 0f))
 					{
 						Microsoft.Xna.Framework.Rectangle value3 = new Microsoft.Xna.Framework.Rectangle(0, 0, 16, 16);
 						bool flag9 = Main.tile[j, i - 1].wire3();
@@ -46591,7 +46599,7 @@ namespace Terraria
 						{
 							value3 = new Microsoft.Xna.Framework.Rectangle(0, 54, 16, 16);
 						}
-						Microsoft.Xna.Framework.Color color3 = Lighting.GetColor(j, i);
+						Microsoft.Xna.Framework.Color color3 = Main.dummyLightToggle ? Color.White : Lighting.GetColor(j, i);
 						int num7 = 1;
 						if (Main.tile[j, i].wire())
 						{
@@ -46609,9 +46617,9 @@ namespace Terraria
 						color3 = new Microsoft.Xna.Framework.Color((int)r2, (int)g2, (int)b2, (int)a2);
 						Main.spriteBatch.Draw(Main.wire3Texture, new Vector2((float)(j * 16 - (int)Main.screenPosition.X), (float)(i * 16 - (int)Main.screenPosition.Y)) + zero, new Microsoft.Xna.Framework.Rectangle?(value3), color3, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 					}
-					if (Main.tile[j, i].actuator() && Lighting.Brightness(j, i) > 0f)
+					if (Main.tile[j, i].actuator() && (Main.dummyLightToggle || Lighting.Brightness(j, i) > 0f))
 					{
-						Microsoft.Xna.Framework.Color color4 = Lighting.GetColor(j, i);
+						Microsoft.Xna.Framework.Color color4 = Main.dummyLightToggle ? Color.White : Lighting.GetColor(j, i);
 						Main.spriteBatch.Draw(Main.actuatorTexture, new Vector2((float)(j * 16 - (int)Main.screenPosition.X), (float)(i * 16 - (int)Main.screenPosition.Y)) + zero, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.actuatorTexture.Width, Main.actuatorTexture.Height)), color4, 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
 					}
 				}
