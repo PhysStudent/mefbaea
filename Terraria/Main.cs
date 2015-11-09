@@ -124,12 +124,12 @@ namespace Terraria
 
 		//tmec defs
 		public static string tmecversion = String.Format("v1.21 ({0}-{1})", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString()); //Line 39600
-        //Camera lock
-        public static Vector2 lockPosition = new Vector2(0, 0);
-        public static bool screenLocked = false;
-        public static bool lockTogglePressed = false;
-        public static bool lockToggleReleased = false;
-        public static float cameraSpeed = 4;
+																																																															//Camera lock
+		public static Vector2 lockPosition = new Vector2(0, 0);
+		public static bool screenLocked = false;
+		public static bool lockTogglePressed = false;
+		public static bool lockToggleReleased = false;
+		public static float cameraSpeed = 4;
 		//Block Placing
 		public static Vector2 placePosition;
 		public static int blockType;
@@ -150,10 +150,11 @@ namespace Terraria
 		public static float slomoCount = 0f;
 		public static bool slomoToggle;
 		public static bool slomoPressed;
-        public static bool slomoReleased;
+		public static bool slomoReleased;
 		//Zoom
 		public static float zoomLevel = 1f;
-		
+		public static float oldZoomLevel = 1f;
+
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -6181,19 +6182,19 @@ namespace Terraria
 							}
 							switch (type)
 							{
-							case 739:
-							case 740:
-							case 741:
-							case 742:
-							case 743:
-							case 744:
-								goto IL_59E0;
-							default:
-								if (type == 788)
-								{
+								case 739:
+								case 740:
+								case 741:
+								case 742:
+								case 743:
+								case 744:
 									goto IL_59E0;
-								}
-								break;
+								default:
+									if (type == 788)
+									{
+										goto IL_59E0;
+									}
+									break;
 							}
 						}
 					}
@@ -6208,20 +6209,20 @@ namespace Terraria
 					{
 						switch (type)
 						{
-						case 1444:
-						case 1445:
-						case 1446:
-							goto IL_59E0;
-						default:
-							if (type == 1801)
-							{
+							case 1444:
+							case 1445:
+							case 1446:
 								goto IL_59E0;
-							}
-							if (type == 1827)
-							{
-								goto IL_59F0;
-							}
-							break;
+							default:
+								if (type == 1801)
+								{
+									goto IL_59E0;
+								}
+								if (type == 1827)
+								{
+									goto IL_59F0;
+								}
+								break;
 						}
 					}
 				}
@@ -6231,15 +6232,15 @@ namespace Terraria
 					{
 						switch (type)
 						{
-						case 1930:
-						case 1931:
-							goto IL_59E0;
-						default:
-							if (type == 2188)
-							{
+							case 1930:
+							case 1931:
 								goto IL_59E0;
-							}
-							break;
+							default:
+								if (type == 2188)
+								{
+									goto IL_59E0;
+								}
+								break;
 						}
 					}
 					else if (type == 2750 || type == 3006 || type == 3051)
@@ -6251,15 +6252,15 @@ namespace Terraria
 				{
 					switch (type)
 					{
-					case 3209:
-					case 3210:
-						goto IL_59E0;
-					default:
-						if (type == 3245)
-						{
-							goto IL_59F0;
-						}
-						break;
+						case 3209:
+						case 3210:
+							goto IL_59E0;
+						default:
+							if (type == 3245)
+							{
+								goto IL_59F0;
+							}
+							break;
 					}
 				}
 				else
@@ -6270,9 +6271,9 @@ namespace Terraria
 					}
 					switch (type)
 					{
-					case 3569:
-					case 3571:
-						goto IL_59E0;
+						case 3569:
+						case 3571:
+							goto IL_59E0;
 					}
 				}
 				IL_59FE:
@@ -6362,7 +6363,7 @@ namespace Terraria
 				return;
 			}
 			Main.clientUUID = Guid.NewGuid().ToString();
-			keyBoardInput.newKeyEvent += delegate(char keyStroke)
+			keyBoardInput.newKeyEvent += delegate (char keyStroke)
 			{
 				if (Main.keyCount < 10)
 				{
@@ -7336,46 +7337,46 @@ namespace Terraria
 									{
 										switch (type)
 										{
-										case 111:
-											goto IL_341;
-										case 112:
-											goto IL_394;
-										case 113:
-										case 114:
-											break;
-										default:
-											switch (type)
-											{
-											case 125:
-											case 126:
+											case 111:
+												goto IL_341;
+											case 112:
+												goto IL_394;
+											case 113:
+											case 114:
 												break;
 											default:
-												goto IL_394;
-											}
-											break;
+												switch (type)
+												{
+													case 125:
+													case 126:
+														break;
+													default:
+														goto IL_394;
+												}
+												break;
 										}
 										num2 = 2;
 										goto IL_394;
 									}
 									switch (type)
 									{
-									case 13:
-									case 14:
-									case 15:
-										num2 = 1;
-										goto IL_394;
-									default:
-										switch (type)
-										{
-										case 26:
-										case 27:
-										case 28:
-										case 29:
-											break;
-										default:
+										case 13:
+										case 14:
+										case 15:
+											num2 = 1;
 											goto IL_394;
-										}
-										break;
+										default:
+											switch (type)
+											{
+												case 26:
+												case 27:
+												case 28:
+												case 29:
+													break;
+												default:
+													goto IL_394;
+											}
+											break;
 									}
 									IL_341:
 									num2 = 11;
@@ -7388,37 +7389,37 @@ namespace Terraria
 									}
 									switch (type)
 									{
-									case 143:
-									case 144:
-									case 145:
-										goto IL_34C;
+										case 143:
+										case 144:
+										case 145:
+											goto IL_34C;
 									}
 								}
 								else
 								{
 									switch (type)
 									{
-									case 212:
-									case 213:
-									case 214:
-									case 215:
-									case 216:
-										goto IL_351;
-									case 217:
-									case 218:
-									case 219:
-									case 220:
-									case 221:
-										break;
-									case 222:
-										num2 = 5;
-										break;
-									default:
-										if (type == 245)
-										{
-											num2 = 4;
-										}
-										break;
+										case 212:
+										case 213:
+										case 214:
+										case 215:
+										case 216:
+											goto IL_351;
+										case 217:
+										case 218:
+										case 219:
+										case 220:
+										case 221:
+											break;
+										case 222:
+											num2 = 5;
+											break;
+										default:
+											if (type == 245)
+											{
+												num2 = 4;
+											}
+											break;
 									}
 								}
 							}
@@ -7430,44 +7431,44 @@ namespace Terraria
 									{
 										switch (type)
 										{
-										case 262:
-										case 263:
-										case 264:
-											num2 = 6;
-											goto IL_394;
-										case 265:
-											goto IL_394;
-										case 266:
-											goto IL_34C;
-										default:
-											switch (type)
-											{
-											case 381:
-											case 382:
-											case 383:
-											case 385:
-											case 386:
-											case 388:
-											case 389:
-											case 390:
-											case 391:
-											case 395:
-												break;
-											case 384:
-											case 387:
-											case 392:
-											case 393:
-											case 394:
-											case 396:
-											case 397:
+											case 262:
+											case 263:
+											case 264:
+												num2 = 6;
 												goto IL_394;
-											case 398:
-												num2 = 7;
+											case 265:
 												goto IL_394;
+											case 266:
+												goto IL_34C;
 											default:
-												goto IL_394;
-											}
-											break;
+												switch (type)
+												{
+													case 381:
+													case 382:
+													case 383:
+													case 385:
+													case 386:
+													case 388:
+													case 389:
+													case 390:
+													case 391:
+													case 395:
+														break;
+													case 384:
+													case 387:
+													case 392:
+													case 393:
+													case 394:
+													case 396:
+													case 397:
+														goto IL_394;
+													case 398:
+														num2 = 7;
+														goto IL_394;
+													default:
+														goto IL_394;
+												}
+												break;
 										}
 									}
 									else
@@ -7478,18 +7479,18 @@ namespace Terraria
 										}
 										switch (type)
 										{
-										case 438:
-											if (Main.npc[k].ai[1] == 1f)
-											{
+											case 438:
+												if (Main.npc[k].ai[1] == 1f)
+												{
+													num2 = 4;
+													goto IL_394;
+												}
+												goto IL_394;
+											case 439:
 												num2 = 4;
 												goto IL_394;
-											}
-											goto IL_394;
-										case 439:
-											num2 = 4;
-											goto IL_394;
-										default:
-											goto IL_394;
+											default:
+												goto IL_394;
 										}
 									}
 								}
@@ -7497,18 +7498,18 @@ namespace Terraria
 								{
 									switch (type)
 									{
-									case 491:
-										goto IL_351;
-									case 492:
-										goto IL_394;
-									case 493:
-										goto IL_370;
-									default:
-										if (type != 507)
-										{
+										case 491:
+											goto IL_351;
+										case 492:
 											goto IL_394;
-										}
-										goto IL_370;
+										case 493:
+											goto IL_370;
+										default:
+											if (type != 507)
+											{
+												goto IL_394;
+											}
+											goto IL_370;
 									}
 								}
 								else
@@ -10101,15 +10102,15 @@ namespace Terraria
 				{
 					switch (num13)
 					{
-					case 0:
-						num12 = 24;
-						break;
-					case 1:
-						num12 = 31;
-						break;
-					case 2:
-						num12 = 34;
-						break;
+						case 0:
+							num12 = 24;
+							break;
+						case 1:
+							num12 = 31;
+							break;
+						case 2:
+							num12 = 34;
+							break;
 					}
 					for (int num14 = 0; num14 < Main.cageFrames; num14++)
 					{
@@ -10847,7 +10848,7 @@ namespace Terraria
 						Main.slomoCount -= Main.SLOMO_RATE;
 					}
 					else return;
-                }
+				}
 				if (Main.terrariasFixedTiming && !Main.slomoToggle)
 				{
 					float num2 = 16f;
@@ -11920,7 +11921,7 @@ namespace Terraria
 
 						//doTheThing
 
-						
+
 						Main.chatText = "";
 						Main.chatMode = false;
 						Main.chatRelease = false;
@@ -12608,8 +12609,8 @@ namespace Terraria
 				if (textArray[0] == "/slomo" || textArray[0] == "/sm")
 				{
 					int newSlomoRate = 60;
-					if(int.TryParse(textArray[1], out newSlomoRate))
-						Main.SLOMO_RATE = 60/newSlomoRate;
+					if (int.TryParse(textArray[1], out newSlomoRate))
+						Main.SLOMO_RATE = 60 / newSlomoRate;
 					return true;
 				}
 
@@ -12629,10 +12630,10 @@ namespace Terraria
 						  //           0     1      2      3
 					return TmecUtils.placeSet(textArray);
 				}
-				if(textArray[0] == "/zoom" || textArray[0] == "/z")
+				if (textArray[0] == "/zoom" || textArray[0] == "/z")
 				{
-					Main.zoomLevel = Convert.ToInt32(textArray[1]);
-					if(Main.zoomLevel < 0.1)
+					Main.zoomLevel = Convert.ToSingle(textArray[1]);
+					if (Main.zoomLevel < 0.1)
 					{
 						Main.NewText("Bad zoom level.");
 						Main.zoomLevel = 1;
@@ -12642,7 +12643,7 @@ namespace Terraria
 			catch (Exception e)
 			{
 				//Main.NewText(e.ToString(), 255, 128, 128);
-				MessageBox.Show(e.ToString(),"0h n0e sp00ky sleket0n");
+				MessageBox.Show(e.ToString(), "0h n0e sp00ky sleket0n");
 			}
 			return false;
 
@@ -12737,7 +12738,7 @@ namespace Terraria
 				{
 					if (Main.inputText.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Delete) && !Main.oldInputText.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Delete))
 					{
-                        Thread thread = new Thread(delegate(object state)
+						Thread thread = new Thread(delegate (object state)
 						{
 							if (oldString.Length > 0)
 							{
@@ -12753,7 +12754,7 @@ namespace Terraria
 					}
 					if (Main.inputText.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Insert) && !Main.oldInputText.IsKeyDown(Microsoft.Xna.Framework.Input.Keys.Insert))
 					{
-						Thread thread2 = new Thread(delegate(object state)
+						Thread thread2 = new Thread(delegate (object state)
 						{
 							string text2 = Clipboard.GetText();
 							for (int l = 0; l < text2.Length; l++)
@@ -12786,7 +12787,7 @@ namespace Terraria
 					}
 					else if (num >= 32 && num != 127)
 					{
-					    newKeys += str;
+						newKeys += str;
 					}
 				}
 			}
@@ -14866,154 +14867,154 @@ namespace Terraria
 								{
 									switch (num36)
 									{
-									case 10:
-									{
-										int num37 = (int)(frameY / 54);
-										if (num37 == 32)
-										{
-											texture2D = Main.glowMaskTexture[57];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
-											color2 = color3;
-										}
-										break;
-									}
-									case 11:
-									{
-										int num37 = (int)(frameY / 54);
-										if (num37 == 32)
-										{
-											texture2D = Main.glowMaskTexture[58];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 33)
-										{
-											texture2D = Main.glowMaskTexture[119];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									case 12:
-									case 13:
-									case 16:
-									case 17:
-									case 20:
-										break;
-									case 14:
-									{
-										int num37 = (int)(num10 / 54);
-										if (num37 == 31)
-										{
-											texture2D = Main.glowMaskTexture[67];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 32)
-										{
-											texture2D = Main.glowMaskTexture[124];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									case 15:
-									{
-										int num37 = (int)(frameY / 40);
-										if (num37 == 32)
-										{
-											texture2D = Main.glowMaskTexture[54];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 40), num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 33)
-										{
-											texture2D = Main.glowMaskTexture[116];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 40), num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									case 18:
-									{
-										int num37 = (int)(num10 / 36);
-										if (num37 == 27)
-										{
-											texture2D = Main.glowMaskTexture[69];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 28)
-										{
-											texture2D = Main.glowMaskTexture[125];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									case 19:
-									{
-										int num37 = (int)(frameY / 18);
-										if (num37 == 26)
-										{
-											texture2D = Main.glowMaskTexture[65];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 18), num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 27)
-										{
-											texture2D = Main.glowMaskTexture[112];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 18), num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									case 21:
-									{
-										int num37 = (int)(num10 / 36);
-										if (num37 == 48)
-										{
-											texture2D = Main.glowMaskTexture[56];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 49)
-										{
-											texture2D = Main.glowMaskTexture[117];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									default:
-										switch (num36)
-										{
-										case 33:
-											if (num10 / 18 == 0)
-											{
-												int num37 = (int)(frameY / 22);
-												if (num37 == 26)
-												{
-													texture2D = Main.glowMaskTexture[61];
-													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 22), num9, num12);
-													color2 = color3;
-												}
-											}
-											break;
-										case 34:
-											if (num10 / 54 == 0)
+										case 10:
 											{
 												int num37 = (int)(frameY / 54);
-												if (num37 == 33)
+												if (num37 == 32)
 												{
-													texture2D = Main.glowMaskTexture[55];
+													texture2D = Main.glowMaskTexture[57];
 													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
 													color2 = color3;
 												}
+												break;
+											}
+										case 11:
+											{
+												int num37 = (int)(frameY / 54);
+												if (num37 == 32)
+												{
+													texture2D = Main.glowMaskTexture[58];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
+													color2 = color3;
+												}
+												if (num37 == 33)
+												{
+													texture2D = Main.glowMaskTexture[119];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
+													color2 = color4;
+												}
+												break;
+											}
+										case 12:
+										case 13:
+										case 16:
+										case 17:
+										case 20:
+											break;
+										case 14:
+											{
+												int num37 = (int)(num10 / 54);
+												if (num37 == 31)
+												{
+													texture2D = Main.glowMaskTexture[67];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+													color2 = color3;
+												}
+												if (num37 == 32)
+												{
+													texture2D = Main.glowMaskTexture[124];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+													color2 = color4;
+												}
+												break;
+											}
+										case 15:
+											{
+												int num37 = (int)(frameY / 40);
+												if (num37 == 32)
+												{
+													texture2D = Main.glowMaskTexture[54];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 40), num9, num12);
+													color2 = color3;
+												}
+												if (num37 == 33)
+												{
+													texture2D = Main.glowMaskTexture[116];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 40), num9, num12);
+													color2 = color4;
+												}
+												break;
+											}
+										case 18:
+											{
+												int num37 = (int)(num10 / 36);
+												if (num37 == 27)
+												{
+													texture2D = Main.glowMaskTexture[69];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
+													color2 = color3;
+												}
+												if (num37 == 28)
+												{
+													texture2D = Main.glowMaskTexture[125];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
+													color2 = color4;
+												}
+												break;
+											}
+										case 19:
+											{
+												int num37 = (int)(frameY / 18);
+												if (num37 == 26)
+												{
+													texture2D = Main.glowMaskTexture[65];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 18), num9, num12);
+													color2 = color3;
+												}
+												if (num37 == 27)
+												{
+													texture2D = Main.glowMaskTexture[112];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 18), num9, num12);
+													color2 = color4;
+												}
+												break;
+											}
+										case 21:
+											{
+												int num37 = (int)(num10 / 36);
+												if (num37 == 48)
+												{
+													texture2D = Main.glowMaskTexture[56];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
+													color2 = color3;
+												}
+												if (num37 == 49)
+												{
+													texture2D = Main.glowMaskTexture[117];
+													empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
+													color2 = color4;
+												}
+												break;
+											}
+										default:
+											switch (num36)
+											{
+												case 33:
+													if (num10 / 18 == 0)
+													{
+														int num37 = (int)(frameY / 22);
+														if (num37 == 26)
+														{
+															texture2D = Main.glowMaskTexture[61];
+															empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 22), num9, num12);
+															color2 = color3;
+														}
+													}
+													break;
+												case 34:
+													if (num10 / 54 == 0)
+													{
+														int num37 = (int)(frameY / 54);
+														if (num37 == 33)
+														{
+															texture2D = Main.glowMaskTexture[55];
+															empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
+															color2 = color3;
+														}
+													}
+													break;
 											}
 											break;
-										}
-										break;
 									}
 								}
 								else if (num36 != 42)
@@ -15050,139 +15051,139 @@ namespace Terraria
 							{
 								switch (num36)
 								{
-								case 87:
-								{
-									int num37 = (int)(num10 / 54);
-									if (num37 == 26)
-									{
-										texture2D = Main.glowMaskTexture[64];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-										color2 = color3;
-									}
-									if (num37 == 27)
-									{
-										texture2D = Main.glowMaskTexture[121];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-										color2 = color4;
-									}
-									break;
-								}
-								case 88:
-								{
-									int num37 = (int)(num10 / 54);
-									if (num37 == 24)
-									{
-										texture2D = Main.glowMaskTexture[59];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-										color2 = color3;
-									}
-									if (num37 == 25)
-									{
-										texture2D = Main.glowMaskTexture[120];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-										color2 = color4;
-									}
-									break;
-								}
-								case 89:
-								{
-									int num37 = (int)(num10 / 54);
-									if (num37 == 29)
-									{
-										texture2D = Main.glowMaskTexture[66];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-										color2 = color3;
-									}
-									if (num37 == 30)
-									{
-										texture2D = Main.glowMaskTexture[123];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-										color2 = color4;
-									}
-									break;
-								}
-								case 90:
-								{
-									int num37 = (int)(frameY / 36);
-									if (num37 == 27)
-									{
-										texture2D = Main.glowMaskTexture[52];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 36), num9, num12);
-										color2 = color3;
-									}
-									if (num37 == 28)
-									{
-										texture2D = Main.glowMaskTexture[113];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 36), num9, num12);
-										color2 = color4;
-									}
-									break;
-								}
-								case 91:
-								case 92:
-									break;
-								case 93:
-								{
-									int num37 = (int)(num10 / 54);
-									if (num37 == 27)
-									{
-										texture2D = Main.glowMaskTexture[62];
-										empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
-										color2 = color3;
-									}
-									break;
-								}
-								default:
-									switch (num36)
-									{
-									case 100:
-										if (num10 / 36 == 0)
+									case 87:
+										{
+											int num37 = (int)(num10 / 54);
+											if (num37 == 26)
+											{
+												texture2D = Main.glowMaskTexture[64];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+												color2 = color3;
+											}
+											if (num37 == 27)
+											{
+												texture2D = Main.glowMaskTexture[121];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+												color2 = color4;
+											}
+											break;
+										}
+									case 88:
+										{
+											int num37 = (int)(num10 / 54);
+											if (num37 == 24)
+											{
+												texture2D = Main.glowMaskTexture[59];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+												color2 = color3;
+											}
+											if (num37 == 25)
+											{
+												texture2D = Main.glowMaskTexture[120];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+												color2 = color4;
+											}
+											break;
+										}
+									case 89:
+										{
+											int num37 = (int)(num10 / 54);
+											if (num37 == 29)
+											{
+												texture2D = Main.glowMaskTexture[66];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+												color2 = color3;
+											}
+											if (num37 == 30)
+											{
+												texture2D = Main.glowMaskTexture[123];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+												color2 = color4;
+											}
+											break;
+										}
+									case 90:
 										{
 											int num37 = (int)(frameY / 36);
 											if (num37 == 27)
 											{
-												texture2D = Main.glowMaskTexture[68];
+												texture2D = Main.glowMaskTexture[52];
 												empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 36), num9, num12);
 												color2 = color3;
 											}
+											if (num37 == 28)
+											{
+												texture2D = Main.glowMaskTexture[113];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 36), num9, num12);
+												color2 = color4;
+											}
+											break;
+										}
+									case 91:
+									case 92:
+										break;
+									case 93:
+										{
+											int num37 = (int)(num10 / 54);
+											if (num37 == 27)
+											{
+												texture2D = Main.glowMaskTexture[62];
+												empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 54), num9, num12);
+												color2 = color3;
+											}
+											break;
+										}
+									default:
+										switch (num36)
+										{
+											case 100:
+												if (num10 / 36 == 0)
+												{
+													int num37 = (int)(frameY / 36);
+													if (num37 == 27)
+													{
+														texture2D = Main.glowMaskTexture[68];
+														empty = new Microsoft.Xna.Framework.Rectangle((int)num10, (int)(frameY % 36), num9, num12);
+														color2 = color3;
+													}
+												}
+												break;
+											case 101:
+												{
+													int num37 = (int)(num10 / 54);
+													if (num37 == 28)
+													{
+														texture2D = Main.glowMaskTexture[60];
+														empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+														color2 = color3;
+													}
+													if (num37 == 29)
+													{
+														texture2D = Main.glowMaskTexture[115];
+														empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
+														color2 = color4;
+													}
+													break;
+												}
+											case 104:
+												{
+													int num37 = (int)(num10 / 36);
+													if (num37 == 24)
+													{
+														texture2D = Main.glowMaskTexture[51];
+														empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
+														color2 = color3;
+													}
+													if (num37 == 25)
+													{
+														texture2D = Main.glowMaskTexture[118];
+														empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
+														color2 = color4;
+													}
+													break;
+												}
 										}
 										break;
-									case 101:
-									{
-										int num37 = (int)(num10 / 54);
-										if (num37 == 28)
-										{
-											texture2D = Main.glowMaskTexture[60];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 29)
-										{
-											texture2D = Main.glowMaskTexture[115];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 54), (int)frameY, num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									case 104:
-									{
-										int num37 = (int)(num10 / 36);
-										if (num37 == 24)
-										{
-											texture2D = Main.glowMaskTexture[51];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
-											color2 = color3;
-										}
-										if (num37 == 25)
-										{
-											texture2D = Main.glowMaskTexture[118];
-											empty = new Microsoft.Xna.Framework.Rectangle((int)(num10 % 36), (int)frameY, num9, num12);
-											color2 = color4;
-										}
-										break;
-									}
-									}
-									break;
 								}
 							}
 							else if (num36 != 172)
@@ -15450,17 +15451,17 @@ namespace Terraria
 										int num52;
 										switch (num51)
 										{
-										case 6:
-										case 7:
-										case 8:
-										case 10:
-										case 14:
-										case 15:
-										case 16:
-											goto IL_27B8;
-										case 20:
-											num52 = 59;
-											goto IL_27C6;
+											case 6:
+											case 7:
+											case 8:
+											case 10:
+											case 14:
+											case 15:
+											case 16:
+												goto IL_27B8;
+											case 20:
+												num52 = 59;
+												goto IL_27C6;
 										}
 										num52 = -1;
 										IL_27C6:
@@ -15491,34 +15492,34 @@ namespace Terraria
 										int num55;
 										switch (num54)
 										{
-										case 0:
-										case 2:
-										case 5:
-										case 7:
-										case 8:
-										case 10:
-										case 12:
-										case 14:
-										case 15:
-										case 16:
-											num55 = 6;
-											break;
-										case 1:
-										case 3:
-										case 4:
-										case 6:
-										case 9:
-										case 11:
-										case 13:
-										case 17:
-										case 18:
-										case 19:
-											goto IL_290D;
-										case 20:
-											num55 = 59;
-											break;
-										default:
-											goto IL_290D;
+											case 0:
+											case 2:
+											case 5:
+											case 7:
+											case 8:
+											case 10:
+											case 12:
+											case 14:
+											case 15:
+											case 16:
+												num55 = 6;
+												break;
+											case 1:
+											case 3:
+											case 4:
+											case 6:
+											case 9:
+											case 11:
+											case 13:
+											case 17:
+											case 18:
+											case 19:
+												goto IL_290D;
+											case 20:
+												num55 = 59;
+												break;
+											default:
+												goto IL_290D;
 										}
 										IL_2910:
 										if (num55 != -1)
@@ -15614,42 +15615,42 @@ namespace Terraria
 										int num63;
 										switch (num51)
 										{
-										case 0:
-										case 1:
-										case 2:
-										case 3:
-										case 4:
-										case 5:
-										case 12:
-										case 13:
-										case 16:
-											goto IL_2D4B;
-										case 6:
-										case 7:
-										case 8:
-										case 9:
-										case 10:
-										case 11:
-										case 14:
-										case 15:
-											goto IL_2D56;
-										default:
-											switch (num51)
-											{
-											case 19:
-											case 21:
+											case 0:
+											case 1:
+											case 2:
+											case 3:
+											case 4:
+											case 5:
+											case 12:
+											case 13:
+											case 16:
 												goto IL_2D4B;
-											case 20:
+											case 6:
+											case 7:
+											case 8:
+											case 9:
+											case 10:
+											case 11:
+											case 14:
+											case 15:
 												goto IL_2D56;
 											default:
-												if (num51 != 25)
+												switch (num51)
 												{
-													goto IL_2D56;
+													case 19:
+													case 21:
+														goto IL_2D4B;
+													case 20:
+														goto IL_2D56;
+													default:
+														if (num51 != 25)
+														{
+															goto IL_2D56;
+														}
+														num63 = 59;
+														break;
 												}
-												num63 = 59;
 												break;
-											}
-											break;
 										}
 										IL_2D59:
 										if (num63 != -1)
@@ -16016,23 +16017,23 @@ namespace Terraria
 											{
 												switch (num51)
 												{
-												case 41:
-												case 42:
-													break;
-												default:
-													switch (num51)
-													{
-													case 58:
-													case 59:
-													case 60:
-													case 61:
-													case 62:
-													case 63:
+													case 41:
+													case 42:
 														break;
 													default:
-														goto IL_3C15;
-													}
-													break;
+														switch (num51)
+														{
+															case 58:
+															case 59:
+															case 60:
+															case 61:
+															case 62:
+															case 63:
+																break;
+															default:
+																goto IL_3C15;
+														}
+														break;
 												}
 											}
 											flag5 = true;
@@ -16192,15 +16193,15 @@ namespace Terraria
 											flag7 = true;
 											switch (tile3.liquidType())
 											{
-											case 0:
-												flag11 = true;
-												break;
-											case 1:
-												num90 = 1;
-												break;
-											case 2:
-												num90 = 11;
-												break;
+												case 0:
+													flag11 = true;
+													break;
+												case 1:
+													num90 = 1;
+													break;
+												case 2:
+													num90 = 11;
+													break;
 											}
 											if ((int)tile3.liquid > num89)
 											{
@@ -16212,15 +16213,15 @@ namespace Terraria
 											flag8 = true;
 											switch (tile2.liquidType())
 											{
-											case 0:
-												flag11 = true;
-												break;
-											case 1:
-												num90 = 1;
-												break;
-											case 2:
-												num90 = 11;
-												break;
+												case 0:
+													flag11 = true;
+													break;
+												case 1:
+													num90 = 1;
+													break;
+												case 2:
+													num90 = 11;
+													break;
 											}
 											if ((int)tile2.liquid > num89)
 											{
@@ -16232,15 +16233,15 @@ namespace Terraria
 											flag9 = true;
 											switch (tile4.liquidType())
 											{
-											case 0:
-												flag11 = true;
-												break;
-											case 1:
-												num90 = 1;
-												break;
-											case 2:
-												num90 = 11;
-												break;
+												case 0:
+													flag11 = true;
+													break;
+												case 1:
+													num90 = 1;
+													break;
+												case 2:
+													num90 = 11;
+													break;
 											}
 										}
 										if (tile5.liquid > 0 && num91 != 1 && num91 != 2)
@@ -16251,15 +16252,15 @@ namespace Terraria
 											}
 											switch (tile5.liquidType())
 											{
-											case 0:
-												flag11 = true;
-												break;
-											case 1:
-												num90 = 1;
-												break;
-											case 2:
-												num90 = 11;
-												break;
+												case 0:
+													flag11 = true;
+													break;
+												case 1:
+													num90 = 1;
+													break;
+												case 2:
+													num90 = 11;
+													break;
 											}
 										}
 										if (waterStyleOverride != -1)
@@ -17122,41 +17123,41 @@ namespace Terraria
 												int height6 = 4;
 												switch (num152)
 												{
-												case 1:
-													width = 8;
-													num153 = 4;
-													break;
-												case 2:
-													num153 = 12;
-													break;
-												case 3:
-													height6 = 8;
-													num154 = 4;
-													break;
-												case 4:
-													width = 8;
-													height6 = 8;
-													num153 = 4;
-													num154 = 4;
-													break;
-												case 5:
-													num153 = 12;
-													num154 = 4;
-													height6 = 8;
-													break;
-												case 6:
-													num154 = 12;
-													break;
-												case 7:
-													width = 8;
-													height6 = 4;
-													num153 = 4;
-													num154 = 12;
-													break;
-												case 8:
-													num153 = 12;
-													num154 = 12;
-													break;
+													case 1:
+														width = 8;
+														num153 = 4;
+														break;
+													case 2:
+														num153 = 12;
+														break;
+													case 3:
+														height6 = 8;
+														num154 = 4;
+														break;
+													case 4:
+														width = 8;
+														height6 = 8;
+														num153 = 4;
+														num154 = 4;
+														break;
+													case 5:
+														num153 = 12;
+														num154 = 4;
+														height6 = 8;
+														break;
+													case 6:
+														num154 = 12;
+														break;
+													case 7:
+														width = 8;
+														height6 = 4;
+														num153 = 4;
+														num154 = 12;
+														break;
+													case 8:
+														num153 = 12;
+														num154 = 12;
+														break;
 												}
 												color11 = color;
 												color12 = array[num152];
@@ -17194,16 +17195,16 @@ namespace Terraria
 												int num157 = 0;
 												switch (num155)
 												{
-												case 1:
-													num156 = 8;
-													break;
-												case 2:
-													num157 = 8;
-													break;
-												case 3:
-													num156 = 8;
-													num157 = 8;
-													break;
+													case 1:
+														num156 = 8;
+														break;
+													case 2:
+														num157 = 8;
+														break;
+													case 3:
+														num156 = 8;
+														num157 = 8;
+														break;
 												}
 												color13 = color;
 												color14 = array[num155];
@@ -17892,18 +17893,18 @@ namespace Terraria
 										int num279 = 0;
 										switch (b6)
 										{
-										case 2:
-											value5.X = 16 - num278;
-											num279 = 16 - num278;
-											break;
-										case 3:
-											value5.Width = 16 - num278;
-											break;
-										case 4:
-											value5.Width = 14 - num278;
-											value5.X = num278 + 2;
-											num279 = num278 + 2;
-											break;
+											case 2:
+												value5.X = 16 - num278;
+												num279 = 16 - num278;
+												break;
+											case 3:
+												value5.Width = 16 - num278;
+												break;
+											case 4:
+												value5.Width = 14 - num278;
+												value5.X = num278 + 2;
+												num279 = num278 + 2;
+												break;
 										}
 										Main.spriteBatch.Draw(texture, new Vector2((float)(j * 16 - (int)Main.screenPosition.X) - ((float)num9 - 16f) / 2f + (float)num279, (float)(i * 16 - (int)Main.screenPosition.Y + num277 * 2)) + zero, new Microsoft.Xna.Framework.Rectangle?(value5), color17, 0f, Vector2.Zero, 1f, SpriteEffects.None, 0f);
 									}
@@ -17977,18 +17978,18 @@ namespace Terraria
 						int num290 = num287;
 						switch (num290)
 						{
-						case 83:
-							if (type4 == 128)
-							{
-								num290 = 117;
-							}
-							break;
-						case 84:
-							if (type4 == 128)
-							{
-								num290 = 120;
-							}
-							break;
+							case 83:
+								if (type4 == 128)
+								{
+									num290 = 117;
+								}
+								break;
+							case 84:
+								if (type4 == 128)
+								{
+									num290 = 120;
+								}
+								break;
 						}
 						this.LoadArmorLegs(num290);
 						Main.spriteBatch.Draw(Main.armorLegTexture[num290], new Vector2((float)(num283 * 16 - (int)Main.screenPosition.X + num288), (float)(num284 * 16 - (int)Main.screenPosition.Y - 44)) + zero, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 40, 54)), Lighting.GetColor(num283, num284), 0f, default(Vector2), 1f, effects2, 0f);
@@ -18053,18 +18054,18 @@ namespace Terraria
 						int num299 = num296;
 						switch (num299)
 						{
-						case 83:
-							if (type5 == 128)
-							{
-								num299 = 117;
-							}
-							break;
-						case 84:
-							if (type5 == 128)
-							{
-								num299 = 120;
-							}
-							break;
+							case 83:
+								if (type5 == 128)
+								{
+									num299 = 117;
+								}
+								break;
+							case 84:
+								if (type5 == 128)
+								{
+									num299 = 120;
+								}
+								break;
 						}
 						this.LoadArmorLegs(num299);
 						Main.spriteBatch.Draw(Main.armorLegTexture[num299], new Vector2((float)(num292 * 16 - (int)Main.screenPosition.X + num297), (float)(num293 * 16 - (int)Main.screenPosition.Y - 44)) + zero, new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, 40, 54)), Lighting.GetColor(num292, num293), 0f, default(Vector2), 1f, effects3, 0f);
@@ -19203,25 +19204,25 @@ namespace Terraria
 								float num4;
 								switch (m)
 								{
-								case 0:
-									num3 = num2;
-									num4 = 0f;
-									goto IL_7AF;
-								case 1:
-									num3 = -num2;
-									num4 = 0f;
-									goto IL_7AF;
-								case 2:
-									num3 = 0f;
-									num4 = num2;
-									goto IL_7AF;
-								case 3:
-									num3 = 0f;
-									num4 = -num2;
-									goto IL_7AF;
+									case 0:
+										num3 = num2;
+										num4 = 0f;
+										goto IL_7AF;
+									case 1:
+										num3 = -num2;
+										num4 = 0f;
+										goto IL_7AF;
+									case 2:
+										num3 = 0f;
+										num4 = num2;
+										goto IL_7AF;
+									case 3:
+										num3 = 0f;
+										num4 = -num2;
+										goto IL_7AF;
 								}
-                                num3 = num2;
-                                num4 = 0f;
+								num3 = num2;
+								num4 = 0f;
 								IL_7AF:
 								position = new Vector2(player.position.X + num3, player.position.Y + player.gfxOffY + num4);
 								this.DrawPlayer(player, position, player.fullRotation, player.fullRotationOrigin, player.ghostFade);
@@ -20267,52 +20268,52 @@ namespace Terraria
 				int num76 = type;
 				switch (num76)
 				{
-				case 426:
-					num73 = 4;
-					scaleFactor = 4f;
-					num74 = (float)Math.Cos((double)(Main.GlobalTime % 1.2f / 1.2f * 6.28318548f)) / 2f + 0.5f;
-					value3 = Microsoft.Xna.Framework.Color.Turquoise;
-					amount = 0.5f;
-					num68 = 6;
-					num69 = 2;
-					num71 = num68;
-					break;
-				case 427:
-					num68 = 8;
-					num69 = 2;
-					num71 = num68 * 3;
-					break;
-				default:
-					if (num76 != 509)
-					{
-						switch (num76)
-						{
-						case 521:
-							num68 = 10;
-							num69 = 2;
-							num71 = num68;
-							num72 = 1;
-							value4 = 0.3f;
-							break;
-						case 523:
-							num73 = 3;
-							scaleFactor = 10f * Main.npc[i].scale;
-							amount = 0.5f;
-							amount2 = 0.8f;
-							value3 = Microsoft.Xna.Framework.Color.HotPink;
-							value3.A = 128;
-							num75 = Main.npc[i].localAI[0];
-							num74 = Main.npc[i].localAI[1];
-							break;
-						}
-					}
-					else
-					{
+					case 426:
+						num73 = 4;
+						scaleFactor = 4f;
+						num74 = (float)Math.Cos((double)(Main.GlobalTime % 1.2f / 1.2f * 6.28318548f)) / 2f + 0.5f;
+						value3 = Microsoft.Xna.Framework.Color.Turquoise;
+						amount = 0.5f;
 						num68 = 6;
 						num69 = 2;
+						num71 = num68;
+						break;
+					case 427:
+						num68 = 8;
+						num69 = 2;
 						num71 = num68 * 3;
-					}
-					break;
+						break;
+					default:
+						if (num76 != 509)
+						{
+							switch (num76)
+							{
+								case 521:
+									num68 = 10;
+									num69 = 2;
+									num71 = num68;
+									num72 = 1;
+									value4 = 0.3f;
+									break;
+								case 523:
+									num73 = 3;
+									scaleFactor = 10f * Main.npc[i].scale;
+									amount = 0.5f;
+									amount2 = 0.8f;
+									value3 = Microsoft.Xna.Framework.Color.HotPink;
+									value3.A = 128;
+									num75 = Main.npc[i].localAI[0];
+									num74 = Main.npc[i].localAI[1];
+									break;
+							}
+						}
+						else
+						{
+							num68 = 6;
+							num69 = 2;
+							num71 = num68 * 3;
+						}
+						break;
 				}
 				for (int num77 = num70; num77 < num68; num77 += num69)
 				{
@@ -21576,33 +21577,33 @@ namespace Terraria
 									Microsoft.Xna.Framework.Rectangle value34 = new Microsoft.Xna.Framework.Rectangle(0, 0, 32, 42);
 									switch (num174)
 									{
-									case 0:
-										vector38 += new Vector2(8f, 32f);
-										break;
-									case 1:
-										vector38 += new Vector2(6f, 72f);
-										break;
-									case 2:
-										vector38 += new Vector2(8f, 126f);
-										break;
-									case 3:
-										vector38 += new Vector2(6f, 174f);
-										break;
-									case 4:
-										vector38 += new Vector2(6f, 224f);
-										break;
-									case 5:
-										vector38 += new Vector2(8f, 272f);
-										break;
-									case 6:
-										vector38 += new Vector2(10f, 318f);
-										break;
-									case 7:
-										vector38 += new Vector2(14f, 366f);
-										break;
-									case 8:
-										vector38 += new Vector2(10f, 414f);
-										break;
+										case 0:
+											vector38 += new Vector2(8f, 32f);
+											break;
+										case 1:
+											vector38 += new Vector2(6f, 72f);
+											break;
+										case 2:
+											vector38 += new Vector2(8f, 126f);
+											break;
+										case 3:
+											vector38 += new Vector2(6f, 174f);
+											break;
+										case 4:
+											vector38 += new Vector2(6f, 224f);
+											break;
+										case 5:
+											vector38 += new Vector2(8f, 272f);
+											break;
+										case 6:
+											vector38 += new Vector2(10f, 318f);
+											break;
+										case 7:
+											vector38 += new Vector2(14f, 366f);
+											break;
+										case 8:
+											vector38 += new Vector2(10f, 414f);
+											break;
 									}
 									vector38.Y -= (float)(num173 * num174);
 									vector38 -= vector10;
@@ -21618,21 +21619,21 @@ namespace Terraria
 									value34.Y += 44 * num175;
 									switch (num175)
 									{
-									case 0:
-										zero3 = new Vector2(10f, 18f);
-										break;
-									case 1:
-										zero3 = new Vector2(8f, 20f);
-										break;
-									case 2:
-										zero3 = new Vector2(8f, 20f);
-										break;
-									case 3:
-										zero3 = new Vector2(8f, 20f);
-										break;
-									case 4:
-										zero3 = new Vector2(6f, 18f);
-										break;
+										case 0:
+											zero3 = new Vector2(10f, 18f);
+											break;
+										case 1:
+											zero3 = new Vector2(8f, 20f);
+											break;
+										case 2:
+											zero3 = new Vector2(8f, 20f);
+											break;
+										case 3:
+											zero3 = new Vector2(8f, 20f);
+											break;
+										case 4:
+											zero3 = new Vector2(6f, 18f);
+											break;
 									}
 									if (spriteEffects.HasFlag(SpriteEffects.FlipHorizontally))
 									{
@@ -21654,33 +21655,33 @@ namespace Terraria
 									Microsoft.Xna.Framework.Rectangle value35 = new Microsoft.Xna.Framework.Rectangle(0, 0, 30, 42);
 									switch (num177)
 									{
-									case 0:
-										vector39 += new Vector2(8f, 30f);
-										break;
-									case 1:
-										vector39 += new Vector2(6f, 68f);
-										break;
-									case 2:
-										vector39 += new Vector2(8f, 120f);
-										break;
-									case 3:
-										vector39 += new Vector2(6f, 166f);
-										break;
-									case 4:
-										vector39 += new Vector2(6f, 214f);
-										break;
-									case 5:
-										vector39 += new Vector2(8f, 260f);
-										break;
-									case 6:
-										vector39 += new Vector2(14f, 304f);
-										break;
-									case 7:
-										vector39 += new Vector2(14f, 350f);
-										break;
-									case 8:
-										vector39 += new Vector2(10f, 396f);
-										break;
+										case 0:
+											vector39 += new Vector2(8f, 30f);
+											break;
+										case 1:
+											vector39 += new Vector2(6f, 68f);
+											break;
+										case 2:
+											vector39 += new Vector2(8f, 120f);
+											break;
+										case 3:
+											vector39 += new Vector2(6f, 166f);
+											break;
+										case 4:
+											vector39 += new Vector2(6f, 214f);
+											break;
+										case 5:
+											vector39 += new Vector2(8f, 260f);
+											break;
+										case 6:
+											vector39 += new Vector2(14f, 304f);
+											break;
+										case 7:
+											vector39 += new Vector2(14f, 350f);
+											break;
+										case 8:
+											vector39 += new Vector2(10f, 396f);
+											break;
 									}
 									vector39.Y -= (float)(num176 * num177);
 									vector39 -= vector10;
@@ -21696,21 +21697,21 @@ namespace Terraria
 									value35.Y += 44 * num178;
 									switch (num178)
 									{
-									case 0:
-										zero4 = new Vector2(10f, 18f);
-										break;
-									case 1:
-										zero4 = new Vector2(8f, 20f);
-										break;
-									case 2:
-										zero4 = new Vector2(8f, 20f);
-										break;
-									case 3:
-										zero4 = new Vector2(8f, 20f);
-										break;
-									case 4:
-										zero4 = new Vector2(6f, 18f);
-										break;
+										case 0:
+											zero4 = new Vector2(10f, 18f);
+											break;
+										case 1:
+											zero4 = new Vector2(8f, 20f);
+											break;
+										case 2:
+											zero4 = new Vector2(8f, 20f);
+											break;
+										case 3:
+											zero4 = new Vector2(8f, 20f);
+											break;
+										case 4:
+											zero4 = new Vector2(6f, 18f);
+											break;
 									}
 									if (spriteEffects.HasFlag(SpriteEffects.FlipHorizontally))
 									{
@@ -21869,24 +21870,24 @@ namespace Terraria
 									float num188 = 0f;
 									switch (Main.npc[i].frame.Y / (Main.npcTexture[type].Height / Main.npcFrameCount[type]))
 									{
-									case 0:
-										num188 = 2f;
-										break;
-									case 1:
-										num188 = -6f;
-										break;
-									case 2:
-										num188 = 2f;
-										break;
-									case 3:
-										num188 = 10f;
-										break;
-									case 4:
-										num188 = 2f;
-										break;
-									case 5:
-										num188 = 0f;
-										break;
+										case 0:
+											num188 = 2f;
+											break;
+										case 1:
+											num188 = -6f;
+											break;
+										case 2:
+											num188 = 2f;
+											break;
+										case 3:
+											num188 = 10f;
+											break;
+										case 4:
+											num188 = 2f;
+											break;
+										case 5:
+											num188 = 0f;
+											break;
 									}
 									center3.Y += Main.npc[i].gfxOffY - (70f - num188) * Main.npc[i].scale;
 									Main.spriteBatch.Draw(texture2D26, center3 - Main.screenPosition, null, color9, 0f, texture2D26.Size() / 2f, 1f, spriteEffects, 0f);
@@ -23162,12 +23163,12 @@ namespace Terraria
 					{
 						switch (type2)
 						{
-						case 487:
-							num93 = 8f;
-							break;
-						case 489:
-							num93 = 10f;
-							break;
+							case 487:
+								num93 = 8f;
+								break;
+							case 489:
+								num93 = 10f;
+								break;
 						}
 					}
 					else
@@ -24677,8 +24678,8 @@ namespace Terraria
 				Vector2 vector27 = new Vector2(projectile.scale);
 				DelegateMethods.f_1 = 1f;
 				DelegateMethods.c_1 = value16 * 0.75f * projectile.Opacity;
-                //Corrected error by assigning to vector2
-                Vector2 vector2blah1 = projectile.oldPos[0] + new Vector2((float)projectile.width, (float)projectile.height) / 2f + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
+				//Corrected error by assigning to vector2
+				Vector2 vector2blah1 = projectile.oldPos[0] + new Vector2((float)projectile.width, (float)projectile.height) / 2f + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
 				Utils.DrawLaser(Main.spriteBatch, tex, value17 - Main.screenPosition, value17 + projectile.velocity * num192 - Main.screenPosition, vector27, new Utils.LaserLineFraming(DelegateMethods.RainbowLaserDraw));
 				DelegateMethods.c_1 = new Microsoft.Xna.Framework.Color(255, 255, 255, 127) * 0.75f * projectile.Opacity;
 				Utils.DrawLaser(Main.spriteBatch, tex, value17 - Main.screenPosition, value17 + projectile.velocity * num192 - Main.screenPosition, vector27 / 2f, new Utils.LaserLineFraming(DelegateMethods.RainbowLaserDraw));
@@ -24698,7 +24699,7 @@ namespace Terraria
 				DelegateMethods.f_1 = 1f;
 				DelegateMethods.c_1 = c_;
 				DelegateMethods.i_1 = 54000 - (int)Main.time / 2;
-                //Corrected error by assigning to vector2
+				//Corrected error by assigning to vector2
 				Vector2 vector2blah = projectile.oldPos[0] + new Vector2((float)projectile.width, (float)projectile.height) / 2f + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
 				Utils.DrawLaser(Main.spriteBatch, tex2, value18 - Main.screenPosition, value18 + projectile.velocity * num193 - Main.screenPosition, vector28, new Utils.LaserLineFraming(DelegateMethods.TurretLaserDraw));
 				DelegateMethods.c_1 = new Microsoft.Xna.Framework.Color(255, 255, 255, 127) * 0.75f * projectile.Opacity;
@@ -24706,8 +24707,8 @@ namespace Terraria
 			}
 			else if (projectile.type == 611)
 			{
-                //Corrected error by assigning to vector2
-                Vector2 vector2blah2 = projectile.position + new Vector2((float)projectile.width, (float)projectile.height) / 2f + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
+				//Corrected error by assigning to vector2
+				Vector2 vector2blah2 = projectile.position + new Vector2((float)projectile.width, (float)projectile.height) / 2f + Vector2.UnitY * projectile.gfxOffY - Main.screenPosition;
 				Texture2D texture2D17 = Main.projectileTexture[projectile.type];
 				Microsoft.Xna.Framework.Color alpha3 = projectile.GetAlpha(color25);
 				if (projectile.velocity == Vector2.Zero)
@@ -26883,59 +26884,59 @@ namespace Terraria
 			num3 = drawPlayer.head;
 			switch (num3)
 			{
-			case 169:
-				num9++;
-				break;
-			case 170:
-				num10++;
-				break;
-			case 171:
-				num11++;
-				break;
-			default:
-				if (num3 == 189)
-				{
-					num12++;
-				}
-				break;
+				case 169:
+					num9++;
+					break;
+				case 170:
+					num10++;
+					break;
+				case 171:
+					num11++;
+					break;
+				default:
+					if (num3 == 189)
+					{
+						num12++;
+					}
+					break;
 			}
 			num3 = drawPlayer.body;
 			switch (num3)
 			{
-			case 175:
-				num9++;
-				break;
-			case 176:
-				num10++;
-				break;
-			case 177:
-				num11++;
-				break;
-			default:
-				if (num3 == 190)
-				{
-					num12++;
-				}
-				break;
+				case 175:
+					num9++;
+					break;
+				case 176:
+					num10++;
+					break;
+				case 177:
+					num11++;
+					break;
+				default:
+					if (num3 == 190)
+					{
+						num12++;
+					}
+					break;
 			}
 			num3 = drawPlayer.legs;
 			switch (num3)
 			{
-			case 110:
-				num9++;
-				break;
-			case 111:
-				num10++;
-				break;
-			case 112:
-				num11++;
-				break;
-			default:
-				if (num3 == 130)
-				{
-					num12++;
-				}
-				break;
+				case 110:
+					num9++;
+					break;
+				case 111:
+					num10++;
+					break;
+				case 112:
+					num11++;
+					break;
+				default:
+					if (num3 == 130)
+					{
+						num12++;
+					}
+					break;
 			}
 			if (drawPlayer.head == 169)
 			{
@@ -27448,38 +27449,38 @@ namespace Terraria
 				{
 					switch (j)
 					{
-					case 0:
-						if (drawPlayer.nebulaLevelLife >= 1)
-						{
-							num40 = 6.28318548f / (float)drawPlayer.nebulaLevelLife;
-							num41 = drawPlayer.nebulaLevelLife;
+						case 0:
+							if (drawPlayer.nebulaLevelLife >= 1)
+							{
+								num40 = 6.28318548f / (float)drawPlayer.nebulaLevelLife;
+								num41 = drawPlayer.nebulaLevelLife;
+								goto IL_2940;
+							}
+							break;
+						case 1:
+							if (drawPlayer.nebulaLevelMana >= 1)
+							{
+								num40 = -6.28318548f / (float)drawPlayer.nebulaLevelMana;
+								num41 = drawPlayer.nebulaLevelMana;
+								num39 = (float)(-(float)drawPlayer.miscCounter) / 180f;
+								scaleFactor = 20f;
+								type = 88;
+								goto IL_2940;
+							}
+							break;
+						case 2:
+							if (drawPlayer.nebulaLevelDamage >= 1)
+							{
+								num40 = 6.28318548f / (float)drawPlayer.nebulaLevelDamage;
+								num41 = drawPlayer.nebulaLevelDamage;
+								num39 = (float)drawPlayer.miscCounter / 180f;
+								scaleFactor = 30f;
+								type = 86;
+								goto IL_2940;
+							}
+							break;
+						default:
 							goto IL_2940;
-						}
-						break;
-					case 1:
-						if (drawPlayer.nebulaLevelMana >= 1)
-						{
-							num40 = -6.28318548f / (float)drawPlayer.nebulaLevelMana;
-							num41 = drawPlayer.nebulaLevelMana;
-							num39 = (float)(-(float)drawPlayer.miscCounter) / 180f;
-							scaleFactor = 20f;
-							type = 88;
-							goto IL_2940;
-						}
-						break;
-					case 2:
-						if (drawPlayer.nebulaLevelDamage >= 1)
-						{
-							num40 = 6.28318548f / (float)drawPlayer.nebulaLevelDamage;
-							num41 = drawPlayer.nebulaLevelDamage;
-							num39 = (float)drawPlayer.miscCounter / 180f;
-							scaleFactor = 30f;
-							type = 86;
-							goto IL_2940;
-						}
-						break;
-					default:
-						goto IL_2940;
 					}
 					IL_2A0A:
 					j++;
@@ -31039,15 +31040,15 @@ namespace Terraria
 				Main.toolTip = new Item();
 				switch (num16)
 				{
-				case 1:
-					Main.hoverItemName = Lang.inter[80];
-					break;
-				case 2:
-					Main.hoverItemName = Lang.inter[79];
-					break;
-				case 3:
-					Main.hoverItemName = (Main.CaptureModeDisabled ? Lang.inter[115] : Lang.inter[81]);
-					break;
+					case 1:
+						Main.hoverItemName = Lang.inter[80];
+						break;
+					case 2:
+						Main.hoverItemName = Lang.inter[79];
+						break;
+					case 3:
+						Main.hoverItemName = (Main.CaptureModeDisabled ? Lang.inter[115] : Lang.inter[81]);
+						break;
 				}
 			}
 			if (Main.EquipPage == 2)
@@ -31074,23 +31075,23 @@ namespace Terraria
 						int num19 = -1;
 						switch (m)
 						{
-						case 0:
-							context = 19;
-							num19 = 0;
-							break;
-						case 1:
-							context = 20;
-							num19 = 1;
-							break;
-						case 2:
-							context = 18;
-							break;
-						case 3:
-							context = 17;
-							break;
-						case 4:
-							context = 16;
-							break;
+							case 0:
+								context = 19;
+								num19 = 0;
+								break;
+							case 1:
+								context = 20;
+								num19 = 1;
+								break;
+							case 2:
+								context = 18;
+								break;
+							case 3:
+								context = 17;
+								break;
+							case 4:
+								context = 16;
+								break;
 						}
 						if (l == 1)
 						{
@@ -35098,21 +35099,21 @@ namespace Terraria
 				}
 				switch (Main.cursorOverride)
 				{
-				case 2:
-					flag2 = false;
-					white = Microsoft.Xna.Framework.Color.White;
-					num96 = 0.7f;
-					value17 = new Vector2(0.1f);
-					break;
-				case 3:
-				case 6:
-				case 7:
-				case 8:
-				case 9:
-				case 10:
-					flag2 = false;
-					white = Microsoft.Xna.Framework.Color.White;
-					break;
+					case 2:
+						flag2 = false;
+						white = Microsoft.Xna.Framework.Color.White;
+						num96 = 0.7f;
+						value17 = new Vector2(0.1f);
+						break;
+					case 3:
+					case 6:
+					case 7:
+					case 8:
+					case 9:
+					case 10:
+						flag2 = false;
+						white = Microsoft.Xna.Framework.Color.White;
+						break;
 				}
 				if (flag2)
 				{
@@ -35923,26 +35924,26 @@ namespace Terraria
 					{
 						switch (type)
 						{
-						case 26:
-						case 27:
-						case 28:
-						case 29:
-							break;
-						default:
-							if (type != 111)
-							{
-								switch (type)
+							case 26:
+							case 27:
+							case 28:
+							case 29:
+								break;
+							default:
+								if (type != 111)
 								{
-								case 143:
-								case 144:
-								case 145:
-									num2 = 4;
-									goto IL_227;
-								default:
-									goto IL_227;
+									switch (type)
+									{
+										case 143:
+										case 144:
+										case 145:
+											num2 = 4;
+											goto IL_227;
+										default:
+											goto IL_227;
+									}
 								}
-							}
-							break;
+								break;
 						}
 						num2 = 3;
 					}
@@ -35952,100 +35953,100 @@ namespace Terraria
 						{
 							switch (type)
 							{
-							case 212:
-							case 213:
-							case 214:
-							case 215:
-							case 216:
-								break;
-							default:
-								switch (type)
-								{
-								case 305:
-								case 306:
-								case 307:
-								case 308:
-								case 309:
-								case 310:
-								case 311:
-								case 312:
-								case 313:
-								case 314:
-								case 315:
-								case 325:
-								case 326:
-								case 327:
-								case 329:
-								case 330:
-									num2 = 2;
-									goto IL_227;
-								case 316:
-								case 317:
-								case 318:
-								case 319:
-								case 320:
-								case 321:
-								case 322:
-								case 323:
-								case 324:
-								case 328:
-								case 331:
-								case 332:
-								case 333:
-								case 334:
-								case 335:
-								case 336:
-								case 337:
-									goto IL_227;
-								case 338:
-								case 339:
-								case 340:
-								case 341:
-								case 342:
-								case 343:
-								case 344:
-								case 345:
-								case 346:
-								case 347:
-								case 348:
-								case 349:
-								case 350:
-									num2 = 1;
-									goto IL_227;
+								case 212:
+								case 213:
+								case 214:
+								case 215:
+								case 216:
+									break;
 								default:
-									goto IL_227;
-								}
-								break;
+									switch (type)
+									{
+										case 305:
+										case 306:
+										case 307:
+										case 308:
+										case 309:
+										case 310:
+										case 311:
+										case 312:
+										case 313:
+										case 314:
+										case 315:
+										case 325:
+										case 326:
+										case 327:
+										case 329:
+										case 330:
+											num2 = 2;
+											goto IL_227;
+										case 316:
+										case 317:
+										case 318:
+										case 319:
+										case 320:
+										case 321:
+										case 322:
+										case 323:
+										case 324:
+										case 328:
+										case 331:
+										case 332:
+										case 333:
+										case 334:
+										case 335:
+										case 336:
+										case 337:
+											goto IL_227;
+										case 338:
+										case 339:
+										case 340:
+										case 341:
+										case 342:
+										case 343:
+										case 344:
+										case 345:
+										case 346:
+										case 347:
+										case 348:
+										case 349:
+										case 350:
+											num2 = 1;
+											goto IL_227;
+										default:
+											goto IL_227;
+									}
+									break;
 							}
 						}
 						else
 						{
 							switch (type)
 							{
-							case 381:
-							case 382:
-							case 383:
-							case 385:
-							case 386:
-							case 388:
-							case 389:
-							case 390:
-							case 391:
-							case 395:
-								num2 = 6;
-								goto IL_227;
-							case 384:
-							case 387:
-							case 392:
-							case 393:
-							case 394:
-								goto IL_227;
-							default:
-								if (type != 491)
-								{
+								case 381:
+								case 382:
+								case 383:
+								case 385:
+								case 386:
+								case 388:
+								case 389:
+								case 390:
+								case 391:
+								case 395:
+									num2 = 6;
 									goto IL_227;
-								}
-								break;
+								case 384:
+								case 387:
+								case 392:
+								case 393:
+								case 394:
+									goto IL_227;
+								default:
+									if (type != 491)
+									{
+										goto IL_227;
+									}
+									break;
 							}
 						}
 						num2 = 5;
@@ -36491,18 +36492,18 @@ namespace Terraria
 					Vector2 vector = Vector2.Zero;
 					switch (i)
 					{
-					case 0:
-						vector = new Vector2(0f, 1f);
-						break;
-					case 1:
-						vector = new Vector2(1f, 0f);
-						break;
-					case 2:
-						vector = new Vector2(0f, -1f);
-						break;
-					case 3:
-						vector = new Vector2(-1f, 0f);
-						break;
+						case 0:
+							vector = new Vector2(0f, 1f);
+							break;
+						case 1:
+							vector = new Vector2(1f, 0f);
+							break;
+						case 2:
+							vector = new Vector2(0f, -1f);
+							break;
+						case 3:
+							vector = new Vector2(-1f, 0f);
+							break;
 					}
 					vector *= 1f;
 					vector += Vector2.One * 2f;
@@ -37081,30 +37082,30 @@ namespace Terraria
 					}
 					switch (this.selectedMenu)
 					{
-					case 1:
-						Main.MenuServerMode ^= ServerMode.Lobby;
-						Main.PlaySound(12, -1, -1, 1);
-						break;
-					case 2:
-						Main.MenuServerMode ^= ServerMode.FriendsCanJoin;
-						Main.PlaySound(12, -1, -1, 1);
-						break;
-					case 3:
-						Main.MenuServerMode ^= ServerMode.FriendsOfFriends;
-						Main.PlaySound(12, -1, -1, 1);
-						break;
-					case 4:
-						Main.clrInput();
-						Netplay.ServerPassword = "";
-						Main.GetInputText("");
-						Main.autoPass = false;
-						Main.menuMode = 30;
-						Main.PlaySound(10, -1, -1, 1);
-						break;
-					case 5:
-						Main.menuMode = 6;
-						Main.PlaySound(11, -1, -1, 1);
-						break;
+						case 1:
+							Main.MenuServerMode ^= ServerMode.Lobby;
+							Main.PlaySound(12, -1, -1, 1);
+							break;
+						case 2:
+							Main.MenuServerMode ^= ServerMode.FriendsCanJoin;
+							Main.PlaySound(12, -1, -1, 1);
+							break;
+						case 3:
+							Main.MenuServerMode ^= ServerMode.FriendsOfFriends;
+							Main.PlaySound(12, -1, -1, 1);
+							break;
+						case 4:
+							Main.clrInput();
+							Netplay.ServerPassword = "";
+							Main.GetInputText("");
+							Main.autoPass = false;
+							Main.menuMode = 30;
+							Main.PlaySound(10, -1, -1, 1);
+							break;
+						case 5:
+							Main.menuMode = 6;
+							Main.PlaySound(11, -1, -1, 1);
+							break;
 					}
 				}
 				else if (Main.menuMode == 15)
@@ -37202,33 +37203,33 @@ namespace Terraria
 						string text2 = "";
 						switch (n)
 						{
-						case 0:
-							text2 = "Solar";
-							break;
-						case 1:
-							text2 = "Vortex";
-							break;
-						case 2:
-							text2 = "Nebula";
-							break;
-						case 3:
-							text2 = "Stardust";
-							break;
-						case 4:
-							text2 = "MoonLord";
-							break;
-						case 5:
-							text2 = "MonolithSolar";
-							break;
-						case 6:
-							text2 = "MonolithVortex";
-							break;
-						case 7:
-							text2 = "MonolithNebula";
-							break;
-						case 8:
-							text2 = "MonolithStardust";
-							break;
+							case 0:
+								text2 = "Solar";
+								break;
+							case 1:
+								text2 = "Vortex";
+								break;
+							case 2:
+								text2 = "Nebula";
+								break;
+							case 3:
+								text2 = "Stardust";
+								break;
+							case 4:
+								text2 = "MoonLord";
+								break;
+							case 5:
+								text2 = "MonolithSolar";
+								break;
+							case 6:
+								text2 = "MonolithVortex";
+								break;
+							case 7:
+								text2 = "MonolithNebula";
+								break;
+							case 8:
+								text2 = "MonolithStardust";
+								break;
 						}
 						if (SkyManager.Instance[text2].IsActive())
 						{
@@ -39392,31 +39393,31 @@ namespace Terraria
 							int num76 = 370 + Main.screenWidth / 2 - 400;
 							switch (num74)
 							{
-							case 0:
-								text5 = Lang.menu[98];
-								break;
-							case 1:
-								text5 = Lang.menu[99];
-								num75 += 30;
-								break;
-							case 2:
-								text5 = Lang.menu[119];
-								num75 += 60;
-								break;
-							case 3:
-								text5 = Math.Round((double)(Main.soundVolume * 100f)) + "%";
-								num76 += 90;
-								break;
-							case 4:
-								text5 = Math.Round((double)(Main.musicVolume * 100f)) + "%";
-								num76 += 90;
-								num75 += 30;
-								break;
-							case 5:
-								text5 = Math.Round((double)(Main.ambientVolume * 100f)) + "%";
-								num76 += 90;
-								num75 += 60;
-								break;
+								case 0:
+									text5 = Lang.menu[98];
+									break;
+								case 1:
+									text5 = Lang.menu[99];
+									num75 += 30;
+									break;
+								case 2:
+									text5 = Lang.menu[119];
+									num75 += 60;
+									break;
+								case 3:
+									text5 = Math.Round((double)(Main.soundVolume * 100f)) + "%";
+									num76 += 90;
+									break;
+								case 4:
+									text5 = Math.Round((double)(Main.musicVolume * 100f)) + "%";
+									num76 += 90;
+									num75 += 30;
+									break;
+								case 5:
+									text5 = Math.Round((double)(Main.ambientVolume * 100f)) + "%";
+									num76 += 90;
+									num75 += 60;
+									break;
 							}
 							Microsoft.Xna.Framework.Color textColor = color;
 							textColor.R = (byte)((255 + textColor.R) / 2);
@@ -39478,26 +39479,26 @@ namespace Terraria
 						{
 							switch (array6[num35])
 							{
-							case 0:
-								color9 = color;
-								break;
-							case 1:
-								color9 = Main.mcColor;
-								break;
-							case 2:
-								color9 = Main.hcColor;
-								break;
-							case 3:
-								color9 = Main.highVersionColor;
-								break;
-							case 4:
-							case 5:
-							case 6:
-								color9 = Main.errorColor;
-								break;
-							default:
-								color9 = color;
-								break;
+								case 0:
+									color9 = color;
+									break;
+								case 1:
+									color9 = Main.mcColor;
+									break;
+								case 2:
+									color9 = Main.hcColor;
+									break;
+								case 3:
+									color9 = Main.highVersionColor;
+									break;
+								case 4:
+								case 5:
+								case 6:
+									color9 = Main.errorColor;
+									break;
+								default:
+									color9 = color;
+									break;
 							}
 							color9.R = (byte)((255 + color9.R) / 2);
 							color9.G = (byte)((255 + color9.G) / 2);
@@ -39740,11 +39741,11 @@ namespace Terraria
 				origin3.X *= 0.5f;
 				origin3.Y *= 0.5f;
 				Main.spriteBatch.DrawString(Main.fontMouseText, Main.versionNumber, new Vector2(origin3.X + (float)num97 + 10f, (float)Main.screenHeight - origin3.Y + (float)num98 - 2f), color11, 0f, origin3, 1f, SpriteEffects.None, 0f);
-				
+
 				//tmec titletext
-				Vector2 tmecVec = Main.fontMouseText.MeasureString("T-MEC Community Mod "+tmecversion);
-                tmecVec.X *= 0.5f;
-                tmecVec.Y *= 0.5f;
+				Vector2 tmecVec = Main.fontMouseText.MeasureString("T-MEC Community Mod " + tmecversion);
+				tmecVec.X *= 0.5f;
+				tmecVec.Y *= 0.5f;
 				Main.spriteBatch.DrawString(Main.fontMouseText, "T-MEC Community Mod " + tmecversion, new Vector2(tmecVec.X + (float)num97 + 10f, (float)Main.screenHeight - tmecVec.Y + (float)num98 - 32f), color11, 0f, tmecVec, 1f, SpriteEffects.None, 0f);
 			}
 			Vector2 value = Main.DrawThickCursor(false);
@@ -39863,24 +39864,24 @@ namespace Terraria
 				Vector2 zero = Vector2.Zero;
 				switch (i)
 				{
-				case 1:
-				{
-					int num3 = (int)(Main.GlobalTime * 8f) % 4;
-					value3 = new Microsoft.Xna.Framework.Rectangle((num3 >> 1) * (texture2D.Width >> 1), num3 % 2 * (texture2D.Height >> 1), texture2D.Width >> 1, texture2D.Height >> 1);
-					vector *= 0.5f;
-					zero.Y += 75f;
-					break;
-				}
-				case 2:
-					zero.Y += 75f;
-					break;
-				case 3:
-					zero.Y += 75f;
-					break;
-				case 4:
-					num2 = 0.5f;
-					zero.Y -= 25f;
-					break;
+					case 1:
+						{
+							int num3 = (int)(Main.GlobalTime * 8f) % 4;
+							value3 = new Microsoft.Xna.Framework.Rectangle((num3 >> 1) * (texture2D.Width >> 1), num3 % 2 * (texture2D.Height >> 1), texture2D.Width >> 1, texture2D.Height >> 1);
+							vector *= 0.5f;
+							zero.Y += 75f;
+							break;
+						}
+					case 2:
+						zero.Y += 75f;
+						break;
+					case 3:
+						zero.Y += 75f;
+						break;
+					case 4:
+						num2 = 0.5f;
+						zero.Y -= 25f;
+						break;
 				}
 				if (flat)
 				{
@@ -40340,75 +40341,75 @@ namespace Terraria
 													Microsoft.Xna.Framework.Color color5 = color3;
 													switch (num24)
 													{
-													case 0:
-														if (!Main.tile[num22 - 1, num23 - 1].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 1:
-														width = 8;
-														num25 = 4;
-														if (!Main.tile[num22, num23 - 1].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 2:
-														num25 = 12;
-														if (!Main.tile[num22 + 1, num23 - 1].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 3:
-														height = 8;
-														num26 = 4;
-														if (!Main.tile[num22 - 1, num23].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 4:
-														width = 8;
-														height = 8;
-														num25 = 4;
-														num26 = 4;
-														break;
-													case 5:
-														num25 = 12;
-														num26 = 4;
-														height = 8;
-														if (!Main.tile[num22 + 1, num23].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 6:
-														num26 = 12;
-														if (!Main.tile[num22 - 1, num23 + 1].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 7:
-														width = 8;
-														height = 4;
-														num25 = 4;
-														num26 = 12;
-														if (!Main.tile[num22, num23 + 1].active())
-														{
-															color5 = array[num24];
-														}
-														break;
-													case 8:
-														num25 = 12;
-														num26 = 12;
-														if (!Main.tile[num22 + 1, num23 + 1].active())
-														{
-															color5 = array[num24];
-														}
-														break;
+														case 0:
+															if (!Main.tile[num22 - 1, num23 - 1].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 1:
+															width = 8;
+															num25 = 4;
+															if (!Main.tile[num22, num23 - 1].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 2:
+															num25 = 12;
+															if (!Main.tile[num22 + 1, num23 - 1].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 3:
+															height = 8;
+															num26 = 4;
+															if (!Main.tile[num22 - 1, num23].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 4:
+															width = 8;
+															height = 8;
+															num25 = 4;
+															num26 = 4;
+															break;
+														case 5:
+															num25 = 12;
+															num26 = 4;
+															height = 8;
+															if (!Main.tile[num22 + 1, num23].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 6:
+															num26 = 12;
+															if (!Main.tile[num22 - 1, num23 + 1].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 7:
+															width = 8;
+															height = 4;
+															num25 = 4;
+															num26 = 12;
+															if (!Main.tile[num22, num23 + 1].active())
+															{
+																color5 = array[num24];
+															}
+															break;
+														case 8:
+															num25 = 12;
+															num26 = 12;
+															if (!Main.tile[num22 + 1, num23 + 1].active())
+															{
+																color5 = array[num24];
+															}
+															break;
 													}
 													color4.R = (byte)((color3.R + color5.R) / 2);
 													color4.G = (byte)((color3.G + color5.G) / 2);
@@ -40449,16 +40450,16 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color8 = array[num27];
 												switch (num27)
 												{
-												case 1:
-													num28 = 8;
-													break;
-												case 2:
-													num29 = 8;
-													break;
-												case 3:
-													num28 = 8;
-													num29 = 8;
-													break;
+													case 1:
+														num28 = 8;
+														break;
+													case 2:
+														num29 = 8;
+														break;
+													case 3:
+														num28 = 8;
+														num29 = 8;
+														break;
 												}
 												color7.R = (byte)((color3.R + color8.R) / 2);
 												color7.G = (byte)((color3.G + color8.G) / 2);
@@ -40659,75 +40660,75 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color16 = color14;
 												switch (num52)
 												{
-												case 0:
-													if (!Main.tile[num50 - 1, num51 - 1].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 1:
-													width2 = 8;
-													num53 = 4;
-													if (!Main.tile[num50, num51 - 1].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 2:
-													num53 = 12;
-													if (!Main.tile[num50 + 1, num51 - 1].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 3:
-													height2 = 8;
-													num54 = 4;
-													if (!Main.tile[num50 - 1, num51].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 4:
-													width2 = 8;
-													height2 = 8;
-													num53 = 4;
-													num54 = 4;
-													break;
-												case 5:
-													num53 = 12;
-													num54 = 4;
-													height2 = 8;
-													if (!Main.tile[num50 + 1, num51].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 6:
-													num54 = 12;
-													if (!Main.tile[num50 - 1, num51 + 1].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 7:
-													width2 = 8;
-													height2 = 4;
-													num53 = 4;
-													num54 = 12;
-													if (!Main.tile[num50, num51 + 1].active())
-													{
-														color16 = array[num52];
-													}
-													break;
-												case 8:
-													num53 = 12;
-													num54 = 12;
-													if (!Main.tile[num50 + 1, num51 + 1].active())
-													{
-														color16 = array[num52];
-													}
-													break;
+													case 0:
+														if (!Main.tile[num50 - 1, num51 - 1].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 1:
+														width2 = 8;
+														num53 = 4;
+														if (!Main.tile[num50, num51 - 1].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 2:
+														num53 = 12;
+														if (!Main.tile[num50 + 1, num51 - 1].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 3:
+														height2 = 8;
+														num54 = 4;
+														if (!Main.tile[num50 - 1, num51].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 4:
+														width2 = 8;
+														height2 = 8;
+														num53 = 4;
+														num54 = 4;
+														break;
+													case 5:
+														num53 = 12;
+														num54 = 4;
+														height2 = 8;
+														if (!Main.tile[num50 + 1, num51].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 6:
+														num54 = 12;
+														if (!Main.tile[num50 - 1, num51 + 1].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 7:
+														width2 = 8;
+														height2 = 4;
+														num53 = 4;
+														num54 = 12;
+														if (!Main.tile[num50, num51 + 1].active())
+														{
+															color16 = array[num52];
+														}
+														break;
+													case 8:
+														num53 = 12;
+														num54 = 12;
+														if (!Main.tile[num50 + 1, num51 + 1].active())
+														{
+															color16 = array[num52];
+														}
+														break;
 												}
 												color15.R = (byte)((color14.R + color16.R) / 2);
 												color15.G = (byte)((color14.G + color16.G) / 2);
@@ -40758,16 +40759,16 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color19 = array[num55];
 												switch (num55)
 												{
-												case 1:
-													num56 = 8;
-													break;
-												case 2:
-													num57 = 8;
-													break;
-												case 3:
-													num56 = 8;
-													num57 = 8;
-													break;
+													case 1:
+														num56 = 8;
+														break;
+													case 2:
+														num57 = 8;
+														break;
+													case 3:
+														num56 = 8;
+														num57 = 8;
+														break;
 												}
 												color18.R = (byte)((color14.R + color19.R) / 2);
 												color18.G = (byte)((color14.G + color19.G) / 2);
@@ -40941,75 +40942,75 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color27 = color25;
 												switch (num72)
 												{
-												case 0:
-													if (!Main.tile[num70 - 1, num71 - 1].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 1:
-													width3 = 8;
-													num73 = 4;
-													if (!Main.tile[num70, num71 - 1].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 2:
-													num73 = 12;
-													if (!Main.tile[num70 + 1, num71 - 1].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 3:
-													height3 = 8;
-													num74 = 4;
-													if (!Main.tile[num70 - 1, num71].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 4:
-													width3 = 8;
-													height3 = 8;
-													num73 = 4;
-													num74 = 4;
-													break;
-												case 5:
-													num73 = 12;
-													num74 = 4;
-													height3 = 8;
-													if (!Main.tile[num70 + 1, num71].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 6:
-													num74 = 12;
-													if (!Main.tile[num70 - 1, num71 + 1].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 7:
-													width3 = 8;
-													height3 = 4;
-													num73 = 4;
-													num74 = 12;
-													if (!Main.tile[num70, num71 + 1].active())
-													{
-														color27 = array[num72];
-													}
-													break;
-												case 8:
-													num73 = 12;
-													num74 = 12;
-													if (!Main.tile[num70 + 1, num71 + 1].active())
-													{
-														color27 = array[num72];
-													}
-													break;
+													case 0:
+														if (!Main.tile[num70 - 1, num71 - 1].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 1:
+														width3 = 8;
+														num73 = 4;
+														if (!Main.tile[num70, num71 - 1].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 2:
+														num73 = 12;
+														if (!Main.tile[num70 + 1, num71 - 1].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 3:
+														height3 = 8;
+														num74 = 4;
+														if (!Main.tile[num70 - 1, num71].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 4:
+														width3 = 8;
+														height3 = 8;
+														num73 = 4;
+														num74 = 4;
+														break;
+													case 5:
+														num73 = 12;
+														num74 = 4;
+														height3 = 8;
+														if (!Main.tile[num70 + 1, num71].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 6:
+														num74 = 12;
+														if (!Main.tile[num70 - 1, num71 + 1].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 7:
+														width3 = 8;
+														height3 = 4;
+														num73 = 4;
+														num74 = 12;
+														if (!Main.tile[num70, num71 + 1].active())
+														{
+															color27 = array[num72];
+														}
+														break;
+													case 8:
+														num73 = 12;
+														num74 = 12;
+														if (!Main.tile[num70 + 1, num71 + 1].active())
+														{
+															color27 = array[num72];
+														}
+														break;
 												}
 												color26.R = (byte)((color25.R + color27.R) / 2);
 												color26.G = (byte)((color25.G + color27.G) / 2);
@@ -41031,16 +41032,16 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color29 = array[num75];
 												switch (num75)
 												{
-												case 1:
-													num76 = 8;
-													break;
-												case 2:
-													num77 = 8;
-													break;
-												case 3:
-													num76 = 8;
-													num77 = 8;
-													break;
+													case 1:
+														num76 = 8;
+														break;
+													case 2:
+														num77 = 8;
+														break;
+													case 3:
+														num76 = 8;
+														num77 = 8;
+														break;
 												}
 												color28.R = (byte)((color25.R + color29.R) / 2);
 												color28.G = (byte)((color25.G + color29.G) / 2);
@@ -41510,75 +41511,75 @@ namespace Terraria
 													Microsoft.Xna.Framework.Color color5 = color3;
 													switch (num30)
 													{
-													case 0:
-														if (!Main.tile[num28 - 1, num29 - 1].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 1:
-														width = 8;
-														num31 = 4;
-														if (!Main.tile[num28, num29 - 1].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 2:
-														num31 = 12;
-														if (!Main.tile[num28 + 1, num29 - 1].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 3:
-														height = 8;
-														num32 = 4;
-														if (!Main.tile[num28 - 1, num29].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 4:
-														width = 8;
-														height = 8;
-														num31 = 4;
-														num32 = 4;
-														break;
-													case 5:
-														num31 = 12;
-														num32 = 4;
-														height = 8;
-														if (!Main.tile[num28 + 1, num29].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 6:
-														num32 = 12;
-														if (!Main.tile[num28 - 1, num29 + 1].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 7:
-														width = 8;
-														height = 4;
-														num31 = 4;
-														num32 = 12;
-														if (!Main.tile[num28, num29 + 1].active())
-														{
-															color5 = array[num30];
-														}
-														break;
-													case 8:
-														num31 = 12;
-														num32 = 12;
-														if (!Main.tile[num28 + 1, num29 + 1].active())
-														{
-															color5 = array[num30];
-														}
-														break;
+														case 0:
+															if (!Main.tile[num28 - 1, num29 - 1].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 1:
+															width = 8;
+															num31 = 4;
+															if (!Main.tile[num28, num29 - 1].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 2:
+															num31 = 12;
+															if (!Main.tile[num28 + 1, num29 - 1].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 3:
+															height = 8;
+															num32 = 4;
+															if (!Main.tile[num28 - 1, num29].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 4:
+															width = 8;
+															height = 8;
+															num31 = 4;
+															num32 = 4;
+															break;
+														case 5:
+															num31 = 12;
+															num32 = 4;
+															height = 8;
+															if (!Main.tile[num28 + 1, num29].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 6:
+															num32 = 12;
+															if (!Main.tile[num28 - 1, num29 + 1].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 7:
+															width = 8;
+															height = 4;
+															num31 = 4;
+															num32 = 12;
+															if (!Main.tile[num28, num29 + 1].active())
+															{
+																color5 = array[num30];
+															}
+															break;
+														case 8:
+															num31 = 12;
+															num32 = 12;
+															if (!Main.tile[num28 + 1, num29 + 1].active())
+															{
+																color5 = array[num30];
+															}
+															break;
 													}
 													color4.R = (byte)((color3.R + color5.R) / 2);
 													color4.G = (byte)((color3.G + color5.G) / 2);
@@ -41619,16 +41620,16 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color8 = array[num33];
 												switch (num33)
 												{
-												case 1:
-													num34 = 8;
-													break;
-												case 2:
-													num35 = 8;
-													break;
-												case 3:
-													num34 = 8;
-													num35 = 8;
-													break;
+													case 1:
+														num34 = 8;
+														break;
+													case 2:
+														num35 = 8;
+														break;
+													case 3:
+														num34 = 8;
+														num35 = 8;
+														break;
 												}
 												color7.R = (byte)((color3.R + color8.R) / 2);
 												color7.G = (byte)((color3.G + color8.G) / 2);
@@ -41829,75 +41830,75 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color16 = color14;
 												switch (num58)
 												{
-												case 0:
-													if (!Main.tile[num56 - 1, num57 - 1].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 1:
-													width2 = 8;
-													num59 = 4;
-													if (!Main.tile[num56, num57 - 1].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 2:
-													num59 = 12;
-													if (!Main.tile[num56 + 1, num57 - 1].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 3:
-													height2 = 8;
-													num60 = 4;
-													if (!Main.tile[num56 - 1, num57].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 4:
-													width2 = 8;
-													height2 = 8;
-													num59 = 4;
-													num60 = 4;
-													break;
-												case 5:
-													num59 = 12;
-													num60 = 4;
-													height2 = 8;
-													if (!Main.tile[num56 + 1, num57].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 6:
-													num60 = 12;
-													if (!Main.tile[num56 - 1, num57 + 1].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 7:
-													width2 = 8;
-													height2 = 4;
-													num59 = 4;
-													num60 = 12;
-													if (!Main.tile[num56, num57 + 1].active())
-													{
-														color16 = array[num58];
-													}
-													break;
-												case 8:
-													num59 = 12;
-													num60 = 12;
-													if (!Main.tile[num56 + 1, num57 + 1].active())
-													{
-														color16 = array[num58];
-													}
-													break;
+													case 0:
+														if (!Main.tile[num56 - 1, num57 - 1].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 1:
+														width2 = 8;
+														num59 = 4;
+														if (!Main.tile[num56, num57 - 1].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 2:
+														num59 = 12;
+														if (!Main.tile[num56 + 1, num57 - 1].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 3:
+														height2 = 8;
+														num60 = 4;
+														if (!Main.tile[num56 - 1, num57].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 4:
+														width2 = 8;
+														height2 = 8;
+														num59 = 4;
+														num60 = 4;
+														break;
+													case 5:
+														num59 = 12;
+														num60 = 4;
+														height2 = 8;
+														if (!Main.tile[num56 + 1, num57].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 6:
+														num60 = 12;
+														if (!Main.tile[num56 - 1, num57 + 1].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 7:
+														width2 = 8;
+														height2 = 4;
+														num59 = 4;
+														num60 = 12;
+														if (!Main.tile[num56, num57 + 1].active())
+														{
+															color16 = array[num58];
+														}
+														break;
+													case 8:
+														num59 = 12;
+														num60 = 12;
+														if (!Main.tile[num56 + 1, num57 + 1].active())
+														{
+															color16 = array[num58];
+														}
+														break;
 												}
 												color15.R = (byte)((color14.R + color16.R) / 2);
 												color15.G = (byte)((color14.G + color16.G) / 2);
@@ -41928,16 +41929,16 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color19 = array[num61];
 												switch (num61)
 												{
-												case 1:
-													num62 = 8;
-													break;
-												case 2:
-													num63 = 8;
-													break;
-												case 3:
-													num62 = 8;
-													num63 = 8;
-													break;
+													case 1:
+														num62 = 8;
+														break;
+													case 2:
+														num63 = 8;
+														break;
+													case 3:
+														num62 = 8;
+														num63 = 8;
+														break;
 												}
 												color18.R = (byte)((color14.R + color19.R) / 2);
 												color18.G = (byte)((color14.G + color19.G) / 2);
@@ -42105,75 +42106,75 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color27 = color25;
 												switch (num78)
 												{
-												case 0:
-													if (!Main.tile[num76 - 1, num77 - 1].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 1:
-													width3 = 8;
-													num79 = 4;
-													if (!Main.tile[num76, num77 - 1].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 2:
-													num79 = 12;
-													if (!Main.tile[num76 + 1, num77 - 1].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 3:
-													height3 = 8;
-													num80 = 4;
-													if (!Main.tile[num76 - 1, num77].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 4:
-													width3 = 8;
-													height3 = 8;
-													num79 = 4;
-													num80 = 4;
-													break;
-												case 5:
-													num79 = 12;
-													num80 = 4;
-													height3 = 8;
-													if (!Main.tile[num76 + 1, num77].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 6:
-													num80 = 12;
-													if (!Main.tile[num76 - 1, num77 + 1].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 7:
-													width3 = 8;
-													height3 = 4;
-													num79 = 4;
-													num80 = 12;
-													if (!Main.tile[num76, num77 + 1].active())
-													{
-														color27 = array[num78];
-													}
-													break;
-												case 8:
-													num79 = 12;
-													num80 = 12;
-													if (!Main.tile[num76 + 1, num77 + 1].active())
-													{
-														color27 = array[num78];
-													}
-													break;
+													case 0:
+														if (!Main.tile[num76 - 1, num77 - 1].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 1:
+														width3 = 8;
+														num79 = 4;
+														if (!Main.tile[num76, num77 - 1].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 2:
+														num79 = 12;
+														if (!Main.tile[num76 + 1, num77 - 1].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 3:
+														height3 = 8;
+														num80 = 4;
+														if (!Main.tile[num76 - 1, num77].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 4:
+														width3 = 8;
+														height3 = 8;
+														num79 = 4;
+														num80 = 4;
+														break;
+													case 5:
+														num79 = 12;
+														num80 = 4;
+														height3 = 8;
+														if (!Main.tile[num76 + 1, num77].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 6:
+														num80 = 12;
+														if (!Main.tile[num76 - 1, num77 + 1].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 7:
+														width3 = 8;
+														height3 = 4;
+														num79 = 4;
+														num80 = 12;
+														if (!Main.tile[num76, num77 + 1].active())
+														{
+															color27 = array[num78];
+														}
+														break;
+													case 8:
+														num79 = 12;
+														num80 = 12;
+														if (!Main.tile[num76 + 1, num77 + 1].active())
+														{
+															color27 = array[num78];
+														}
+														break;
 												}
 												color26.R = (byte)((color25.R + color27.R) / 2);
 												color26.G = (byte)((color25.G + color27.G) / 2);
@@ -42195,16 +42196,16 @@ namespace Terraria
 												Microsoft.Xna.Framework.Color color29 = array[num81];
 												switch (num81)
 												{
-												case 1:
-													num82 = 8;
-													break;
-												case 2:
-													num83 = 8;
-													break;
-												case 3:
-													num82 = 8;
-													num83 = 8;
-													break;
+													case 1:
+														num82 = 8;
+														break;
+													case 2:
+														num83 = 8;
+														break;
+													case 3:
+														num82 = 8;
+														num83 = 8;
+														break;
 												}
 												color28.R = (byte)((color25.R + color29.R) / 2);
 												color28.G = (byte)((color25.G + color29.G) / 2);
@@ -45652,11 +45653,11 @@ namespace Terraria
 					{
 						switch (type)
 						{
-						case 137:
-						case 138:
-							break;
-						default:
-							goto IL_E6;
+							case 137:
+							case 138:
+								break;
+							default:
+								goto IL_E6;
 						}
 					}
 				}
@@ -45671,11 +45672,11 @@ namespace Terraria
 				{
 					switch (type)
 					{
-					case 387:
-					case 388:
-						break;
-					default:
-						goto IL_E6;
+						case 387:
+						case 388:
+							break;
+						default:
+							goto IL_E6;
 					}
 				}
 				return false;
@@ -48701,672 +48702,730 @@ namespace Terraria
 		}
 		protected override void Draw(GameTime gameTime)
 		{
-			if (Main._drawCycleCounter == 0uL)
-			{
-				Main._tileFrameSeed = Utils.RandomNextSeed(Main._tileFrameSeed);
-			}
-			Main._drawCycleCounter = (Main._drawCycleCounter + 1uL) % 5uL;
-			Main.MenuUI.IsVisible = (Main.gameMenu && Main.menuMode == 888);
-			Main.InGameUI.IsVisible = (!Main.gameMenu && Main.InGameUI.CurrentState != null);
-			this.EnsureRenderTargetContent();
-			CaptureManager.Instance.DrawTick();
-			TimeLogger.NewDrawFrame();
-			if (!Main.gameMenu)
-			{
-				this.lookForColorTiles();
-			}
-			TimeLogger.DetailedDrawTime(0);
-			if (Main.loadMap)
-			{
-				Main.refreshMap = false;
-				this.DrawToMap();
-				TimeLogger.DetailedDrawTime(1);
-			}
-			if (Lighting.lightMode >= 2)
-			{
-				Main.drawToScreen = true;
-			}
-			else
-			{
-				Main.drawToScreen = false;
-			}
-			if (Main.drawToScreen && Main.targetSet)
-			{
-				this.ReleaseTargets();
-			}
-			if (!Main.drawToScreen && !Main.targetSet)
-			{
-				this.InitTargets();
-			}
-			Stopwatch stopwatch = new Stopwatch();
-			stopwatch.Start();
-			Main.fpsCount++;
-			if (!base.IsActive)
-			{
-				Main.maxQ = true;
-			}
-			this.UpdateDisplaySettings();
-			Main.drawTime++;
-			Main.screenLastPosition = Main.screenPosition;
-			if (Main.stackSplit == 0)
-			{
-				Main.stackCounter = 0;
-				Main.stackDelay = 7;
-				Main.superFastStack = 0;
-			}
-			else
-			{
-				Main.stackCounter++;
-				int num = 30;
-				if (num == 7)
+			//try {
+				if (Main._drawCycleCounter == 0uL)
 				{
-					num = 30;
+					Main._tileFrameSeed = Utils.RandomNextSeed(Main._tileFrameSeed);
 				}
-				else if (Main.stackDelay == 6)
+				Main._drawCycleCounter = (Main._drawCycleCounter + 1uL) % 5uL;
+				Main.MenuUI.IsVisible = (Main.gameMenu && Main.menuMode == 888);
+				Main.InGameUI.IsVisible = (!Main.gameMenu && Main.InGameUI.CurrentState != null);
+				this.EnsureRenderTargetContent();
+				CaptureManager.Instance.DrawTick();
+				TimeLogger.NewDrawFrame();
+				if (!Main.gameMenu)
 				{
-					num = 25;
+					this.lookForColorTiles();
 				}
-				else if (Main.stackDelay == 5)
+				TimeLogger.DetailedDrawTime(0);
+				if (Main.loadMap)
 				{
-					num = 20;
+					Main.refreshMap = false;
+					this.DrawToMap();
+					TimeLogger.DetailedDrawTime(1);
 				}
-				else if (Main.stackDelay == 4)
+				if (Lighting.lightMode >= 2)
 				{
-					num = 15;
-				}
-				else if (Main.stackDelay == 3)
-				{
-					num = 10;
+					Main.drawToScreen = true;
 				}
 				else
 				{
-					num = 5;
+					Main.drawToScreen = false;
 				}
-				if (Main.stackCounter >= num)
+				if (Main.drawToScreen && Main.targetSet)
 				{
-					Main.stackDelay--;
-					if (Main.stackDelay < 2)
-					{
-						Main.stackDelay = 2;
-						Main.superFastStack++;
-					}
+					this.ReleaseTargets();
+				}
+				if (!Main.drawToScreen && !Main.targetSet)
+				{
+					this.InitTargets();
+				}
+				Stopwatch stopwatch = new Stopwatch();
+				stopwatch.Start();
+				Main.fpsCount++;
+				if (!base.IsActive)
+				{
+					Main.maxQ = true;
+				}
+				this.UpdateDisplaySettings();
+				Main.drawTime++;
+				Main.screenLastPosition = Main.screenPosition;
+				if (Main.stackSplit == 0)
+				{
 					Main.stackCounter = 0;
-				}
-			}
-			if (Main.myPlayer >= 0)
-			{
-				Main.player[Main.myPlayer].lastMouseInterface = Main.player[Main.myPlayer].mouseInterface;
-				Main.player[Main.myPlayer].mouseInterface = false;
-			}
-			if (Main.mapTime > 0)
-			{
-				Main.mapTime--;
-			}
-			if (Main.gameMenu)
-			{
-				Main.mapTime = Main.mapTimeMax;
-			}
-			Main.toolTip = new Item();
-			if (!Main.gameMenu && Main.netMode != 2)
-			{
-				int num2 = 21;
-				if (Main.cameraX != 0f && !Main.player[Main.myPlayer].pulley)
-				{
-					Main.cameraX = 0f;
-				}
-				if (Main.cameraX > 0f)
-				{
-					Main.cameraX -= 1f;
-					if (Main.cameraX < 0f)
-					{
-						Main.cameraX = 0f;
-					}
-				}
-				if (Main.cameraX < 0f)
-				{
-					Main.cameraX += 1f;
-					if (Main.cameraX > 0f)
-					{
-						Main.cameraX = 0f;
-					}
-				}
-				Vector2 value = Main.screenPosition;
-
-
-                Main.lockTogglePressed = false;
-				Main.dummyLightPressed = false;
-				Main.slomoPressed = false;
-				Main.manualPausePressed = false;
-                //System.IO.StreamWriter is just loggy stuff
-
-				//tmec update
-                //if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
-                Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
-                for (int i = 0; i < pressedKeys.Length; i++)//loops through
-                {
-                    string key = String.Concat(pressedKeys[i]); //converts each key to a string
-                    switch (key)
-                    {
-                        case "L":
-                            Main.lockTogglePressed = true;
-                            break;
-						case "K":
-							Main.dummyLightPressed = true;
-							break;
-						case "O":
-							Main.slomoPressed = true;
-							break;
-						case "P":
-							Main.manualPausePressed = true;
-							break;
-                        case "OemPlus":
-                            cameraSpeed += cameraSpeed * .03f;
-                            break;
-                        case "OemMinus":
-                            cameraSpeed -= cameraSpeed * .03f;
-                            break;
-                        case "Up":
-                            lockPosition.Y -= cameraSpeed;
-                            break;
-                        case "Down":
-                            lockPosition.Y += cameraSpeed;
-                            break;
-                        case "Left":
-                            lockPosition.X -= cameraSpeed;
-                            break;
-                        case "Right":
-                            lockPosition.X += cameraSpeed;
-                            break;
-                    }
-                }
-                //}
-
-                if (Main.lockTogglePressed)//player.cs line 16100
-                {                          //lockTogglePressed is just if it's being held down - so lockToggleReleased lets us tell when it changes
-                    if (Main.lockToggleReleased)
-                    {
-                        screenLocked = !screenLocked;
-                        Main.lockPosition = Main.screenPosition; //set the lock pos to where the screen is
-                    }
-                    Main.lockToggleReleased = false;
-                }
-                else
-                {
-                    Main.lockToggleReleased = true;
-                }
-
-                if (screenLocked)
-                {
-                    Main.screenPosition.X = (int)Math.Floor(Main.lockPosition.X);
-                    Main.screenPosition.Y = (int)Math.Floor(Main.lockPosition.Y);
-                }
-                else
-                {
-                    //default code
-                    Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
-                    Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
-
-                }
-
-
-				if (Main.dummyLightPressed)
-				{                          
-					if (Main.dummyLightReleased)
-					{
-						dummyLightToggle = !dummyLightToggle;
-					}
-					Main.dummyLightReleased = false;
+					Main.stackDelay = 7;
+					Main.superFastStack = 0;
 				}
 				else
 				{
-					Main.dummyLightReleased = true;
-				}//Why did I put this here?
-				 //I like to pretend to be organized. 
-
-
-				if (Main.slomoPressed)
-				{
-					if (Main.slomoReleased)
+					Main.stackCounter++;
+					int num = 30;
+					if (num == 7)
 					{
-						slomoToggle = !slomoToggle;
+						num = 30;
 					}
-					Main.slomoReleased = false;
-				}
-				else
-				{
-					Main.slomoReleased = true;
-				}
-				if (Main.manualPausePressed)
-				{
-					if (Main.manualPauseReleased)
+					else if (Main.stackDelay == 6)
 					{
-						manualPause = !manualPause;
+						num = 25;
 					}
-					Main.manualPauseReleased = false;
-				}
-				else
-				{
-					Main.manualPauseReleased = true;
-				}
-
-
-
-
-
-
-
-				//ZOOOOOOOOOOOOOOOM
-				if (zoomLevel != 1)
-				{
-					float widthIncrease = (Main.screenWidth * zoomLevel - Main.screenWidth) / 2;
-					Main.screenPosition.X += widthIncrease;
-					Main.screenWidth += (int)widthIncrease;
-					float heightIncrease = (Main.screenHeight * zoomLevel - Main.screenHeight) / 2;
-					Main.screenPosition.Y += heightIncrease;
-					Main.screenHeight += (int)heightIncrease;
-				}
-
-
-
-
-
-
-
-
-				float num3 = 0f;
-				float num4 = 0f;
-				if ((Main.player[Main.myPlayer].noThrow <= 0 && !Main.player[Main.myPlayer].lastMouseInterface) || Main.zoomX != 0f || Main.zoomY != 0f)
-				{
-					if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].type == 1254 && Main.player[Main.myPlayer].scope && Main.mouseRight)
+					else if (Main.stackDelay == 5)
 					{
-						int num5 = Main.mouseX;
-						int num6 = Main.mouseY;
-						if (num5 > Main.screenWidth)
-						{
-							num5 = Main.screenWidth;
-						}
-						if (num5 < 0)
-						{
-							num5 = 0;
-						}
-						if (num6 > Main.screenHeight)
-						{
-							num6 = Main.screenHeight;
-						}
-						if (num6 < 0)
-						{
-							num6 = 0;
-						}
-						num3 = (float)(num5 - Main.screenWidth / 2) / 1.25f;
-						num4 += (float)(num6 - Main.screenHeight / 2) / 1.25f;
+						num = 20;
 					}
-					else if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].type == 1254 && Main.mouseRight)
+					else if (Main.stackDelay == 4)
 					{
-						int num7 = Main.mouseX;
-						int num8 = Main.mouseY;
-						if (num7 > Main.screenWidth)
-						{
-							num7 = Main.screenWidth;
-						}
-						if (num7 < 0)
-						{
-							num7 = 0;
-						}
-						if (num8 > Main.screenHeight)
-						{
-							num8 = Main.screenHeight;
-						}
-						if (num8 < 0)
-						{
-							num8 = 0;
-						}
-						num3 = (float)(num7 - Main.screenWidth / 2) / 1.5f;
-						num4 += (float)(num8 - Main.screenHeight / 2) / 1.5f;
+						num = 15;
 					}
-					else if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].type == 1299 && Main.player[Main.myPlayer].selectedItem != 58)
+					else if (Main.stackDelay == 3)
 					{
-						int num9 = Main.mouseX;
-						int num10 = Main.mouseY;
-						if (num9 > Main.screenWidth)
-						{
-							num9 = Main.screenWidth;
-						}
-						if (num9 < 0)
-						{
-							num9 = 0;
-						}
-						if (num10 > Main.screenHeight)
-						{
-							num10 = Main.screenHeight;
-						}
-						if (num10 < 0)
-						{
-							num10 = 0;
-						}
-						num3 = (float)(num9 - Main.screenWidth / 2) / 1.5f;
-						num4 += (float)(num10 - Main.screenHeight / 2) / 1.5f;
-					}
-					else if (Main.player[Main.myPlayer].scope && Main.mouseRight)
-					{
-						int num11 = Main.mouseX;
-						int num12 = Main.mouseY;
-						if (num11 > Main.screenWidth)
-						{
-							num11 = Main.screenWidth;
-						}
-						if (num11 < 0)
-						{
-							num11 = 0;
-						}
-						if (num12 > Main.screenHeight)
-						{
-							num12 = Main.screenHeight;
-						}
-						if (num12 < 0)
-						{
-							num12 = 0;
-						}
-						num3 = (float)(num11 - Main.screenWidth / 2) / 2f;
-						num4 += (float)(num12 - Main.screenHeight / 2) / 2f;
-					}
-				}
-				float num13 = 24f;
-				float num14 = num3 - Main.zoomX;
-				float num15 = num4 - Main.zoomY;
-				float num16 = (float)Math.Sqrt((double)(num14 * num14 + num15 * num15));
-				num16 = (float)Math.Sqrt((double)(num14 * num14 + num15 * num15));
-				if (num16 < num13)
-				{
-					Main.zoomX = num3;
-					Main.zoomY = num4;
-				}
-				else
-				{
-					num16 = num13 / num16;
-					num14 *= num16;
-					num15 *= num16;
-					Main.zoomX += num14;
-					Main.zoomY += num15;
-				}
-				Main.screenPosition.X = Main.screenPosition.X + Main.zoomX;
-				Main.screenPosition.Y = Main.screenPosition.Y + Main.zoomY * Main.player[Main.myPlayer].gravDir;
-				if (Main.cameraLerp > 0f)
-				{
-					float num17 = Vector2.Distance(value, Main.screenPosition) - Main.player[Main.myPlayer].velocity.Length();
-					if (num17 < 0.25f)
-					{
-						Main.cameraLerp = 0f;
+						num = 10;
 					}
 					else
 					{
-						Main.screenPosition = Vector2.Lerp(value, Main.screenPosition, Main.cameraLerp);
+						num = 5;
+					}
+					if (Main.stackCounter >= num)
+					{
+						Main.stackDelay--;
+						if (Main.stackDelay < 2)
+						{
+							Main.stackDelay = 2;
+							Main.superFastStack++;
+						}
+						Main.stackCounter = 0;
 					}
 				}
-				Main.screenPosition.X = (float)((int)Main.screenPosition.X);
-				Main.screenPosition.Y = (float)((int)Main.screenPosition.Y);
-			}
-			if (!Main.gameMenu && Main.netMode != 2)
-			{
-				if (Main.screenPosition.X < Main.leftWorld + 640f + 16f)
+				if (Main.myPlayer >= 0)
 				{
-					Main.screenPosition.X = Main.leftWorld + 640f + 16f;
+					Main.player[Main.myPlayer].lastMouseInterface = Main.player[Main.myPlayer].mouseInterface;
+					Main.player[Main.myPlayer].mouseInterface = false;
 				}
-				else if (Main.screenPosition.X + (float)Main.screenWidth > Main.rightWorld - 640f - 32f)
+				if (Main.mapTime > 0)
 				{
-					Main.screenPosition.X = Main.rightWorld - (float)Main.screenWidth - 640f - 32f;
+					Main.mapTime--;
 				}
-				if (Main.screenPosition.Y < Main.topWorld + 640f + 16f)
+				if (Main.gameMenu)
 				{
-					Main.screenPosition.Y = Main.topWorld + 640f + 16f;
+					Main.mapTime = Main.mapTimeMax;
 				}
-				else if (Main.screenPosition.Y + (float)Main.screenHeight > Main.bottomWorld - 640f - 32f)
+				Main.toolTip = new Item();
+				if (!Main.gameMenu && Main.netMode != 2)
 				{
-					Main.screenPosition.Y = Main.bottomWorld - (float)Main.screenHeight - 640f - 32f;
+					int num2 = 21;
+					if (Main.cameraX != 0f && !Main.player[Main.myPlayer].pulley)
+					{
+						Main.cameraX = 0f;
+					}
+					if (Main.cameraX > 0f)
+					{
+						Main.cameraX -= 1f;
+						if (Main.cameraX < 0f)
+						{
+							Main.cameraX = 0f;
+						}
+					}
+					if (Main.cameraX < 0f)
+					{
+						Main.cameraX += 1f;
+						if (Main.cameraX > 0f)
+						{
+							Main.cameraX = 0f;
+						}
+					}
+					Vector2 value = Main.screenPosition;
+
+
+					Main.lockTogglePressed = false;
+					Main.dummyLightPressed = false;
+					Main.slomoPressed = false;
+					Main.manualPausePressed = false;
+					//System.IO.StreamWriter is just loggy stuff
+
+					//tmec update
+					//if(Main.hasFocus && !Main.chatMode && !Main.editSign && !Main.editChest) {
+					Keys[] pressedKeys = Main.keyState.GetPressedKeys(); //gets an array of keys that are currently down 
+					for (int i = 0; i < pressedKeys.Length; i++)//loops through
+					{
+						string key = String.Concat(pressedKeys[i]); //converts each key to a string
+						switch (key)
+						{
+							case "L":
+								Main.lockTogglePressed = true;
+								break;
+							case "K":
+								Main.dummyLightPressed = true;
+								break;
+							case "O":
+								Main.slomoPressed = true;
+								break;
+							case "P":
+								Main.manualPausePressed = true;
+								break;
+							case "OemPlus":
+								cameraSpeed += cameraSpeed * .03f;
+								break;
+							case "OemMinus":
+								cameraSpeed -= cameraSpeed * .03f;
+								break;
+							case "Up":
+								lockPosition.Y -= cameraSpeed;
+								break;
+							case "Down":
+								lockPosition.Y += cameraSpeed;
+								break;
+							case "Left":
+								lockPosition.X -= cameraSpeed;
+								break;
+							case "Right":
+								lockPosition.X += cameraSpeed;
+								break;
+						}
+					}
+					//}
+
+					if (Main.lockTogglePressed)//player.cs line 16100
+					{                          //lockTogglePressed is just if it's being held down - so lockToggleReleased lets us tell when it changes
+						if (Main.lockToggleReleased)
+						{
+							screenLocked = !screenLocked;
+							Main.lockPosition = Main.screenPosition; //set the lock pos to where the screen is
+						}
+						Main.lockToggleReleased = false;
+					}
+					else
+					{
+						Main.lockToggleReleased = true;
+					}
+
+					if (screenLocked)
+					{
+						Main.screenPosition.X = (int)Math.Floor(Main.lockPosition.X);
+						Main.screenPosition.Y = (int)Math.Floor(Main.lockPosition.Y);
+					}
+					else
+					{
+						//default code
+						Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
+						Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
+
+					}
+
+
+					if (Main.dummyLightPressed)
+					{
+						if (Main.dummyLightReleased)
+						{
+							dummyLightToggle = !dummyLightToggle;
+						}
+						Main.dummyLightReleased = false;
+					}
+					else
+					{
+						Main.dummyLightReleased = true;
+					}//Why did I put this here?
+					 //I like to pretend to be organized. 
+
+
+					if (Main.slomoPressed)
+					{
+						if (Main.slomoReleased)
+						{
+							slomoToggle = !slomoToggle;
+						}
+						Main.slomoReleased = false;
+					}
+					else
+					{
+						Main.slomoReleased = true;
+					}
+					if (Main.manualPausePressed)
+					{
+						if (Main.manualPauseReleased)
+						{
+							manualPause = !manualPause;
+						}
+						Main.manualPauseReleased = false;
+					}
+					else
+					{
+						Main.manualPauseReleased = true;
+					}
+
+
+
+
+
+
+
+					//ZOOOOOOOOOOOOOOOM
+					if (zoomLevel != 1)
+					{
+						float widthIncrease = (Main.screenWidth * zoomLevel - Main.screenWidth) / 2;
+						Main.screenPosition.X += widthIncrease;
+						Main.screenWidth += (int)widthIncrease;
+						float heightIncrease = (Main.screenHeight * zoomLevel - Main.screenHeight) / 2;
+						Main.screenPosition.Y += heightIncrease;
+						Main.screenHeight += (int)heightIncrease;
+					}
+					if (zoomLevel != oldZoomLevel)
+					{
+						Lighting.Initialize();
+						Main.drawToScreen = false;
+						oldZoomLevel = zoomLevel;
+						return;
+					}//    /^\
+					 /*      |
+	  *                      |                                                                                                                                                                    
+	  *                                                                                                                                                                                         
+	  *    DDDDDDDDDDDDD       UUUUUUUU     UUUUUUUU       CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTT     TTTTTTTTTTTTTTTTTTTTTTT         AAA               PPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEE
+	  *    D::::::::::::DDD    U::::::U     U::::::U    CCC::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T        A:::A              P::::::::::::::::P  E::::::::::::::::::::E
+	  *    D:::::::::::::::DD  U::::::U     U::::::U  CC:::::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T       A:::::A             P::::::PPPPPP:::::P E::::::::::::::::::::E
+	  *    DDD:::::DDDDD:::::D UU:::::U     U:::::UU C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::T     T:::::TT:::::::TT:::::T      A:::::::A            PP:::::P     P:::::PEE::::::EEEEEEEEE::::E
+	  *      D:::::D    D:::::D U:::::U     U:::::U C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTT     TTTTTT  T:::::T  TTTTTT     A:::::::::A             P::::P     P:::::P  E:::::E       EEEEEE
+	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T            A:::::A:::::A            P::::P     P:::::P  E:::::E             
+	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T           A:::::A A:::::A           P::::PPPPPP:::::P   E::::::EEEEEEEEEE   
+	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T          A:::::A   A:::::A          P:::::::::::::PP    E:::::::::::::::E   
+	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T         A:::::A     A:::::A         P::::PPPPPPPPP      E:::::::::::::::E   
+	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T        A:::::AAAAAAAAA:::::A        P::::P              E::::::EEEEEEEEEE   
+	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T       A:::::::::::::::::::::A       P::::P              E:::::E             
+	  *      D:::::D    D:::::D U::::::U   U::::::U C:::::C       CCCCCC        T:::::T                     T:::::T      A:::::AAAAAAAAAAAAA:::::A      P::::P              E:::::E       EEEEEE
+	  *    DDD:::::DDDDD:::::D  U:::::::UUU:::::::U  C:::::CCCCCCCC::::C      TT:::::::TT                 TT:::::::TT   A:::::A             A:::::A   PP::::::PP          EE::::::EEEEEEEE:::::E
+	  *    D:::::::::::::::DD    UU:::::::::::::UU    CC:::::::::::::::C      T:::::::::T                 T:::::::::T  A:::::A               A:::::A  P::::::::P          E::::::::::::::::::::E
+	  *    D::::::::::::DDD        UU:::::::::UU        CCC::::::::::::C      T:::::::::T                 T:::::::::T A:::::A                 A:::::A P::::::::P          E::::::::::::::::::::E
+	  *    DDDDDDDDDDDDD             UUUUUUUUU             CCCCCCCCCCCCC      TTTTTTTTTTT                 TTTTTTTTTTTAAAAAAA                   AAAAAAAPPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEE
+	  *                                                                                                                                                                                         
+	  *                                                                                                                                                                                         
+	  *                                                                                                                                                                                         
+	  *                                                                                                                                                                                         
+	  *                                                                                                                                                                                         
+	  *                                                                                                                                                                                         
+	  *                                                                                                                                                                                         
+	  */
+					oldZoomLevel = zoomLevel;
+
+
+
+
+
+
+					float num3 = 0f;
+					float num4 = 0f;
+					if ((Main.player[Main.myPlayer].noThrow <= 0 && !Main.player[Main.myPlayer].lastMouseInterface) || Main.zoomX != 0f || Main.zoomY != 0f)
+					{
+						if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].type == 1254 && Main.player[Main.myPlayer].scope && Main.mouseRight)
+						{
+							int num5 = Main.mouseX;
+							int num6 = Main.mouseY;
+							if (num5 > Main.screenWidth)
+							{
+								num5 = Main.screenWidth;
+							}
+							if (num5 < 0)
+							{
+								num5 = 0;
+							}
+							if (num6 > Main.screenHeight)
+							{
+								num6 = Main.screenHeight;
+							}
+							if (num6 < 0)
+							{
+								num6 = 0;
+							}
+							num3 = (float)(num5 - Main.screenWidth / 2) / 1.25f;
+							num4 += (float)(num6 - Main.screenHeight / 2) / 1.25f;
+						}
+						else if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].type == 1254 && Main.mouseRight)
+						{
+							int num7 = Main.mouseX;
+							int num8 = Main.mouseY;
+							if (num7 > Main.screenWidth)
+							{
+								num7 = Main.screenWidth;
+							}
+							if (num7 < 0)
+							{
+								num7 = 0;
+							}
+							if (num8 > Main.screenHeight)
+							{
+								num8 = Main.screenHeight;
+							}
+							if (num8 < 0)
+							{
+								num8 = 0;
+							}
+							num3 = (float)(num7 - Main.screenWidth / 2) / 1.5f;
+							num4 += (float)(num8 - Main.screenHeight / 2) / 1.5f;
+						}
+						else if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].type == 1299 && Main.player[Main.myPlayer].selectedItem != 58)
+						{
+							int num9 = Main.mouseX;
+							int num10 = Main.mouseY;
+							if (num9 > Main.screenWidth)
+							{
+								num9 = Main.screenWidth;
+							}
+							if (num9 < 0)
+							{
+								num9 = 0;
+							}
+							if (num10 > Main.screenHeight)
+							{
+								num10 = Main.screenHeight;
+							}
+							if (num10 < 0)
+							{
+								num10 = 0;
+							}
+							num3 = (float)(num9 - Main.screenWidth / 2) / 1.5f;
+							num4 += (float)(num10 - Main.screenHeight / 2) / 1.5f;
+						}
+						else if (Main.player[Main.myPlayer].scope && Main.mouseRight)
+						{
+							int num11 = Main.mouseX;
+							int num12 = Main.mouseY;
+							if (num11 > Main.screenWidth)
+							{
+								num11 = Main.screenWidth;
+							}
+							if (num11 < 0)
+							{
+								num11 = 0;
+							}
+							if (num12 > Main.screenHeight)
+							{
+								num12 = Main.screenHeight;
+							}
+							if (num12 < 0)
+							{
+								num12 = 0;
+							}
+							num3 = (float)(num11 - Main.screenWidth / 2) / 2f;
+							num4 += (float)(num12 - Main.screenHeight / 2) / 2f;
+						}
+					}
+					float num13 = 24f;
+					float num14 = num3 - Main.zoomX;
+					float num15 = num4 - Main.zoomY;
+					float num16 = (float)Math.Sqrt((double)(num14 * num14 + num15 * num15));
+					num16 = (float)Math.Sqrt((double)(num14 * num14 + num15 * num15));
+					if (num16 < num13)
+					{
+						Main.zoomX = num3;
+						Main.zoomY = num4;
+					}
+					else
+					{
+						num16 = num13 / num16;
+						num14 *= num16;
+						num15 *= num16;
+						Main.zoomX += num14;
+						Main.zoomY += num15;
+					}
+					Main.screenPosition.X = Main.screenPosition.X + Main.zoomX;
+					Main.screenPosition.Y = Main.screenPosition.Y + Main.zoomY * Main.player[Main.myPlayer].gravDir;
+					if (Main.cameraLerp > 0f)
+					{
+						float num17 = Vector2.Distance(value, Main.screenPosition) - Main.player[Main.myPlayer].velocity.Length();
+						if (num17 < 0.25f)
+						{
+							Main.cameraLerp = 0f;
+						}
+						else
+						{
+							Main.screenPosition = Vector2.Lerp(value, Main.screenPosition, Main.cameraLerp);
+						}
+					}
+					Main.screenPosition.X = (float)((int)Main.screenPosition.X);
+					Main.screenPosition.Y = (float)((int)Main.screenPosition.Y);
 				}
-			}
-			Main.CheckMonoliths();
-			if (Main.showSplash)
-			{
-				this.DrawSplash(gameTime);
-				TimeLogger.SplashDrawTime(stopwatch.Elapsed.TotalMilliseconds);
-				TimeLogger.EndDrawFrame();
-				return;
-			}
-			Main.sunCircle += 0.01f;
-			if ((double)Main.sunCircle > 6.285)
-			{
-				Main.sunCircle -= 6.285f;
-			}
-			TimeLogger.DetailedDrawReset();
-			if (!Main.gameMenu)
-			{
-				this.waterfallManager.FindWaterfalls(false);
-				TimeLogger.DetailedDrawTime(2);
-				if (Main.renderNow)
+				if (!Main.gameMenu && Main.netMode != 2)
 				{
-					Main.screenLastPosition = Main.screenPosition;
-					Main.renderNow = false;
-					Main.renderCount = 99;
-					this.Draw(gameTime);
-					Lighting.LightTiles(this.firstTileX, this.lastTileX, this.firstTileY, this.lastTileY);
-					Lighting.LightTiles(this.firstTileX, this.lastTileX, this.firstTileY, this.lastTileY);
-					this.RenderTiles();
-					Main.sceneTilePos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-					Main.sceneTilePos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					this.RenderBackground();
-					Main.sceneBackgroundPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-					Main.sceneBackgroundPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					this.RenderWalls();
-					Main.sceneWallPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-					Main.sceneWallPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					this.RenderTiles2();
-					Main.sceneTile2Pos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-					Main.sceneTile2Pos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					this.RenderWater();
-					Main.sceneWaterPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-					Main.sceneWaterPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					Main.renderCount = 99;
+					if (Main.screenPosition.X < Main.leftWorld + 640f + 16f)
+					{
+						Main.screenPosition.X = Main.leftWorld + 640f + 16f;
+					}
+					else if (Main.screenPosition.X + (float)Main.screenWidth > Main.rightWorld - 640f - 32f)
+					{
+						Main.screenPosition.X = Main.rightWorld - (float)Main.screenWidth - 640f - 32f;
+					}
+					if (Main.screenPosition.Y < Main.topWorld + 640f + 16f)
+					{
+						Main.screenPosition.Y = Main.topWorld + 640f + 16f;
+					}
+					else if (Main.screenPosition.Y + (float)Main.screenHeight > Main.bottomWorld - 640f - 32f)
+					{
+						Main.screenPosition.Y = Main.bottomWorld - (float)Main.screenHeight - 640f - 32f;
+					}
 				}
-				else
+				Main.CheckMonoliths();
+				if (Main.showSplash)
 				{
-					if (Main.renderCount == 3)
-					{
-						this.RenderTiles();
-						Main.sceneTilePos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneTilePos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Main.renderCount == 2)
-					{
-						this.RenderBackground();
-						Main.sceneBackgroundPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneBackgroundPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Main.renderCount == 2)
-					{
-						this.RenderWalls();
-						Main.sceneWallPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneWallPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Main.renderCount == 3)
-					{
-						this.RenderTiles2();
-						Main.sceneTile2Pos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneTile2Pos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Main.renderCount == 1)
-					{
-						this.RenderWater();
-						Main.sceneWaterPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneWaterPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
+					this.DrawSplash(gameTime);
+					TimeLogger.SplashDrawTime(stopwatch.Elapsed.TotalMilliseconds);
+					TimeLogger.EndDrawFrame();
+					return;
 				}
-				if (Main.render && !Main.gameMenu)
+				Main.sunCircle += 0.01f;
+				if ((double)Main.sunCircle > 6.285)
 				{
-					if (Math.Abs(Main.sceneTilePos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneTilePos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
-					{
-						this.RenderTiles();
-						Main.sceneTilePos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneTilePos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Math.Abs(Main.sceneTile2Pos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneTile2Pos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
-					{
-						this.RenderTiles2();
-						Main.sceneTile2Pos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneTile2Pos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Math.Abs(Main.sceneBackgroundPos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneBackgroundPos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
-					{
-						this.RenderBackground();
-						Main.sceneBackgroundPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneBackgroundPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Math.Abs(Main.sceneWallPos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneWallPos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
-					{
-						this.RenderWalls();
-						Main.sceneWallPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneWallPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
-					if (Math.Abs(Main.sceneWaterPos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneWaterPos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
-					{
-						this.RenderWater();
-						Main.sceneWaterPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
-						Main.sceneWaterPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
-					}
+					Main.sunCircle -= 6.285f;
 				}
-			}
-			if (!Main.loadMap)
-			{
+				TimeLogger.DetailedDrawReset();
 				if (!Main.gameMenu)
 				{
-					TimeLogger.DetailedDrawReset();
-					Stopwatch stopwatch2 = new Stopwatch();
-					stopwatch2.Start();
-					int num18 = 0;
-					int secX;
-					int secY;
-					while (stopwatch2.ElapsedMilliseconds < 5L && Main.sectionManager.GetNextMapDraw(Main.player[Main.myPlayer].position, out secX, out secY))
+					this.waterfallManager.FindWaterfalls(false);
+					TimeLogger.DetailedDrawTime(2);
+					if (Main.renderNow)
 					{
-						this.DrawToMap_Section(secX, secY);
-						num18++;
+						Main.screenLastPosition = Main.screenPosition;
+						Main.renderNow = false;
+						Main.renderCount = 99;
+						this.Draw(gameTime);
+						Lighting.LightTiles(this.firstTileX, this.lastTileX, this.firstTileY, this.lastTileY);
+						Lighting.LightTiles(this.firstTileX, this.lastTileX, this.firstTileY, this.lastTileY);
+						this.RenderTiles();
+						Main.sceneTilePos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+						Main.sceneTilePos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						this.RenderBackground();
+						Main.sceneBackgroundPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+						Main.sceneBackgroundPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						this.RenderWalls();
+						Main.sceneWallPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+						Main.sceneWallPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						this.RenderTiles2();
+						Main.sceneTile2Pos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+						Main.sceneTile2Pos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						this.RenderWater();
+						Main.sceneWaterPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+						Main.sceneWaterPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						Main.renderCount = 99;
 					}
-					TimeLogger.DetailedDrawTime(3);
-				}
-				if (Main.updateMap)
-				{
-					if (base.IsActive || Main.netMode == 1)
+					else
 					{
-						if (Main.refreshMap)
+						if (Main.renderCount == 3)
 						{
-							Main.refreshMap = false;
-							Main.sectionManager.ClearMapDraw();
+							this.RenderTiles();
+							Main.sceneTilePos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneTilePos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
 						}
-						this.DrawToMap();
-						Main.updateMap = false;
+						if (Main.renderCount == 2)
+						{
+							this.RenderBackground();
+							Main.sceneBackgroundPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneBackgroundPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Main.renderCount == 2)
+						{
+							this.RenderWalls();
+							Main.sceneWallPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneWallPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Main.renderCount == 3)
+						{
+							this.RenderTiles2();
+							Main.sceneTile2Pos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneTile2Pos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Main.renderCount == 1)
+						{
+							this.RenderWater();
+							Main.sceneWaterPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneWaterPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
 					}
-					else if (MapHelper.numUpdateTile > 0)
+					if (Main.render && !Main.gameMenu)
 					{
-						this.DrawToMap();
+						if (Math.Abs(Main.sceneTilePos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneTilePos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
+						{
+							this.RenderTiles();
+							Main.sceneTilePos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneTilePos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Math.Abs(Main.sceneTile2Pos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneTile2Pos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
+						{
+							this.RenderTiles2();
+							Main.sceneTile2Pos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneTile2Pos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Math.Abs(Main.sceneBackgroundPos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneBackgroundPos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
+						{
+							this.RenderBackground();
+							Main.sceneBackgroundPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneBackgroundPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Math.Abs(Main.sceneWallPos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneWallPos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
+						{
+							this.RenderWalls();
+							Main.sceneWallPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneWallPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
+						if (Math.Abs(Main.sceneWaterPos.X - (Main.screenPosition.X - (float)Main.offScreenRange)) > (float)Main.offScreenRange || Math.Abs(Main.sceneWaterPos.Y - (Main.screenPosition.Y - (float)Main.offScreenRange)) > (float)Main.offScreenRange)
+						{
+							this.RenderWater();
+							Main.sceneWaterPos.X = Main.screenPosition.X - (float)Main.offScreenRange;
+							Main.sceneWaterPos.Y = Main.screenPosition.Y - (float)Main.offScreenRange;
+						}
 					}
-					TimeLogger.DetailedDrawTime(4);
 				}
-			}
-			this.bgParallax = 0.1;
-			this.bgStart = (int)(-Math.IEEERemainder((double)Main.screenPosition.X * this.bgParallax, (double)Main.backgroundWidth[Main.background]) - (double)(Main.backgroundWidth[Main.background] / 2));
-			this.bgLoops = Main.screenWidth / Main.backgroundWidth[Main.background] + 2;
-			this.bgStartY = 0;
-			this.bgLoopsY = 0;
-			this.bgTop = (int)((double)(-(double)Main.screenPosition.Y) / (Main.worldSurface * 16.0 - 600.0) * 200.0);
-			Main.bgColor = Microsoft.Xna.Framework.Color.White;
-			if (Main.gameMenu || Main.netMode == 2)
-			{
-				this.bgTop = -200;
-			}
-			int num19 = (int)(Main.time / 54000.0 * (double)(Main.screenWidth + Main.sunTexture.Width * 2)) - Main.sunTexture.Width;
-			int num20 = 0;
-			Microsoft.Xna.Framework.Color white = Microsoft.Xna.Framework.Color.White;
-			float num21 = 1f;
-			float rotation = (float)(Main.time / 54000.0) * 2f - 7.3f;
-			int num22 = (int)(Main.time / 32400.0 * (double)(Main.screenWidth + Main.moonTexture[Main.moonType].Width * 2)) - Main.moonTexture[Main.moonType].Width;
-			int num23 = 0;
-			Microsoft.Xna.Framework.Color white2 = Microsoft.Xna.Framework.Color.White;
-			float num24 = 1f;
-			float rotation2 = (float)(Main.time / 32400.0) * 2f - 7.3f;
-			if (Main.dayTime)
-			{
-				double num25;
-				if (Main.time < 27000.0)
+				if (!Main.loadMap)
 				{
-					num25 = Math.Pow(1.0 - Main.time / 54000.0 * 2.0, 2.0);
-					num20 = (int)((double)this.bgTop + num25 * 250.0 + 180.0);
+					if (!Main.gameMenu)
+					{
+						TimeLogger.DetailedDrawReset();
+						Stopwatch stopwatch2 = new Stopwatch();
+						stopwatch2.Start();
+						int num18 = 0;
+						int secX;
+						int secY;
+						while (stopwatch2.ElapsedMilliseconds < 5L && Main.sectionManager.GetNextMapDraw(Main.player[Main.myPlayer].position, out secX, out secY))
+						{
+							this.DrawToMap_Section(secX, secY);
+							num18++;
+						}
+						TimeLogger.DetailedDrawTime(3);
+					}
+					if (Main.updateMap)
+					{
+						if (base.IsActive || Main.netMode == 1)
+						{
+							if (Main.refreshMap)
+							{
+								Main.refreshMap = false;
+								Main.sectionManager.ClearMapDraw();
+							}
+							this.DrawToMap();
+							Main.updateMap = false;
+						}
+						else if (MapHelper.numUpdateTile > 0)
+						{
+							this.DrawToMap();
+						}
+						TimeLogger.DetailedDrawTime(4);
+					}
+				}
+				this.bgParallax = 0.1;
+				this.bgStart = (int)(-Math.IEEERemainder((double)Main.screenPosition.X * this.bgParallax, (double)Main.backgroundWidth[Main.background]) - (double)(Main.backgroundWidth[Main.background] / 2));
+				this.bgLoops = Main.screenWidth / Main.backgroundWidth[Main.background] + 2;
+				this.bgStartY = 0;
+				this.bgLoopsY = 0;
+				this.bgTop = (int)((double)(-(double)Main.screenPosition.Y) / (Main.worldSurface * 16.0 - 600.0) * 200.0);
+				Main.bgColor = Microsoft.Xna.Framework.Color.White;
+				if (Main.gameMenu || Main.netMode == 2)
+				{
+					this.bgTop = -200;
+				}
+				int num19 = (int)(Main.time / 54000.0 * (double)(Main.screenWidth + Main.sunTexture.Width * 2)) - Main.sunTexture.Width;
+				int num20 = 0;
+				Microsoft.Xna.Framework.Color white = Microsoft.Xna.Framework.Color.White;
+				float num21 = 1f;
+				float rotation = (float)(Main.time / 54000.0) * 2f - 7.3f;
+				int num22 = (int)(Main.time / 32400.0 * (double)(Main.screenWidth + Main.moonTexture[Main.moonType].Width * 2)) - Main.moonTexture[Main.moonType].Width;
+				int num23 = 0;
+				Microsoft.Xna.Framework.Color white2 = Microsoft.Xna.Framework.Color.White;
+				float num24 = 1f;
+				float rotation2 = (float)(Main.time / 32400.0) * 2f - 7.3f;
+				if (Main.dayTime)
+				{
+					double num25;
+					if (Main.time < 27000.0)
+					{
+						num25 = Math.Pow(1.0 - Main.time / 54000.0 * 2.0, 2.0);
+						num20 = (int)((double)this.bgTop + num25 * 250.0 + 180.0);
+					}
+					else
+					{
+						num25 = Math.Pow((Main.time / 54000.0 - 0.5) * 2.0, 2.0);
+						num20 = (int)((double)this.bgTop + num25 * 250.0 + 180.0);
+					}
+					num21 = (float)(1.2 - num25 * 0.4);
 				}
 				else
 				{
-					num25 = Math.Pow((Main.time / 54000.0 - 0.5) * 2.0, 2.0);
-					num20 = (int)((double)this.bgTop + num25 * 250.0 + 180.0);
-				}
-				num21 = (float)(1.2 - num25 * 0.4);
-			}
-			else
-			{
-				double num26;
-				if (Main.time < 16200.0)
-				{
-					num26 = Math.Pow(1.0 - Main.time / 32400.0 * 2.0, 2.0);
-					num23 = (int)((double)this.bgTop + num26 * 250.0 + 180.0);
-				}
-				else
-				{
-					num26 = Math.Pow((Main.time / 32400.0 - 0.5) * 2.0, 2.0);
-					num23 = (int)((double)this.bgTop + num26 * 250.0 + 180.0);
-				}
-				num24 = (float)(1.2 - num26 * 0.4);
-			}
-			if (Main.dayTime)
-			{
-				if (Main.time < 13500.0)
-				{
-					float num27 = (float)(Main.time / 13500.0);
-					white.R = (byte)(num27 * 200f + 55f);
-					white.G = (byte)(num27 * 180f + 75f);
-					white.B = (byte)(num27 * 250f + 5f);
-					Main.bgColor.R = (byte)(num27 * 230f + 25f);
-					Main.bgColor.G = (byte)(num27 * 220f + 35f);
-					Main.bgColor.B = (byte)(num27 * 220f + 35f);
-				}
-				if (Main.time > 45900.0)
-				{
-					float num27 = (float)(1.0 - (Main.time / 54000.0 - 0.85) * 6.666666666666667);
-					white.R = (byte)(num27 * 120f + 55f);
-					white.G = (byte)(num27 * 100f + 25f);
-					white.B = (byte)(num27 * 120f + 55f);
-					Main.bgColor.R = (byte)(num27 * 200f + 35f);
-					Main.bgColor.G = (byte)(num27 * 85f + 35f);
-					Main.bgColor.B = (byte)(num27 * 135f + 35f);
-				}
-				else if (Main.time > 37800.0)
-				{
-					float num27 = (float)(1.0 - (Main.time / 54000.0 - 0.7) * 6.666666666666667);
-					white.R = (byte)(num27 * 80f + 175f);
-					white.G = (byte)(num27 * 130f + 125f);
-					white.B = (byte)(num27 * 100f + 155f);
-					Main.bgColor.R = (byte)(num27 * 20f + 235f);
-					Main.bgColor.G = (byte)(num27 * 135f + 120f);
-					Main.bgColor.B = (byte)(num27 * 85f + 170f);
-				}
-			}
-			if (!Main.dayTime)
-			{
-				if (Main.bloodMoon)
-				{
+					double num26;
 					if (Main.time < 16200.0)
+					{
+						num26 = Math.Pow(1.0 - Main.time / 32400.0 * 2.0, 2.0);
+						num23 = (int)((double)this.bgTop + num26 * 250.0 + 180.0);
+					}
+					else
+					{
+						num26 = Math.Pow((Main.time / 32400.0 - 0.5) * 2.0, 2.0);
+						num23 = (int)((double)this.bgTop + num26 * 250.0 + 180.0);
+					}
+					num24 = (float)(1.2 - num26 * 0.4);
+				}
+				if (Main.dayTime)
+				{
+					if (Main.time < 13500.0)
+					{
+						float num27 = (float)(Main.time / 13500.0);
+						white.R = (byte)(num27 * 200f + 55f);
+						white.G = (byte)(num27 * 180f + 75f);
+						white.B = (byte)(num27 * 250f + 5f);
+						Main.bgColor.R = (byte)(num27 * 230f + 25f);
+						Main.bgColor.G = (byte)(num27 * 220f + 35f);
+						Main.bgColor.B = (byte)(num27 * 220f + 35f);
+					}
+					if (Main.time > 45900.0)
+					{
+						float num27 = (float)(1.0 - (Main.time / 54000.0 - 0.85) * 6.666666666666667);
+						white.R = (byte)(num27 * 120f + 55f);
+						white.G = (byte)(num27 * 100f + 25f);
+						white.B = (byte)(num27 * 120f + 55f);
+						Main.bgColor.R = (byte)(num27 * 200f + 35f);
+						Main.bgColor.G = (byte)(num27 * 85f + 35f);
+						Main.bgColor.B = (byte)(num27 * 135f + 35f);
+					}
+					else if (Main.time > 37800.0)
+					{
+						float num27 = (float)(1.0 - (Main.time / 54000.0 - 0.7) * 6.666666666666667);
+						white.R = (byte)(num27 * 80f + 175f);
+						white.G = (byte)(num27 * 130f + 125f);
+						white.B = (byte)(num27 * 100f + 155f);
+						Main.bgColor.R = (byte)(num27 * 20f + 235f);
+						Main.bgColor.G = (byte)(num27 * 135f + 120f);
+						Main.bgColor.B = (byte)(num27 * 85f + 170f);
+					}
+				}
+				if (!Main.dayTime)
+				{
+					if (Main.bloodMoon)
+					{
+						if (Main.time < 16200.0)
+						{
+							float num27 = (float)(1.0 - Main.time / 16200.0);
+							white2.R = (byte)(num27 * 10f + 205f);
+							white2.G = (byte)(num27 * 170f + 55f);
+							white2.B = (byte)(num27 * 200f + 55f);
+							Main.bgColor.R = (byte)(40f - num27 * 40f + 35f);
+							Main.bgColor.G = (byte)(num27 * 20f + 15f);
+							Main.bgColor.B = (byte)(num27 * 20f + 15f);
+						}
+						else if (Main.time >= 16200.0)
+						{
+							float num27 = (float)((Main.time / 32400.0 - 0.5) * 2.0);
+							white2.R = (byte)(num27 * 50f + 205f);
+							white2.G = (byte)(num27 * 100f + 155f);
+							white2.B = (byte)(num27 * 100f + 155f);
+							white2.R = (byte)(num27 * 10f + 205f);
+							white2.G = (byte)(num27 * 170f + 55f);
+							white2.B = (byte)(num27 * 200f + 55f);
+							Main.bgColor.R = (byte)(40f - num27 * 40f + 35f);
+							Main.bgColor.G = (byte)(num27 * 20f + 15f);
+							Main.bgColor.B = (byte)(num27 * 20f + 15f);
+						}
+					}
+					else if (Main.time < 16200.0)
 					{
 						float num27 = (float)(1.0 - Main.time / 16200.0);
 						white2.R = (byte)(num27 * 10f + 205f);
-						white2.G = (byte)(num27 * 170f + 55f);
-						white2.B = (byte)(num27 * 200f + 55f);
-						Main.bgColor.R = (byte)(40f - num27 * 40f + 35f);
-						Main.bgColor.G = (byte)(num27 * 20f + 15f);
-						Main.bgColor.B = (byte)(num27 * 20f + 15f);
+						white2.G = (byte)(num27 * 70f + 155f);
+						white2.B = (byte)(num27 * 100f + 155f);
+						Main.bgColor.R = (byte)(num27 * 30f + 5f);
+						Main.bgColor.G = (byte)(num27 * 30f + 5f);
+						Main.bgColor.B = (byte)(num27 * 30f + 5f);
 					}
 					else if (Main.time >= 16200.0)
 					{
@@ -49374,1708 +49433,1687 @@ namespace Terraria
 						white2.R = (byte)(num27 * 50f + 205f);
 						white2.G = (byte)(num27 * 100f + 155f);
 						white2.B = (byte)(num27 * 100f + 155f);
-						white2.R = (byte)(num27 * 10f + 205f);
-						white2.G = (byte)(num27 * 170f + 55f);
-						white2.B = (byte)(num27 * 200f + 55f);
-						Main.bgColor.R = (byte)(40f - num27 * 40f + 35f);
-						Main.bgColor.G = (byte)(num27 * 20f + 15f);
-						Main.bgColor.B = (byte)(num27 * 20f + 15f);
+						Main.bgColor.R = (byte)(num27 * 20f + 5f);
+						Main.bgColor.G = (byte)(num27 * 30f + 5f);
+						Main.bgColor.B = (byte)(num27 * 30f + 5f);
 					}
 				}
-				else if (Main.time < 16200.0)
+				float num28 = 0.0005f * (float)Main.dayRate;
+				if (Main.gameMenu)
 				{
-					float num27 = (float)(1.0 - Main.time / 16200.0);
-					white2.R = (byte)(num27 * 10f + 205f);
-					white2.G = (byte)(num27 * 70f + 155f);
-					white2.B = (byte)(num27 * 100f + 155f);
-					Main.bgColor.R = (byte)(num27 * 30f + 5f);
-					Main.bgColor.G = (byte)(num27 * 30f + 5f);
-					Main.bgColor.B = (byte)(num27 * 30f + 5f);
+					num28 *= 20f;
 				}
-				else if (Main.time >= 16200.0)
+				if (Main.raining)
 				{
-					float num27 = (float)((Main.time / 32400.0 - 0.5) * 2.0);
-					white2.R = (byte)(num27 * 50f + 205f);
-					white2.G = (byte)(num27 * 100f + 155f);
-					white2.B = (byte)(num27 * 100f + 155f);
-					Main.bgColor.R = (byte)(num27 * 20f + 5f);
-					Main.bgColor.G = (byte)(num27 * 30f + 5f);
-					Main.bgColor.B = (byte)(num27 * 30f + 5f);
-				}
-			}
-			float num28 = 0.0005f * (float)Main.dayRate;
-			if (Main.gameMenu)
-			{
-				num28 *= 20f;
-			}
-			if (Main.raining)
-			{
-				if (Main.cloudAlpha > Main.maxRaining)
-				{
-					Main.cloudAlpha -= num28;
-					if (Main.cloudAlpha < Main.maxRaining)
-					{
-						Main.cloudAlpha = Main.maxRaining;
-					}
-				}
-				else if (Main.cloudAlpha < Main.maxRaining)
-				{
-					Main.cloudAlpha += num28;
 					if (Main.cloudAlpha > Main.maxRaining)
 					{
-						Main.cloudAlpha = Main.maxRaining;
+						Main.cloudAlpha -= num28;
+						if (Main.cloudAlpha < Main.maxRaining)
+						{
+							Main.cloudAlpha = Main.maxRaining;
+						}
+					}
+					else if (Main.cloudAlpha < Main.maxRaining)
+					{
+						Main.cloudAlpha += num28;
+						if (Main.cloudAlpha > Main.maxRaining)
+						{
+							Main.cloudAlpha = Main.maxRaining;
+						}
 					}
 				}
-			}
-			else
-			{
-				Main.cloudAlpha -= num28;
-				if (Main.cloudAlpha < 0f)
+				else
 				{
-					Main.cloudAlpha = 0f;
+					Main.cloudAlpha -= num28;
+					if (Main.cloudAlpha < 0f)
+					{
+						Main.cloudAlpha = 0f;
+					}
 				}
-			}
-			if (Main.cloudAlpha > 0f)
-			{
-				float num29 = 1f - Main.cloudAlpha * 0.9f;
-				Main.bgColor.R = (byte)((float)Main.bgColor.R * num29);
-				Main.bgColor.G = (byte)((float)Main.bgColor.G * num29);
-				Main.bgColor.B = (byte)((float)Main.bgColor.B * num29);
-			}
-			if (Main.gameMenu || Main.netMode == 2)
-			{
-				this.bgTop = 0;
-				if (!Main.dayTime)
+				if (Main.cloudAlpha > 0f)
 				{
-					Main.bgColor.R = 35;
-					Main.bgColor.G = 35;
-					Main.bgColor.B = 35;
+					float num29 = 1f - Main.cloudAlpha * 0.9f;
+					Main.bgColor.R = (byte)((float)Main.bgColor.R * num29);
+					Main.bgColor.G = (byte)((float)Main.bgColor.G * num29);
+					Main.bgColor.B = (byte)((float)Main.bgColor.B * num29);
 				}
-			}
-			if (Main.gameMenu)
-			{
-				Main.bgDelay = 1000;
-				Main.evilTiles = (int)(Main.bgAlpha[1] * 500f);
-			}
-			if (Main.evilTiles > 0)
-			{
-				float num30 = (float)Main.evilTiles / 500f;
-				if (num30 > 1f)
+				if (Main.gameMenu || Main.netMode == 2)
 				{
-					num30 = 1f;
+					this.bgTop = 0;
+					if (!Main.dayTime)
+					{
+						Main.bgColor.R = 35;
+						Main.bgColor.G = 35;
+						Main.bgColor.B = 35;
+					}
 				}
-				int num31 = (int)Main.bgColor.R;
-				int num32 = (int)Main.bgColor.G;
-				int num33 = (int)Main.bgColor.B;
-				num31 -= (int)(100f * num30 * ((float)Main.bgColor.R / 255f));
-				num32 -= (int)(140f * num30 * ((float)Main.bgColor.G / 255f));
-				num33 -= (int)(80f * num30 * ((float)Main.bgColor.B / 255f));
-				if (num31 < 15)
+				if (Main.gameMenu)
 				{
-					num31 = 15;
+					Main.bgDelay = 1000;
+					Main.evilTiles = (int)(Main.bgAlpha[1] * 500f);
 				}
-				if (num32 < 15)
+				if (Main.evilTiles > 0)
 				{
-					num32 = 15;
+					float num30 = (float)Main.evilTiles / 500f;
+					if (num30 > 1f)
+					{
+						num30 = 1f;
+					}
+					int num31 = (int)Main.bgColor.R;
+					int num32 = (int)Main.bgColor.G;
+					int num33 = (int)Main.bgColor.B;
+					num31 -= (int)(100f * num30 * ((float)Main.bgColor.R / 255f));
+					num32 -= (int)(140f * num30 * ((float)Main.bgColor.G / 255f));
+					num33 -= (int)(80f * num30 * ((float)Main.bgColor.B / 255f));
+					if (num31 < 15)
+					{
+						num31 = 15;
+					}
+					if (num32 < 15)
+					{
+						num32 = 15;
+					}
+					if (num33 < 15)
+					{
+						num33 = 15;
+					}
+					Main.bgColor.R = (byte)num31;
+					Main.bgColor.G = (byte)num32;
+					Main.bgColor.B = (byte)num33;
+					num31 = (int)white.R;
+					num32 = (int)white.G;
+					num33 = (int)white.B;
+					num31 -= (int)(100f * num30 * ((float)white.R / 255f));
+					num32 -= (int)(100f * num30 * ((float)white.G / 255f));
+					num33 -= (int)(0f * num30 * ((float)white.B / 255f));
+					if (num31 < 15)
+					{
+						num31 = 15;
+					}
+					if (num32 < 15)
+					{
+						num32 = 15;
+					}
+					if (num33 < 15)
+					{
+						num33 = 15;
+					}
+					white.R = (byte)num31;
+					white.G = (byte)num32;
+					white.B = (byte)num33;
+					num31 = (int)white2.R;
+					num32 = (int)white2.G;
+					num33 = (int)white2.B;
+					num31 -= (int)(140f * num30 * ((float)white2.R / 255f));
+					num32 -= (int)(190f * num30 * ((float)white2.G / 255f));
+					num33 -= (int)(170f * num30 * ((float)white2.B / 255f));
+					if (num31 < 15)
+					{
+						num31 = 15;
+					}
+					if (num32 < 15)
+					{
+						num32 = 15;
+					}
+					if (num33 < 15)
+					{
+						num33 = 15;
+					}
+					white2.R = (byte)num31;
+					white2.G = (byte)num32;
+					white2.B = (byte)num33;
 				}
-				if (num33 < 15)
+				if (Main.bloodTiles > 0)
 				{
-					num33 = 15;
+					float num34 = (float)Main.bloodTiles / 400f;
+					if (num34 > 1f)
+					{
+						num34 = 1f;
+					}
+					int num35 = (int)Main.bgColor.R;
+					int num36 = (int)Main.bgColor.G;
+					int num37 = (int)Main.bgColor.B;
+					num35 -= (int)(70f * num34 * ((float)Main.bgColor.G / 255f));
+					num36 -= (int)(110f * num34 * ((float)Main.bgColor.G / 255f));
+					num37 -= (int)(150f * num34 * ((float)Main.bgColor.B / 255f));
+					if (num35 < 15)
+					{
+						num35 = 15;
+					}
+					if (num36 < 15)
+					{
+						num36 = 15;
+					}
+					if (num37 < 15)
+					{
+						num37 = 15;
+					}
+					Main.bgColor.R = (byte)num35;
+					Main.bgColor.G = (byte)num36;
+					Main.bgColor.B = (byte)num37;
+					num35 = (int)white.R;
+					num36 = (int)white.G;
+					num37 = (int)white.B;
+					num36 -= (int)(90f * num34 * ((float)white.G / 255f));
+					num37 -= (int)(110f * num34 * ((float)white.B / 255f));
+					if (num35 < 15)
+					{
+						num35 = 15;
+					}
+					if (num36 < 15)
+					{
+						num36 = 15;
+					}
+					if (num37 < 15)
+					{
+						num37 = 15;
+					}
+					white.R = (byte)num35;
+					white.G = (byte)num36;
+					white.B = (byte)num37;
+					num35 = (int)white2.R;
+					num36 = (int)white2.G;
+					num37 = (int)white2.B;
+					num35 -= (int)(100f * num34 * ((float)white2.R / 255f));
+					num36 -= (int)(120f * num34 * ((float)white2.G / 255f));
+					num37 -= (int)(180f * num34 * ((float)white2.B / 255f));
+					if (num35 < 15)
+					{
+						num35 = 15;
+					}
+					if (num36 < 15)
+					{
+						num36 = 15;
+					}
+					if (num37 < 15)
+					{
+						num37 = 15;
+					}
+					white2.R = (byte)num35;
+					white2.G = (byte)num36;
+					white2.B = (byte)num37;
 				}
-				Main.bgColor.R = (byte)num31;
-				Main.bgColor.G = (byte)num32;
-				Main.bgColor.B = (byte)num33;
-				num31 = (int)white.R;
-				num32 = (int)white.G;
-				num33 = (int)white.B;
-				num31 -= (int)(100f * num30 * ((float)white.R / 255f));
-				num32 -= (int)(100f * num30 * ((float)white.G / 255f));
-				num33 -= (int)(0f * num30 * ((float)white.B / 255f));
-				if (num31 < 15)
+				if (Main.jungleTiles > 0)
 				{
-					num31 = 15;
+					float num38 = (float)Main.jungleTiles / 200f;
+					if (num38 > 1f)
+					{
+						num38 = 1f;
+					}
+					int num39 = (int)Main.bgColor.R;
+					int num40 = (int)Main.bgColor.G;
+					int num41 = (int)Main.bgColor.B;
+					num39 -= (int)(40f * num38 * ((float)Main.bgColor.R / 255f));
+					num41 -= (int)(70f * num38 * ((float)Main.bgColor.B / 255f));
+					if (num40 > 255)
+					{
+						num40 = 255;
+					}
+					if (num40 < 15)
+					{
+						num40 = 15;
+					}
+					if (num39 > 255)
+					{
+						num39 = 255;
+					}
+					if (num39 < 15)
+					{
+						num39 = 15;
+					}
+					if (num41 < 15)
+					{
+						num41 = 15;
+					}
+					Main.bgColor.R = (byte)num39;
+					Main.bgColor.G = (byte)num40;
+					Main.bgColor.B = (byte)num41;
+					num39 = (int)white.R;
+					num40 = (int)white.G;
+					num41 = (int)white.B;
+					num39 -= (int)(30f * num38 * ((float)white.R / 255f));
+					num41 -= (int)(10f * num38 * ((float)white.B / 255f));
+					if (num39 < 15)
+					{
+						num39 = 15;
+					}
+					if (num40 < 15)
+					{
+						num40 = 15;
+					}
+					if (num41 < 15)
+					{
+						num41 = 15;
+					}
+					white.R = (byte)num39;
+					white.G = (byte)num40;
+					white.B = (byte)num41;
+					num39 = (int)white2.R;
+					num40 = (int)white2.G;
+					num41 = (int)white2.B;
+					num40 -= (int)(140f * num38 * ((float)white2.R / 255f));
+					num39 -= (int)(170f * num38 * ((float)white2.G / 255f));
+					num41 -= (int)(190f * num38 * ((float)white2.B / 255f));
+					if (num39 < 15)
+					{
+						num39 = 15;
+					}
+					if (num40 < 15)
+					{
+						num40 = 15;
+					}
+					if (num41 < 15)
+					{
+						num41 = 15;
+					}
+					white2.R = (byte)num39;
+					white2.G = (byte)num40;
+					white2.B = (byte)num41;
 				}
-				if (num32 < 15)
+				if (Main.shroomTiles > 0)
 				{
-					num32 = 15;
+					float num42 = (float)Main.shroomTiles / 160f;
+					if (num42 > Main.shroomLight)
+					{
+						Main.shroomLight += 0.01f;
+					}
+					if (num42 < Main.shroomLight)
+					{
+						Main.shroomLight -= 0.01f;
+					}
 				}
-				if (num33 < 15)
+				else
 				{
-					num33 = 15;
+					Main.shroomLight -= 0.02f;
 				}
-				white.R = (byte)num31;
-				white.G = (byte)num32;
-				white.B = (byte)num33;
-				num31 = (int)white2.R;
-				num32 = (int)white2.G;
-				num33 = (int)white2.B;
-				num31 -= (int)(140f * num30 * ((float)white2.R / 255f));
-				num32 -= (int)(190f * num30 * ((float)white2.G / 255f));
-				num33 -= (int)(170f * num30 * ((float)white2.B / 255f));
-				if (num31 < 15)
+				if (Main.shroomLight < 0f)
 				{
-					num31 = 15;
+					Main.shroomLight = 0f;
 				}
-				if (num32 < 15)
+				if (Main.shroomLight > 1f)
 				{
-					num32 = 15;
+					Main.shroomLight = 1f;
 				}
-				if (num33 < 15)
+				if (Main.shroomLight > 0f)
 				{
-					num33 = 15;
+					float num43 = Main.shroomLight;
+					int num44 = (int)Main.bgColor.R;
+					int num45 = (int)Main.bgColor.G;
+					int num46 = (int)Main.bgColor.B;
+					num45 -= (int)(250f * num43 * ((float)Main.bgColor.G / 255f));
+					num44 -= (int)(250f * num43 * ((float)Main.bgColor.R / 255f));
+					num46 -= (int)(250f * num43 * ((float)Main.bgColor.B / 255f));
+					if (num45 < 15)
+					{
+						num45 = 15;
+					}
+					if (num44 < 15)
+					{
+						num44 = 15;
+					}
+					if (num46 < 15)
+					{
+						num46 = 15;
+					}
+					Main.bgColor.R = (byte)num44;
+					Main.bgColor.G = (byte)num45;
+					Main.bgColor.B = (byte)num46;
+					num44 = (int)white.R;
+					num45 = (int)white.G;
+					num46 = (int)white.B;
+					num45 -= (int)(10f * num43 * ((float)white.G / 255f));
+					num44 -= (int)(30f * num43 * ((float)white.R / 255f));
+					num46 -= (int)(10f * num43 * ((float)white.B / 255f));
+					if (num44 < 15)
+					{
+						num44 = 15;
+					}
+					if (num45 < 15)
+					{
+						num45 = 15;
+					}
+					if (num46 < 15)
+					{
+						num46 = 15;
+					}
+					white.R = (byte)num44;
+					white.G = (byte)num45;
+					white.B = (byte)num46;
+					num44 = (int)white2.R;
+					num45 = (int)white2.G;
+					num46 = (int)white2.B;
+					num45 -= (int)(140f * num43 * ((float)white2.R / 255f));
+					num44 -= (int)(170f * num43 * ((float)white2.G / 255f));
+					num46 -= (int)(190f * num43 * ((float)white2.B / 255f));
+					if (num44 < 15)
+					{
+						num44 = 15;
+					}
+					if (num45 < 15)
+					{
+						num45 = 15;
+					}
+					if (num46 < 15)
+					{
+						num46 = 15;
+					}
+					white2.R = (byte)num44;
+					white2.G = (byte)num45;
+					white2.B = (byte)num46;
 				}
-				white2.R = (byte)num31;
-				white2.G = (byte)num32;
-				white2.B = (byte)num33;
-			}
-			if (Main.bloodTiles > 0)
-			{
-				float num34 = (float)Main.bloodTiles / 400f;
-				if (num34 > 1f)
+				if (Lighting.lightMode < 2)
 				{
-					num34 = 1f;
+					if (Main.bgColor.R < 10)
+					{
+						Main.bgColor.R = 10;
+					}
+					if (Main.bgColor.G < 10)
+					{
+						Main.bgColor.G = 10;
+					}
+					if (Main.bgColor.B < 10)
+					{
+						Main.bgColor.B = 10;
+					}
 				}
-				int num35 = (int)Main.bgColor.R;
-				int num36 = (int)Main.bgColor.G;
-				int num37 = (int)Main.bgColor.B;
-				num35 -= (int)(70f * num34 * ((float)Main.bgColor.G / 255f));
-				num36 -= (int)(110f * num34 * ((float)Main.bgColor.G / 255f));
-				num37 -= (int)(150f * num34 * ((float)Main.bgColor.B / 255f));
-				if (num35 < 15)
+				else
 				{
-					num35 = 15;
+					if (Main.bgColor.R < 15)
+					{
+						Main.bgColor.R = 15;
+					}
+					if (Main.bgColor.G < 15)
+					{
+						Main.bgColor.G = 15;
+					}
+					if (Main.bgColor.B < 15)
+					{
+						Main.bgColor.B = 15;
+					}
 				}
-				if (num36 < 15)
+				if (Main.bloodMoon)
 				{
-					num36 = 15;
+					if (Main.bgColor.R < 25)
+					{
+						Main.bgColor.R = 25;
+					}
+					if (Main.bgColor.G < 25)
+					{
+						Main.bgColor.G = 25;
+					}
+					if (Main.bgColor.B < 25)
+					{
+						Main.bgColor.B = 25;
+					}
 				}
-				if (num37 < 15)
+				if (Main.eclipse && Main.dayTime)
 				{
-					num37 = 15;
+					float num47 = 1242f;
+					Main.eclipseLight = (float)(Main.time / (double)num47);
+					if (Main.eclipseLight > 1f)
+					{
+						Main.eclipseLight = 1f;
+					}
 				}
-				Main.bgColor.R = (byte)num35;
-				Main.bgColor.G = (byte)num36;
-				Main.bgColor.B = (byte)num37;
-				num35 = (int)white.R;
-				num36 = (int)white.G;
-				num37 = (int)white.B;
-				num36 -= (int)(90f * num34 * ((float)white.G / 255f));
-				num37 -= (int)(110f * num34 * ((float)white.B / 255f));
-				if (num35 < 15)
+				else if (Main.eclipseLight > 0f)
 				{
-					num35 = 15;
+					Main.eclipseLight -= 0.01f;
+					if (Main.eclipseLight < 0f)
+					{
+						Main.eclipseLight = 0f;
+					}
 				}
-				if (num36 < 15)
+				if (Main.eclipseLight > 0f)
 				{
-					num36 = 15;
-				}
-				if (num37 < 15)
-				{
-					num37 = 15;
-				}
-				white.R = (byte)num35;
-				white.G = (byte)num36;
-				white.B = (byte)num37;
-				num35 = (int)white2.R;
-				num36 = (int)white2.G;
-				num37 = (int)white2.B;
-				num35 -= (int)(100f * num34 * ((float)white2.R / 255f));
-				num36 -= (int)(120f * num34 * ((float)white2.G / 255f));
-				num37 -= (int)(180f * num34 * ((float)white2.B / 255f));
-				if (num35 < 15)
-				{
-					num35 = 15;
-				}
-				if (num36 < 15)
-				{
-					num36 = 15;
-				}
-				if (num37 < 15)
-				{
-					num37 = 15;
-				}
-				white2.R = (byte)num35;
-				white2.G = (byte)num36;
-				white2.B = (byte)num37;
-			}
-			if (Main.jungleTiles > 0)
-			{
-				float num38 = (float)Main.jungleTiles / 200f;
-				if (num38 > 1f)
-				{
-					num38 = 1f;
-				}
-				int num39 = (int)Main.bgColor.R;
-				int num40 = (int)Main.bgColor.G;
-				int num41 = (int)Main.bgColor.B;
-				num39 -= (int)(40f * num38 * ((float)Main.bgColor.R / 255f));
-				num41 -= (int)(70f * num38 * ((float)Main.bgColor.B / 255f));
-				if (num40 > 255)
-				{
-					num40 = 255;
-				}
-				if (num40 < 15)
-				{
-					num40 = 15;
-				}
-				if (num39 > 255)
-				{
-					num39 = 255;
-				}
-				if (num39 < 15)
-				{
-					num39 = 15;
-				}
-				if (num41 < 15)
-				{
-					num41 = 15;
-				}
-				Main.bgColor.R = (byte)num39;
-				Main.bgColor.G = (byte)num40;
-				Main.bgColor.B = (byte)num41;
-				num39 = (int)white.R;
-				num40 = (int)white.G;
-				num41 = (int)white.B;
-				num39 -= (int)(30f * num38 * ((float)white.R / 255f));
-				num41 -= (int)(10f * num38 * ((float)white.B / 255f));
-				if (num39 < 15)
-				{
-					num39 = 15;
-				}
-				if (num40 < 15)
-				{
-					num40 = 15;
-				}
-				if (num41 < 15)
-				{
-					num41 = 15;
-				}
-				white.R = (byte)num39;
-				white.G = (byte)num40;
-				white.B = (byte)num41;
-				num39 = (int)white2.R;
-				num40 = (int)white2.G;
-				num41 = (int)white2.B;
-				num40 -= (int)(140f * num38 * ((float)white2.R / 255f));
-				num39 -= (int)(170f * num38 * ((float)white2.G / 255f));
-				num41 -= (int)(190f * num38 * ((float)white2.B / 255f));
-				if (num39 < 15)
-				{
-					num39 = 15;
-				}
-				if (num40 < 15)
-				{
-					num40 = 15;
-				}
-				if (num41 < 15)
-				{
-					num41 = 15;
-				}
-				white2.R = (byte)num39;
-				white2.G = (byte)num40;
-				white2.B = (byte)num41;
-			}
-			if (Main.shroomTiles > 0)
-			{
-				float num42 = (float)Main.shroomTiles / 160f;
-				if (num42 > Main.shroomLight)
-				{
-					Main.shroomLight += 0.01f;
-				}
-				if (num42 < Main.shroomLight)
-				{
-					Main.shroomLight -= 0.01f;
-				}
-			}
-			else
-			{
-				Main.shroomLight -= 0.02f;
-			}
-			if (Main.shroomLight < 0f)
-			{
-				Main.shroomLight = 0f;
-			}
-			if (Main.shroomLight > 1f)
-			{
-				Main.shroomLight = 1f;
-			}
-			if (Main.shroomLight > 0f)
-			{
-				float num43 = Main.shroomLight;
-				int num44 = (int)Main.bgColor.R;
-				int num45 = (int)Main.bgColor.G;
-				int num46 = (int)Main.bgColor.B;
-				num45 -= (int)(250f * num43 * ((float)Main.bgColor.G / 255f));
-				num44 -= (int)(250f * num43 * ((float)Main.bgColor.R / 255f));
-				num46 -= (int)(250f * num43 * ((float)Main.bgColor.B / 255f));
-				if (num45 < 15)
-				{
-					num45 = 15;
-				}
-				if (num44 < 15)
-				{
-					num44 = 15;
-				}
-				if (num46 < 15)
-				{
-					num46 = 15;
-				}
-				Main.bgColor.R = (byte)num44;
-				Main.bgColor.G = (byte)num45;
-				Main.bgColor.B = (byte)num46;
-				num44 = (int)white.R;
-				num45 = (int)white.G;
-				num46 = (int)white.B;
-				num45 -= (int)(10f * num43 * ((float)white.G / 255f));
-				num44 -= (int)(30f * num43 * ((float)white.R / 255f));
-				num46 -= (int)(10f * num43 * ((float)white.B / 255f));
-				if (num44 < 15)
-				{
-					num44 = 15;
-				}
-				if (num45 < 15)
-				{
-					num45 = 15;
-				}
-				if (num46 < 15)
-				{
-					num46 = 15;
-				}
-				white.R = (byte)num44;
-				white.G = (byte)num45;
-				white.B = (byte)num46;
-				num44 = (int)white2.R;
-				num45 = (int)white2.G;
-				num46 = (int)white2.B;
-				num45 -= (int)(140f * num43 * ((float)white2.R / 255f));
-				num44 -= (int)(170f * num43 * ((float)white2.G / 255f));
-				num46 -= (int)(190f * num43 * ((float)white2.B / 255f));
-				if (num44 < 15)
-				{
-					num44 = 15;
-				}
-				if (num45 < 15)
-				{
-					num45 = 15;
-				}
-				if (num46 < 15)
-				{
-					num46 = 15;
-				}
-				white2.R = (byte)num44;
-				white2.G = (byte)num45;
-				white2.B = (byte)num46;
-			}
-			if (Lighting.lightMode < 2)
-			{
-				if (Main.bgColor.R < 10)
-				{
-					Main.bgColor.R = 10;
-				}
-				if (Main.bgColor.G < 10)
-				{
-					Main.bgColor.G = 10;
-				}
-				if (Main.bgColor.B < 10)
-				{
-					Main.bgColor.B = 10;
-				}
-			}
-			else
-			{
-				if (Main.bgColor.R < 15)
-				{
-					Main.bgColor.R = 15;
-				}
-				if (Main.bgColor.G < 15)
-				{
-					Main.bgColor.G = 15;
-				}
-				if (Main.bgColor.B < 15)
-				{
-					Main.bgColor.B = 15;
-				}
-			}
-			if (Main.bloodMoon)
-			{
-				if (Main.bgColor.R < 25)
-				{
-					Main.bgColor.R = 25;
-				}
-				if (Main.bgColor.G < 25)
-				{
-					Main.bgColor.G = 25;
-				}
-				if (Main.bgColor.B < 25)
-				{
-					Main.bgColor.B = 25;
-				}
-			}
-			if (Main.eclipse && Main.dayTime)
-			{
-				float num47 = 1242f;
-				Main.eclipseLight = (float)(Main.time / (double)num47);
-				if (Main.eclipseLight > 1f)
-				{
-					Main.eclipseLight = 1f;
-				}
-			}
-			else if (Main.eclipseLight > 0f)
-			{
-				Main.eclipseLight -= 0.01f;
-				if (Main.eclipseLight < 0f)
-				{
-					Main.eclipseLight = 0f;
-				}
-			}
-			if (Main.eclipseLight > 0f)
-			{
-				float num48 = 1f - 0.925f * Main.eclipseLight;
-				float num49 = 1f - 0.96f * Main.eclipseLight;
-				float num50 = 1f - 1f * Main.eclipseLight;
-				int num51 = (int)((float)Main.bgColor.R * num48);
-				int num52 = (int)((float)Main.bgColor.G * num49);
-				int num53 = (int)((float)Main.bgColor.B * num50);
-				Main.bgColor.R = (byte)num51;
-				Main.bgColor.G = (byte)num52;
-				Main.bgColor.B = (byte)num53;
-				white.R = 255;
-				white.G = 127;
-				white.B = 67;
-				if (Main.bgColor.R < 20)
-				{
-					Main.bgColor.R = 20;
-				}
-				if (Main.bgColor.G < 10)
-				{
-					Main.bgColor.G = 10;
-				}
-				if (Lighting.lightMode >= 2)
-				{
+					float num48 = 1f - 0.925f * Main.eclipseLight;
+					float num49 = 1f - 0.96f * Main.eclipseLight;
+					float num50 = 1f - 1f * Main.eclipseLight;
+					int num51 = (int)((float)Main.bgColor.R * num48);
+					int num52 = (int)((float)Main.bgColor.G * num49);
+					int num53 = (int)((float)Main.bgColor.B * num50);
+					Main.bgColor.R = (byte)num51;
+					Main.bgColor.G = (byte)num52;
+					Main.bgColor.B = (byte)num53;
+					white.R = 255;
+					white.G = 127;
+					white.B = 67;
 					if (Main.bgColor.R < 20)
 					{
 						Main.bgColor.R = 20;
 					}
-					if (Main.bgColor.G < 14)
+					if (Main.bgColor.G < 10)
 					{
-						Main.bgColor.G = 14;
+						Main.bgColor.G = 10;
 					}
-					if (Main.bgColor.B < 6)
+					if (Lighting.lightMode >= 2)
 					{
-						Main.bgColor.B = 6;
+						if (Main.bgColor.R < 20)
+						{
+							Main.bgColor.R = 20;
+						}
+						if (Main.bgColor.G < 14)
+						{
+							Main.bgColor.G = 14;
+						}
+						if (Main.bgColor.B < 6)
+						{
+							Main.bgColor.B = 6;
+						}
 					}
 				}
-			}
-			Main.tileColor.A = 255;
-			Main.tileColor.R = (byte)((Main.bgColor.R + Main.bgColor.G + (int)Main.bgColor.B + Main.bgColor.R * 7) / 10);
-			Main.tileColor.G = (byte)((Main.bgColor.R + Main.bgColor.G + (int)Main.bgColor.B + Main.bgColor.G * 7) / 10);
-			Main.tileColor.B = (byte)((Main.bgColor.R + Main.bgColor.G + (int)Main.bgColor.B + Main.bgColor.B * 7) / 10);
-			Main.tileColor = SkyManager.Instance.ProcessTileColor(Main.tileColor);
-			float num54 = (float)(Main.maxTilesX / 4200);
-			num54 *= num54;
-			Main.atmo = (float)((double)((Main.screenPosition.Y + (float)(Main.screenHeight / 2)) / 16f - (65f + 10f * num54)) / (Main.worldSurface / 5.0));
-			if (Main.atmo < 0f)
-			{
-				Main.atmo = 0f;
-			}
-			if (Main.atmo > 1f)
-			{
-				Main.atmo = 1f;
-			}
-			if (Main.gameMenu)
-			{
-				Main.atmo = 1f;
-			}
-			Main.bgColor.R = (byte)((float)Main.bgColor.R * Main.atmo);
-			Main.bgColor.G = (byte)((float)Main.bgColor.G * Main.atmo);
-			Main.bgColor.B = (byte)((float)Main.bgColor.B * Main.atmo);
-			if ((double)Main.atmo <= 0.05)
-			{
-				Main.bgColor.R = 0;
-				Main.bgColor.G = 0;
-				Main.bgColor.B = 0;
-				Main.bgColor.A = 0;
-			}
-			base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-			base.Draw(gameTime);
-			if (Main.gameMenu || Main.player[Main.myPlayer].gravDir == 1f)
-			{
-				this.Transform = Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f));
-				this.Rasterizer = RasterizerState.CullCounterClockwise;
-			}
-			else
-			{
-				this.Transform = Matrix.CreateScale(1f, -1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, (float)Main.screenHeight, 0f));
-				this.Rasterizer = RasterizerState.CullClockwise;
-			}
-			bool flag = !Main.drawToScreen && Main.netMode != 2 && !Main.gameMenu && !Main.mapFullscreen && Filters.Scene.HasActiveFilter();
-			if (flag)
-			{
-				base.GraphicsDevice.SetRenderTarget(this.screenTarget);
+				Main.tileColor.A = 255;
+				Main.tileColor.R = (byte)((Main.bgColor.R + Main.bgColor.G + (int)Main.bgColor.B + Main.bgColor.R * 7) / 10);
+				Main.tileColor.G = (byte)((Main.bgColor.R + Main.bgColor.G + (int)Main.bgColor.B + Main.bgColor.G * 7) / 10);
+				Main.tileColor.B = (byte)((Main.bgColor.R + Main.bgColor.G + (int)Main.bgColor.B + Main.bgColor.B * 7) / 10);
+				Main.tileColor = SkyManager.Instance.ProcessTileColor(Main.tileColor);
+				float num54 = (float)(Main.maxTilesX / 4200);
+				num54 *= num54;
+				Main.atmo = (float)((double)((Main.screenPosition.Y + (float)(Main.screenHeight / 2)) / 16f - (65f + 10f * num54)) / (Main.worldSurface / 5.0));
+				if (Main.atmo < 0f)
+				{
+					Main.atmo = 0f;
+				}
+				if (Main.atmo > 1f)
+				{
+					Main.atmo = 1f;
+				}
+				if (Main.gameMenu)
+				{
+					Main.atmo = 1f;
+				}
+				Main.bgColor.R = (byte)((float)Main.bgColor.R * Main.atmo);
+				Main.bgColor.G = (byte)((float)Main.bgColor.G * Main.atmo);
+				Main.bgColor.B = (byte)((float)Main.bgColor.B * Main.atmo);
+				if ((double)Main.atmo <= 0.05)
+				{
+					Main.bgColor.R = 0;
+					Main.bgColor.G = 0;
+					Main.bgColor.B = 0;
+					Main.bgColor.A = 0;
+				}
 				base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-			}
-			Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-			TimeLogger.DetailedDrawReset();
-			if (!Main.mapFullscreen)
-			{
-				this.unityMouseOver = false;
-				if ((double)Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0)
+				base.Draw(gameTime);
+				if (Main.gameMenu || Main.player[Main.myPlayer].gravDir == 1f)
 				{
-					for (int i = 0; i < this.bgLoops; i++)
-					{
-						Main.spriteBatch.Draw(Main.backgroundTexture[Main.background], new Microsoft.Xna.Framework.Rectangle(this.bgStart + Main.backgroundWidth[Main.background] * i, this.bgTop, Main.backgroundWidth[Main.background], Main.backgroundHeight[Main.background]), Main.bgColor);
-					}
-					TimeLogger.DetailedDrawTime(6);
-				}
-				if ((double)Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0 && 255f * (1f - Main.cloudAlpha) - (float)Main.bgColor.R - 25f > 0f && Main.netMode != 2)
-				{
-					for (int j = 0; j < Main.numStars; j++)
-					{
-						Microsoft.Xna.Framework.Color color = default(Microsoft.Xna.Framework.Color);
-						float num55 = (float)Main.evilTiles / 500f;
-						if (num55 > 1f)
-						{
-							num55 = 1f;
-						}
-						num55 = 1f - num55 * 0.5f;
-						if (Main.evilTiles <= 0)
-						{
-							num55 = 1f;
-						}
-						int num56 = (int)((float)(255 - Main.bgColor.R - 100) * Main.star[j].twinkle * num55);
-						int num57 = (int)((float)(255 - Main.bgColor.G - 100) * Main.star[j].twinkle * num55);
-						int num58 = (int)((float)(255 - Main.bgColor.B - 100) * Main.star[j].twinkle * num55);
-						if (num56 < 0)
-						{
-							num56 = 0;
-						}
-						if (num57 < 0)
-						{
-							num57 = 0;
-						}
-						if (num58 < 0)
-						{
-							num58 = 0;
-						}
-						color.R = (byte)num56;
-						color.G = (byte)((float)num57 * num55);
-						color.B = (byte)((float)num58 * num55);
-						float num59 = Main.star[j].position.X * ((float)Main.screenWidth / 800f);
-						float num60 = Main.star[j].position.Y * ((float)Main.screenHeight / 600f);
-						Main.spriteBatch.Draw(Main.starTexture[Main.star[j].type], new Vector2(num59 + (float)Main.starTexture[Main.star[j].type].Width * 0.5f, num60 + (float)Main.starTexture[Main.star[j].type].Height * 0.5f + (float)this.bgTop), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.starTexture[Main.star[j].type].Width, Main.starTexture[Main.star[j].type].Height)), color, Main.star[j].rotation, new Vector2((float)Main.starTexture[Main.star[j].type].Width * 0.5f, (float)Main.starTexture[Main.star[j].type].Height * 0.5f), Main.star[j].scale * Main.star[j].twinkle, SpriteEffects.None, 0f);
-					}
-				}
-				if ((double)(Main.screenPosition.Y / 16f) < Main.worldSurface + 2.0)
-				{
-					if (Main.dayTime)
-					{
-						num21 *= 1.1f;
-						if (Main.eclipse)
-						{
-							float num61 = 1f - Main.shroomLight;
-							num61 -= Main.cloudAlpha * 1.5f;
-							if (num61 < 0f)
-							{
-								num61 = 0f;
-							}
-							Microsoft.Xna.Framework.Color color2 = new Microsoft.Xna.Framework.Color((int)((byte)(255f * num61)), (int)((byte)((float)white.G * num61)), (int)((byte)((float)white.B * num61)), (int)((byte)(255f * num61)));
-							Microsoft.Xna.Framework.Color color3 = new Microsoft.Xna.Framework.Color((int)((byte)((float)white.R * num61)), (int)((byte)((float)white.G * num61)), (int)((byte)((float)white.B * num61)), (int)((byte)((float)(white.B - 60) * num61)));
-							Main.spriteBatch.Draw(Main.sun3Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun3Texture.Width, Main.sun3Texture.Height)), color2, rotation, new Vector2((float)(Main.sun3Texture.Width / 2), (float)(Main.sun3Texture.Height / 2)), num21, SpriteEffects.None, 0f);
-							Main.spriteBatch.Draw(Main.sun3Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun3Texture.Width, Main.sun3Texture.Height)), color3, rotation, new Vector2((float)(Main.sun3Texture.Width / 2), (float)(Main.sun3Texture.Height / 2)), num21, SpriteEffects.None, 0f);
-						}
-						else if (!Main.gameMenu && Main.player[Main.myPlayer].head == 12)
-						{
-							float num62 = 1f - Main.shroomLight;
-							num62 -= Main.cloudAlpha * 1.5f;
-							if (num62 < 0f)
-							{
-								num62 = 0f;
-							}
-							Microsoft.Xna.Framework.Color color4 = new Microsoft.Xna.Framework.Color((int)((byte)(255f * num62)), (int)((byte)((float)white.G * num62)), (int)((byte)((float)white.B * num62)), (int)((byte)(255f * num62)));
-							Microsoft.Xna.Framework.Color color5 = new Microsoft.Xna.Framework.Color((int)((byte)((float)white.R * num62)), (int)((byte)((float)white.G * num62)), (int)((byte)((float)white.B * num62)), (int)((byte)((float)(white.B - 60) * num62)));
-							Main.spriteBatch.Draw(Main.sun2Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun2Texture.Width, Main.sun2Texture.Height)), color4, rotation, new Vector2((float)(Main.sun2Texture.Width / 2), (float)(Main.sun2Texture.Height / 2)), num21, SpriteEffects.None, 0f);
-							Main.spriteBatch.Draw(Main.sun2Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun2Texture.Width, Main.sun2Texture.Height)), color5, rotation, new Vector2((float)(Main.sun2Texture.Width / 2), (float)(Main.sun2Texture.Height / 2)), num21, SpriteEffects.None, 0f);
-						}
-						else
-						{
-							float num63 = 1f - Main.shroomLight;
-							num63 -= Main.cloudAlpha * 1.5f;
-							if (num63 < 0f)
-							{
-								num63 = 0f;
-							}
-							Microsoft.Xna.Framework.Color color6 = new Microsoft.Xna.Framework.Color((int)((byte)(255f * num63)), (int)((byte)((float)white.G * num63)), (int)((byte)((float)white.B * num63)), (int)((byte)(255f * num63)));
-							Microsoft.Xna.Framework.Color color7 = new Microsoft.Xna.Framework.Color((int)((byte)((float)white.R * num63)), (int)((byte)((float)white.G * num63)), (int)((byte)((float)white.B * num63)), (int)((byte)((float)white.B * num63)));
-							Main.spriteBatch.Draw(Main.sunTexture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sunTexture.Width, Main.sunTexture.Height)), color6, rotation, new Vector2((float)(Main.sunTexture.Width / 2), (float)(Main.sunTexture.Height / 2)), num21, SpriteEffects.None, 0f);
-							Main.spriteBatch.Draw(Main.sunTexture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sunTexture.Width, Main.sunTexture.Height)), color7, rotation, new Vector2((float)(Main.sunTexture.Width / 2), (float)(Main.sunTexture.Height / 2)), num21, SpriteEffects.None, 0f);
-						}
-					}
-					if (!Main.dayTime)
-					{
-						float num64 = 1f - Main.cloudAlpha * 1.5f;
-						if (num64 < 0f)
-						{
-							num64 = 0f;
-						}
-						white2.R = (byte)((float)white2.R * num64);
-						white2.G = (byte)((float)white2.G * num64);
-						white2.B = (byte)((float)white2.B * num64);
-						white2.A = (byte)((float)white2.A * num64);
-						if (Main.pumpkinMoon)
-						{
-							Main.spriteBatch.Draw(Main.pumpkinMoonTexture, new Vector2((float)num22, (float)(num23 + (int)Main.moonModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, Main.pumpkinMoonTexture.Width * Main.moonPhase, Main.pumpkinMoonTexture.Width, Main.pumpkinMoonTexture.Width)), white2, rotation2, new Vector2((float)(Main.pumpkinMoonTexture.Width / 2), (float)(Main.pumpkinMoonTexture.Width / 2)), num24, SpriteEffects.None, 0f);
-						}
-						else if (Main.snowMoon)
-						{
-							Main.spriteBatch.Draw(Main.snowMoonTexture, new Vector2((float)num22, (float)(num23 + (int)Main.moonModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, Main.snowMoonTexture.Width * Main.moonPhase, Main.snowMoonTexture.Width, Main.snowMoonTexture.Width)), white2, rotation2, new Vector2((float)(Main.snowMoonTexture.Width / 2), (float)(Main.snowMoonTexture.Width / 2)), num24, SpriteEffects.None, 0f);
-						}
-						else
-						{
-							Main.spriteBatch.Draw(Main.moonTexture[Main.moonType], new Vector2((float)num22, (float)(num23 + (int)Main.moonModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, Main.moonTexture[Main.moonType].Width * Main.moonPhase, Main.moonTexture[Main.moonType].Width, Main.moonTexture[Main.moonType].Width)), white2, rotation2, new Vector2((float)(Main.moonTexture[Main.moonType].Width / 2), (float)(Main.moonTexture[Main.moonType].Width / 2)), num24, SpriteEffects.None, 0f);
-						}
-					}
-				}
-				Microsoft.Xna.Framework.Rectangle value2;
-				if (Main.dayTime)
-				{
-					value2 = new Microsoft.Xna.Framework.Rectangle((int)((double)num19 - (double)Main.sunTexture.Width * 0.5 * (double)num21), (int)((double)num20 - (double)Main.sunTexture.Height * 0.5 * (double)num21 + (double)Main.sunModY), (int)((float)Main.sunTexture.Width * num21), (int)((float)Main.sunTexture.Width * num21));
+					this.Transform = Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f));
+					this.Rasterizer = RasterizerState.CullCounterClockwise;
 				}
 				else
 				{
-					value2 = new Microsoft.Xna.Framework.Rectangle((int)((double)num22 - (double)Main.moonTexture[Main.moonType].Width * 0.5 * (double)num24), (int)((double)num23 - (double)Main.moonTexture[Main.moonType].Width * 0.5 * (double)num24 + (double)Main.moonModY), (int)((float)Main.moonTexture[Main.moonType].Width * num24), (int)((float)Main.moonTexture[Main.moonType].Width * num24));
+					this.Transform = Matrix.CreateScale(1f, -1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, (float)Main.screenHeight, 0f));
+					this.Rasterizer = RasterizerState.CullClockwise;
 				}
-				Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(Main.mouseX, Main.mouseY, 1, 1);
-				Main.sunModY = (short)((double)Main.sunModY * 0.999);
-				Main.moonModY = (short)((double)Main.moonModY * 0.999);
-				if (/*Main.gameMenu &&*/ Main.netMode != 1)
+				bool flag = !Main.drawToScreen && Main.netMode != 2 && !Main.gameMenu && !Main.mapFullscreen && Filters.Scene.HasActiveFilter();
+				if (flag)
 				{
-					if (Main.mouseLeft && Main.hasFocus)
+					base.GraphicsDevice.SetRenderTarget(this.screenTarget);
+					base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+				}
+				Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+				TimeLogger.DetailedDrawReset();
+				if (!Main.mapFullscreen)
+				{
+					this.unityMouseOver = false;
+					if ((double)Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0)
 					{
-						if (rectangle.Intersects(value2) || Main.grabSky)
+						for (int i = 0; i < this.bgLoops; i++)
 						{
-							if (Main.dayTime)
+							Main.spriteBatch.Draw(Main.backgroundTexture[Main.background], new Microsoft.Xna.Framework.Rectangle(this.bgStart + Main.backgroundWidth[Main.background] * i, this.bgTop, Main.backgroundWidth[Main.background], Main.backgroundHeight[Main.background]), Main.bgColor);
+						}
+						TimeLogger.DetailedDrawTime(6);
+					}
+					if ((double)Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0 && 255f * (1f - Main.cloudAlpha) - (float)Main.bgColor.R - 25f > 0f && Main.netMode != 2)
+					{
+						for (int j = 0; j < Main.numStars; j++)
+						{
+							Microsoft.Xna.Framework.Color color = default(Microsoft.Xna.Framework.Color);
+							float num55 = (float)Main.evilTiles / 500f;
+							if (num55 > 1f)
 							{
-								Main.time = 54000.0 * (double)((float)(Main.mouseX + Main.sunTexture.Width) / ((float)Main.screenWidth + (float)(Main.sunTexture.Width * 2)));
-								Main.sunModY = (short)(Main.mouseY - num20);
-								if (Main.time > 53990.0)
+								num55 = 1f;
+							}
+							num55 = 1f - num55 * 0.5f;
+							if (Main.evilTiles <= 0)
+							{
+								num55 = 1f;
+							}
+							int num56 = (int)((float)(255 - Main.bgColor.R - 100) * Main.star[j].twinkle * num55);
+							int num57 = (int)((float)(255 - Main.bgColor.G - 100) * Main.star[j].twinkle * num55);
+							int num58 = (int)((float)(255 - Main.bgColor.B - 100) * Main.star[j].twinkle * num55);
+							if (num56 < 0)
+							{
+								num56 = 0;
+							}
+							if (num57 < 0)
+							{
+								num57 = 0;
+							}
+							if (num58 < 0)
+							{
+								num58 = 0;
+							}
+							color.R = (byte)num56;
+							color.G = (byte)((float)num57 * num55);
+							color.B = (byte)((float)num58 * num55);
+							float num59 = Main.star[j].position.X * ((float)Main.screenWidth / 800f);
+							float num60 = Main.star[j].position.Y * ((float)Main.screenHeight / 600f);
+							Main.spriteBatch.Draw(Main.starTexture[Main.star[j].type], new Vector2(num59 + (float)Main.starTexture[Main.star[j].type].Width * 0.5f, num60 + (float)Main.starTexture[Main.star[j].type].Height * 0.5f + (float)this.bgTop), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.starTexture[Main.star[j].type].Width, Main.starTexture[Main.star[j].type].Height)), color, Main.star[j].rotation, new Vector2((float)Main.starTexture[Main.star[j].type].Width * 0.5f, (float)Main.starTexture[Main.star[j].type].Height * 0.5f), Main.star[j].scale * Main.star[j].twinkle, SpriteEffects.None, 0f);
+						}
+					}
+					if ((double)(Main.screenPosition.Y / 16f) < Main.worldSurface + 2.0)
+					{
+						if (Main.dayTime)
+						{
+							num21 *= 1.1f;
+							if (Main.eclipse)
+							{
+								float num61 = 1f - Main.shroomLight;
+								num61 -= Main.cloudAlpha * 1.5f;
+								if (num61 < 0f)
 								{
-									Main.time = 53990.0;
+									num61 = 0f;
 								}
+								Microsoft.Xna.Framework.Color color2 = new Microsoft.Xna.Framework.Color((int)((byte)(255f * num61)), (int)((byte)((float)white.G * num61)), (int)((byte)((float)white.B * num61)), (int)((byte)(255f * num61)));
+								Microsoft.Xna.Framework.Color color3 = new Microsoft.Xna.Framework.Color((int)((byte)((float)white.R * num61)), (int)((byte)((float)white.G * num61)), (int)((byte)((float)white.B * num61)), (int)((byte)((float)(white.B - 60) * num61)));
+								Main.spriteBatch.Draw(Main.sun3Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun3Texture.Width, Main.sun3Texture.Height)), color2, rotation, new Vector2((float)(Main.sun3Texture.Width / 2), (float)(Main.sun3Texture.Height / 2)), num21, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(Main.sun3Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun3Texture.Width, Main.sun3Texture.Height)), color3, rotation, new Vector2((float)(Main.sun3Texture.Width / 2), (float)(Main.sun3Texture.Height / 2)), num21, SpriteEffects.None, 0f);
+							}
+							else if (!Main.gameMenu && Main.player[Main.myPlayer].head == 12)
+							{
+								float num62 = 1f - Main.shroomLight;
+								num62 -= Main.cloudAlpha * 1.5f;
+								if (num62 < 0f)
+								{
+									num62 = 0f;
+								}
+								Microsoft.Xna.Framework.Color color4 = new Microsoft.Xna.Framework.Color((int)((byte)(255f * num62)), (int)((byte)((float)white.G * num62)), (int)((byte)((float)white.B * num62)), (int)((byte)(255f * num62)));
+								Microsoft.Xna.Framework.Color color5 = new Microsoft.Xna.Framework.Color((int)((byte)((float)white.R * num62)), (int)((byte)((float)white.G * num62)), (int)((byte)((float)white.B * num62)), (int)((byte)((float)(white.B - 60) * num62)));
+								Main.spriteBatch.Draw(Main.sun2Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun2Texture.Width, Main.sun2Texture.Height)), color4, rotation, new Vector2((float)(Main.sun2Texture.Width / 2), (float)(Main.sun2Texture.Height / 2)), num21, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(Main.sun2Texture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sun2Texture.Width, Main.sun2Texture.Height)), color5, rotation, new Vector2((float)(Main.sun2Texture.Width / 2), (float)(Main.sun2Texture.Height / 2)), num21, SpriteEffects.None, 0f);
 							}
 							else
 							{
-								Main.time = 32400.0 * (double)((float)(Main.mouseX + Main.moonTexture[Main.moonType].Width) / ((float)Main.screenWidth + (float)(Main.moonTexture[Main.moonType].Width * 2)));
-								Main.moonModY = (short)(Main.mouseY - num23);
-								if (Main.time > 32390.0)
+								float num63 = 1f - Main.shroomLight;
+								num63 -= Main.cloudAlpha * 1.5f;
+								if (num63 < 0f)
 								{
-									Main.time = 32390.0;
+									num63 = 0f;
 								}
+								Microsoft.Xna.Framework.Color color6 = new Microsoft.Xna.Framework.Color((int)((byte)(255f * num63)), (int)((byte)((float)white.G * num63)), (int)((byte)((float)white.B * num63)), (int)((byte)(255f * num63)));
+								Microsoft.Xna.Framework.Color color7 = new Microsoft.Xna.Framework.Color((int)((byte)((float)white.R * num63)), (int)((byte)((float)white.G * num63)), (int)((byte)((float)white.B * num63)), (int)((byte)((float)white.B * num63)));
+								Main.spriteBatch.Draw(Main.sunTexture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sunTexture.Width, Main.sunTexture.Height)), color6, rotation, new Vector2((float)(Main.sunTexture.Width / 2), (float)(Main.sunTexture.Height / 2)), num21, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(Main.sunTexture, new Vector2((float)num19, (float)(num20 + (int)Main.sunModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, 0, Main.sunTexture.Width, Main.sunTexture.Height)), color7, rotation, new Vector2((float)(Main.sunTexture.Width / 2), (float)(Main.sunTexture.Height / 2)), num21, SpriteEffects.None, 0f);
 							}
-							if (Main.time < 10.0)
-							{
-								Main.time = 10.0;
-							}
-							if (Main.netMode != 0)
-							{
-								NetMessage.SendData(18, -1, -1, "", 0, 0f, 0f, 0f, 0, 0, 0);
-							}
-							Main.grabSky = true;
 						}
+						if (!Main.dayTime)
+						{
+							float num64 = 1f - Main.cloudAlpha * 1.5f;
+							if (num64 < 0f)
+							{
+								num64 = 0f;
+							}
+							white2.R = (byte)((float)white2.R * num64);
+							white2.G = (byte)((float)white2.G * num64);
+							white2.B = (byte)((float)white2.B * num64);
+							white2.A = (byte)((float)white2.A * num64);
+							if (Main.pumpkinMoon)
+							{
+								Main.spriteBatch.Draw(Main.pumpkinMoonTexture, new Vector2((float)num22, (float)(num23 + (int)Main.moonModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, Main.pumpkinMoonTexture.Width * Main.moonPhase, Main.pumpkinMoonTexture.Width, Main.pumpkinMoonTexture.Width)), white2, rotation2, new Vector2((float)(Main.pumpkinMoonTexture.Width / 2), (float)(Main.pumpkinMoonTexture.Width / 2)), num24, SpriteEffects.None, 0f);
+							}
+							else if (Main.snowMoon)
+							{
+								Main.spriteBatch.Draw(Main.snowMoonTexture, new Vector2((float)num22, (float)(num23 + (int)Main.moonModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, Main.snowMoonTexture.Width * Main.moonPhase, Main.snowMoonTexture.Width, Main.snowMoonTexture.Width)), white2, rotation2, new Vector2((float)(Main.snowMoonTexture.Width / 2), (float)(Main.snowMoonTexture.Width / 2)), num24, SpriteEffects.None, 0f);
+							}
+							else
+							{
+								Main.spriteBatch.Draw(Main.moonTexture[Main.moonType], new Vector2((float)num22, (float)(num23 + (int)Main.moonModY)), new Microsoft.Xna.Framework.Rectangle?(new Microsoft.Xna.Framework.Rectangle(0, Main.moonTexture[Main.moonType].Width * Main.moonPhase, Main.moonTexture[Main.moonType].Width, Main.moonTexture[Main.moonType].Width)), white2, rotation2, new Vector2((float)(Main.moonTexture[Main.moonType].Width / 2), (float)(Main.moonTexture[Main.moonType].Width / 2)), num24, SpriteEffects.None, 0f);
+							}
+						}
+					}
+					Microsoft.Xna.Framework.Rectangle value2;
+					if (Main.dayTime)
+					{
+						value2 = new Microsoft.Xna.Framework.Rectangle((int)((double)num19 - (double)Main.sunTexture.Width * 0.5 * (double)num21), (int)((double)num20 - (double)Main.sunTexture.Height * 0.5 * (double)num21 + (double)Main.sunModY), (int)((float)Main.sunTexture.Width * num21), (int)((float)Main.sunTexture.Width * num21));
 					}
 					else
 					{
-						Main.grabSky = false;
+						value2 = new Microsoft.Xna.Framework.Rectangle((int)((double)num22 - (double)Main.moonTexture[Main.moonType].Width * 0.5 * (double)num24), (int)((double)num23 - (double)Main.moonTexture[Main.moonType].Width * 0.5 * (double)num24 + (double)Main.moonModY), (int)((float)Main.moonTexture[Main.moonType].Width * num24), (int)((float)Main.moonTexture[Main.moonType].Width * num24));
 					}
+					Microsoft.Xna.Framework.Rectangle rectangle = new Microsoft.Xna.Framework.Rectangle(Main.mouseX, Main.mouseY, 1, 1);
+					Main.sunModY = (short)((double)Main.sunModY * 0.999);
+					Main.moonModY = (short)((double)Main.moonModY * 0.999);
+					if (/*Main.gameMenu &&*/ Main.netMode != 1)
+					{
+						if (Main.mouseLeft && Main.hasFocus)
+						{
+							if (rectangle.Intersects(value2) || Main.grabSky)
+							{
+								if (Main.dayTime)
+								{
+									Main.time = 54000.0 * (double)((float)(Main.mouseX + Main.sunTexture.Width) / ((float)Main.screenWidth + (float)(Main.sunTexture.Width * 2)));
+									Main.sunModY = (short)(Main.mouseY - num20);
+									if (Main.time > 53990.0)
+									{
+										Main.time = 53990.0;
+									}
+								}
+								else
+								{
+									Main.time = 32400.0 * (double)((float)(Main.mouseX + Main.moonTexture[Main.moonType].Width) / ((float)Main.screenWidth + (float)(Main.moonTexture[Main.moonType].Width * 2)));
+									Main.moonModY = (short)(Main.mouseY - num23);
+									if (Main.time > 32390.0)
+									{
+										Main.time = 32390.0;
+									}
+								}
+								if (Main.time < 10.0)
+								{
+									Main.time = 10.0;
+								}
+								if (Main.netMode != 0)
+								{
+									NetMessage.SendData(18, -1, -1, "", 0, 0f, 0f, 0f, 0, 0, 0);
+								}
+								Main.grabSky = true;
+							}
+						}
+						else
+						{
+							Main.grabSky = false;
+						}
+					}
+					TimeLogger.DetailedDrawTime(7);
 				}
-				TimeLogger.DetailedDrawTime(7);
-			}
-			this.scAdj = 1f - (float)((double)(Main.screenPosition.Y + (float)Main.screenHeight) / (Main.worldSurface * 16.0));
-			this.scAdj = (float)(Main.worldSurface * 16.0) / (Main.screenPosition.Y + (float)Main.screenHeight);
-			float num65 = (float)Main.maxTilesY * 0.15f * 16f;
-			num65 -= Main.screenPosition.Y;
-			if (num65 < 0f)
-			{
-				num65 = 0f;
-			}
-			num65 *= 0.00025f;
-			float num66 = num65 * num65;
-			this.scAdj *= 0.45f - num66;
-			if ((double)Main.maxTilesY <= 1200.0)
-			{
-				this.scAdj *= -500f;
-			}
-			else if ((double)Main.maxTilesY <= 1800.0)
-			{
-				this.scAdj *= -300f;
-			}
-			else
-			{
-				this.scAdj *= -150f;
-			}
-			this.screenOff = (float)(Main.screenHeight - 600);
-			this.bgTop = (int)((double)(-(double)Main.screenPosition.Y + this.screenOff / 2f) / (Main.worldSurface * 16.0) * 1200.0 + 1190.0) + (int)this.scAdj;
-			this.cTop = (float)(this.bgTop - 50);
-			if (Main.resetClouds)
-			{
-				Cloud.resetClouds();
-				Main.resetClouds = false;
-			}
-			Main.bgScale = 1f;
-			Main.bgW = (int)((float)Main.backgroundWidth[Main.treeMntBG[0]] * Main.bgScale);
-			Main.backColor = Main.bgColor;
-			Main.trueBackColor = Main.backColor;
-			int num67 = Main.bgStyle;
-			int num68 = (int)((Main.screenPosition.X + (float)(Main.screenWidth / 2)) / 16f);
-			if ((double)(Main.screenPosition.Y / 16f) < Main.worldSurface + 10.0 && (num68 < 380 || num68 > Main.maxTilesX - 380))
-			{
-				num67 = 4;
-			}
-			else if (Main.shroomTiles > 100)
-			{
-				num67 = 9;
-			}
-			else if (Main.sandTiles > 1000)
-			{
-				if (Main.player[Main.myPlayer].ZoneCorrupt)
+				this.scAdj = 1f - (float)((double)(Main.screenPosition.Y + (float)Main.screenHeight) / (Main.worldSurface * 16.0));
+				this.scAdj = (float)(Main.worldSurface * 16.0) / (Main.screenPosition.Y + (float)Main.screenHeight);
+				float num65 = (float)Main.maxTilesY * 0.15f * 16f;
+				num65 -= Main.screenPosition.Y;
+				if (num65 < 0f)
 				{
-					num67 = 5;
+					num65 = 0f;
 				}
-				else if (Main.player[Main.myPlayer].ZoneCrimson)
+				num65 *= 0.00025f;
+				float num66 = num65 * num65;
+				this.scAdj *= 0.45f - num66;
+				if ((double)Main.maxTilesY <= 1200.0)
 				{
-					num67 = 5;
+					this.scAdj *= -500f;
+				}
+				else if ((double)Main.maxTilesY <= 1800.0)
+				{
+					this.scAdj *= -300f;
+				}
+				else
+				{
+					this.scAdj *= -150f;
+				}
+				this.screenOff = (float)(Main.screenHeight - 600);
+				this.bgTop = (int)((double)(-(double)Main.screenPosition.Y + this.screenOff / 2f) / (Main.worldSurface * 16.0) * 1200.0 + 1190.0) + (int)this.scAdj;
+				this.cTop = (float)(this.bgTop - 50);
+				if (Main.resetClouds)
+				{
+					Cloud.resetClouds();
+					Main.resetClouds = false;
+				}
+				Main.bgScale = 1f;
+				Main.bgW = (int)((float)Main.backgroundWidth[Main.treeMntBG[0]] * Main.bgScale);
+				Main.backColor = Main.bgColor;
+				Main.trueBackColor = Main.backColor;
+				int num67 = Main.bgStyle;
+				int num68 = (int)((Main.screenPosition.X + (float)(Main.screenWidth / 2)) / 16f);
+				if ((double)(Main.screenPosition.Y / 16f) < Main.worldSurface + 10.0 && (num68 < 380 || num68 > Main.maxTilesX - 380))
+				{
+					num67 = 4;
+				}
+				else if (Main.shroomTiles > 100)
+				{
+					num67 = 9;
+				}
+				else if (Main.sandTiles > 1000)
+				{
+					if (Main.player[Main.myPlayer].ZoneCorrupt)
+					{
+						num67 = 5;
+					}
+					else if (Main.player[Main.myPlayer].ZoneCrimson)
+					{
+						num67 = 5;
+					}
+					else if (Main.player[Main.myPlayer].ZoneHoly)
+					{
+						num67 = 5;
+					}
+					else
+					{
+						num67 = 2;
+					}
 				}
 				else if (Main.player[Main.myPlayer].ZoneHoly)
 				{
-					num67 = 5;
+					num67 = 6;
+				}
+				else if (Main.player[Main.myPlayer].ZoneCorrupt)
+				{
+					num67 = 1;
+				}
+				else if (Main.player[Main.myPlayer].ZoneCrimson)
+				{
+					num67 = 8;
+				}
+				else if (Main.player[Main.myPlayer].ZoneJungle)
+				{
+					num67 = 3;
+				}
+				else if (Main.player[Main.myPlayer].ZoneSnow)
+				{
+					num67 = 7;
 				}
 				else
 				{
-					num67 = 2;
+					num67 = 0;
 				}
-			}
-			else if (Main.player[Main.myPlayer].ZoneHoly)
-			{
-				num67 = 6;
-			}
-			else if (Main.player[Main.myPlayer].ZoneCorrupt)
-			{
-				num67 = 1;
-			}
-			else if (Main.player[Main.myPlayer].ZoneCrimson)
-			{
-				num67 = 8;
-			}
-			else if (Main.player[Main.myPlayer].ZoneJungle)
-			{
-				num67 = 3;
-			}
-			else if (Main.player[Main.myPlayer].ZoneSnow)
-			{
-				num67 = 7;
-			}
-			else
-			{
-				num67 = 0;
-			}
-			int num69 = 30;
-			Main.tranSpeed = 0.05f;
-			if (num67 == 0)
-			{
-				num69 = 60;
-			}
-			if (Main.bgDelay < 0)
-			{
-				Main.bgDelay++;
-			}
-			else if (num67 != Main.bgStyle)
-			{
-				Main.bgDelay++;
-				if (Main.bgDelay > num69)
+				int num69 = 30;
+				Main.tranSpeed = 0.05f;
+				if (num67 == 0)
 				{
-					Main.bgDelay = -60;
+					num69 = 60;
+				}
+				if (Main.bgDelay < 0)
+				{
+					Main.bgDelay++;
+				}
+				else if (num67 != Main.bgStyle)
+				{
+					Main.bgDelay++;
+					if (Main.bgDelay > num69)
+					{
+						Main.bgDelay = -60;
+						Main.bgStyle = num67;
+						if (num67 == 0)
+						{
+							Main.bgDelay = 0;
+						}
+					}
+				}
+				else if (Main.bgDelay > 0)
+				{
+					Main.bgDelay--;
+				}
+				if (Main.gameMenu)
+				{
+					Main.tranSpeed = 0.02f;
+					if (!Main.dayTime)
+					{
+						Main.bgStyle = 1;
+					}
+					else
+					{
+						Main.bgStyle = 0;
+					}
+					num67 = Main.bgStyle;
+				}
+				if (Main.quickBG > 0)
+				{
+					Main.quickBG--;
 					Main.bgStyle = num67;
-					if (num67 == 0)
+					Main.tranSpeed = 1f;
+				}
+				if (Main.bgStyle == 2)
+				{
+					Main.bgAlpha2[0] -= Main.tranSpeed;
+					if (Main.bgAlpha2[0] < 0f)
 					{
-						Main.bgDelay = 0;
+						Main.bgAlpha2[0] = 0f;
+					}
+					Main.bgAlpha2[1] += Main.tranSpeed;
+					if (Main.bgAlpha2[1] > 1f)
+					{
+						Main.bgAlpha2[1] = 1f;
+					}
+					Main.bgAlpha2[2] -= Main.tranSpeed;
+					if (Main.bgAlpha2[2] < 0f)
+					{
+						Main.bgAlpha2[2] = 0f;
+					}
+					Main.bgAlpha2[3] -= Main.tranSpeed;
+					if (Main.bgAlpha2[3] < 0f)
+					{
+						Main.bgAlpha2[3] = 0f;
+					}
+					Main.bgAlpha2[4] -= Main.tranSpeed;
+					if (Main.bgAlpha2[4] < 0f)
+					{
+						Main.bgAlpha2[4] = 0f;
+					}
+					Main.bgAlpha2[5] -= Main.tranSpeed;
+					if (Main.bgAlpha2[5] < 0f)
+					{
+						Main.bgAlpha2[5] = 0f;
+					}
+					Main.bgAlpha2[6] -= Main.tranSpeed;
+					if (Main.bgAlpha2[6] < 0f)
+					{
+						Main.bgAlpha2[6] = 0f;
 					}
 				}
-			}
-			else if (Main.bgDelay > 0)
-			{
-				Main.bgDelay--;
-			}
-			if (Main.gameMenu)
-			{
-				Main.tranSpeed = 0.02f;
-				if (!Main.dayTime)
+				else if (Main.bgStyle == 5 || Main.bgStyle == 1 || Main.bgStyle == 6)
 				{
-					Main.bgStyle = 1;
+					Main.bgAlpha2[0] -= Main.tranSpeed;
+					if (Main.bgAlpha2[0] < 0f)
+					{
+						Main.bgAlpha2[0] = 0f;
+					}
+					Main.bgAlpha2[1] -= Main.tranSpeed;
+					if (Main.bgAlpha2[1] < 0f)
+					{
+						Main.bgAlpha2[1] = 0f;
+					}
+					Main.bgAlpha2[2] += Main.tranSpeed;
+					if (Main.bgAlpha2[2] > 1f)
+					{
+						Main.bgAlpha2[2] = 1f;
+					}
+					Main.bgAlpha2[3] -= Main.tranSpeed;
+					if (Main.bgAlpha2[3] < 0f)
+					{
+						Main.bgAlpha2[3] = 0f;
+					}
+					Main.bgAlpha2[4] -= Main.tranSpeed;
+					if (Main.bgAlpha2[4] < 0f)
+					{
+						Main.bgAlpha2[4] = 0f;
+					}
+					Main.bgAlpha2[5] -= Main.tranSpeed;
+					if (Main.bgAlpha2[5] < 0f)
+					{
+						Main.bgAlpha2[5] = 0f;
+					}
+					Main.bgAlpha2[6] -= Main.tranSpeed;
+					if (Main.bgAlpha2[6] < 0f)
+					{
+						Main.bgAlpha2[6] = 0f;
+					}
+				}
+				else if (Main.bgStyle == 4)
+				{
+					Main.bgAlpha2[0] -= Main.tranSpeed;
+					if (Main.bgAlpha2[0] < 0f)
+					{
+						Main.bgAlpha2[0] = 0f;
+					}
+					Main.bgAlpha2[1] -= Main.tranSpeed;
+					if (Main.bgAlpha2[1] < 0f)
+					{
+						Main.bgAlpha2[1] = 0f;
+					}
+					Main.bgAlpha2[2] -= Main.tranSpeed;
+					if (Main.bgAlpha2[2] < 0f)
+					{
+						Main.bgAlpha2[2] = 0f;
+					}
+					Main.bgAlpha2[3] += Main.tranSpeed;
+					if (Main.bgAlpha2[3] > 1f)
+					{
+						Main.bgAlpha2[3] = 1f;
+					}
+					Main.bgAlpha2[4] -= Main.tranSpeed;
+					if (Main.bgAlpha2[4] < 0f)
+					{
+						Main.bgAlpha2[4] = 0f;
+					}
+					Main.bgAlpha2[5] -= Main.tranSpeed;
+					if (Main.bgAlpha2[5] < 0f)
+					{
+						Main.bgAlpha2[5] = 0f;
+					}
+					Main.bgAlpha2[6] -= Main.tranSpeed;
+					if (Main.bgAlpha2[6] < 0f)
+					{
+						Main.bgAlpha2[6] = 0f;
+					}
+				}
+				else if (Main.bgStyle == 7)
+				{
+					Main.bgAlpha2[0] -= Main.tranSpeed;
+					if (Main.bgAlpha2[0] < 0f)
+					{
+						Main.bgAlpha2[0] = 0f;
+					}
+					Main.bgAlpha2[1] -= Main.tranSpeed;
+					if (Main.bgAlpha2[1] < 0f)
+					{
+						Main.bgAlpha2[1] = 0f;
+					}
+					Main.bgAlpha2[2] -= Main.tranSpeed;
+					if (Main.bgAlpha2[2] < 0f)
+					{
+						Main.bgAlpha2[2] = 0f;
+					}
+					Main.bgAlpha2[3] -= Main.tranSpeed;
+					if (Main.bgAlpha2[3] < 0f)
+					{
+						Main.bgAlpha2[3] = 0f;
+					}
+					Main.bgAlpha2[4] += Main.tranSpeed;
+					if (Main.bgAlpha2[4] > 1f)
+					{
+						Main.bgAlpha2[4] = 1f;
+					}
+					Main.bgAlpha2[5] -= Main.tranSpeed;
+					if (Main.bgAlpha2[5] < 0f)
+					{
+						Main.bgAlpha2[5] = 0f;
+					}
+					Main.bgAlpha2[6] -= Main.tranSpeed;
+					if (Main.bgAlpha2[6] < 0f)
+					{
+						Main.bgAlpha2[6] = 0f;
+					}
+				}
+				else if (Main.bgStyle == 8)
+				{
+					Main.bgAlpha2[0] -= Main.tranSpeed;
+					if (Main.bgAlpha2[0] < 0f)
+					{
+						Main.bgAlpha2[0] = 0f;
+					}
+					Main.bgAlpha2[1] -= Main.tranSpeed;
+					if (Main.bgAlpha2[1] < 0f)
+					{
+						Main.bgAlpha2[1] = 0f;
+					}
+					Main.bgAlpha2[2] -= Main.tranSpeed;
+					if (Main.bgAlpha2[2] < 0f)
+					{
+						Main.bgAlpha2[2] = 0f;
+					}
+					Main.bgAlpha2[3] -= Main.tranSpeed;
+					if (Main.bgAlpha2[3] < 0f)
+					{
+						Main.bgAlpha2[3] = 0f;
+					}
+					Main.bgAlpha2[4] -= Main.tranSpeed;
+					if (Main.bgAlpha2[4] < 0f)
+					{
+						Main.bgAlpha2[4] = 0f;
+					}
+					Main.bgAlpha2[5] += Main.tranSpeed;
+					if (Main.bgAlpha2[5] > 1f)
+					{
+						Main.bgAlpha2[5] = 1f;
+					}
+					Main.bgAlpha2[6] -= Main.tranSpeed;
+					if (Main.bgAlpha2[6] < 0f)
+					{
+						Main.bgAlpha2[6] = 0f;
+					}
+				}
+				else if (Main.bgStyle == 9)
+				{
+					Main.bgAlpha2[0] += Main.tranSpeed;
+					if (Main.bgAlpha2[0] > 1f)
+					{
+						Main.bgAlpha2[0] = 1f;
+					}
+					Main.bgAlpha2[1] -= Main.tranSpeed;
+					if (Main.bgAlpha2[1] < 0f)
+					{
+						Main.bgAlpha2[1] = 0f;
+					}
+					Main.bgAlpha2[2] -= Main.tranSpeed;
+					if (Main.bgAlpha2[2] < 0f)
+					{
+						Main.bgAlpha2[2] = 0f;
+					}
+					Main.bgAlpha2[3] -= Main.tranSpeed;
+					if (Main.bgAlpha2[3] < 0f)
+					{
+						Main.bgAlpha2[3] = 0f;
+					}
+					Main.bgAlpha2[4] -= Main.tranSpeed;
+					if (Main.bgAlpha2[4] < 0f)
+					{
+						Main.bgAlpha2[4] = 0f;
+					}
+					Main.bgAlpha2[5] -= Main.tranSpeed;
+					if (Main.bgAlpha2[5] < 0f)
+					{
+						Main.bgAlpha2[5] = 0f;
+					}
+					Main.bgAlpha2[6] += Main.tranSpeed;
+					if (Main.bgAlpha2[6] > 1f)
+					{
+						Main.bgAlpha2[6] = 1f;
+					}
 				}
 				else
 				{
-					Main.bgStyle = 0;
-				}
-				num67 = Main.bgStyle;
-			}
-			if (Main.quickBG > 0)
-			{
-				Main.quickBG--;
-				Main.bgStyle = num67;
-				Main.tranSpeed = 1f;
-			}
-			if (Main.bgStyle == 2)
-			{
-				Main.bgAlpha2[0] -= Main.tranSpeed;
-				if (Main.bgAlpha2[0] < 0f)
-				{
-					Main.bgAlpha2[0] = 0f;
-				}
-				Main.bgAlpha2[1] += Main.tranSpeed;
-				if (Main.bgAlpha2[1] > 1f)
-				{
-					Main.bgAlpha2[1] = 1f;
-				}
-				Main.bgAlpha2[2] -= Main.tranSpeed;
-				if (Main.bgAlpha2[2] < 0f)
-				{
-					Main.bgAlpha2[2] = 0f;
-				}
-				Main.bgAlpha2[3] -= Main.tranSpeed;
-				if (Main.bgAlpha2[3] < 0f)
-				{
-					Main.bgAlpha2[3] = 0f;
-				}
-				Main.bgAlpha2[4] -= Main.tranSpeed;
-				if (Main.bgAlpha2[4] < 0f)
-				{
-					Main.bgAlpha2[4] = 0f;
-				}
-				Main.bgAlpha2[5] -= Main.tranSpeed;
-				if (Main.bgAlpha2[5] < 0f)
-				{
-					Main.bgAlpha2[5] = 0f;
-				}
-				Main.bgAlpha2[6] -= Main.tranSpeed;
-				if (Main.bgAlpha2[6] < 0f)
-				{
-					Main.bgAlpha2[6] = 0f;
-				}
-			}
-			else if (Main.bgStyle == 5 || Main.bgStyle == 1 || Main.bgStyle == 6)
-			{
-				Main.bgAlpha2[0] -= Main.tranSpeed;
-				if (Main.bgAlpha2[0] < 0f)
-				{
-					Main.bgAlpha2[0] = 0f;
-				}
-				Main.bgAlpha2[1] -= Main.tranSpeed;
-				if (Main.bgAlpha2[1] < 0f)
-				{
-					Main.bgAlpha2[1] = 0f;
-				}
-				Main.bgAlpha2[2] += Main.tranSpeed;
-				if (Main.bgAlpha2[2] > 1f)
-				{
-					Main.bgAlpha2[2] = 1f;
-				}
-				Main.bgAlpha2[3] -= Main.tranSpeed;
-				if (Main.bgAlpha2[3] < 0f)
-				{
-					Main.bgAlpha2[3] = 0f;
-				}
-				Main.bgAlpha2[4] -= Main.tranSpeed;
-				if (Main.bgAlpha2[4] < 0f)
-				{
-					Main.bgAlpha2[4] = 0f;
-				}
-				Main.bgAlpha2[5] -= Main.tranSpeed;
-				if (Main.bgAlpha2[5] < 0f)
-				{
-					Main.bgAlpha2[5] = 0f;
-				}
-				Main.bgAlpha2[6] -= Main.tranSpeed;
-				if (Main.bgAlpha2[6] < 0f)
-				{
-					Main.bgAlpha2[6] = 0f;
-				}
-			}
-			else if (Main.bgStyle == 4)
-			{
-				Main.bgAlpha2[0] -= Main.tranSpeed;
-				if (Main.bgAlpha2[0] < 0f)
-				{
-					Main.bgAlpha2[0] = 0f;
-				}
-				Main.bgAlpha2[1] -= Main.tranSpeed;
-				if (Main.bgAlpha2[1] < 0f)
-				{
-					Main.bgAlpha2[1] = 0f;
-				}
-				Main.bgAlpha2[2] -= Main.tranSpeed;
-				if (Main.bgAlpha2[2] < 0f)
-				{
-					Main.bgAlpha2[2] = 0f;
-				}
-				Main.bgAlpha2[3] += Main.tranSpeed;
-				if (Main.bgAlpha2[3] > 1f)
-				{
-					Main.bgAlpha2[3] = 1f;
-				}
-				Main.bgAlpha2[4] -= Main.tranSpeed;
-				if (Main.bgAlpha2[4] < 0f)
-				{
-					Main.bgAlpha2[4] = 0f;
-				}
-				Main.bgAlpha2[5] -= Main.tranSpeed;
-				if (Main.bgAlpha2[5] < 0f)
-				{
-					Main.bgAlpha2[5] = 0f;
-				}
-				Main.bgAlpha2[6] -= Main.tranSpeed;
-				if (Main.bgAlpha2[6] < 0f)
-				{
-					Main.bgAlpha2[6] = 0f;
-				}
-			}
-			else if (Main.bgStyle == 7)
-			{
-				Main.bgAlpha2[0] -= Main.tranSpeed;
-				if (Main.bgAlpha2[0] < 0f)
-				{
-					Main.bgAlpha2[0] = 0f;
-				}
-				Main.bgAlpha2[1] -= Main.tranSpeed;
-				if (Main.bgAlpha2[1] < 0f)
-				{
-					Main.bgAlpha2[1] = 0f;
-				}
-				Main.bgAlpha2[2] -= Main.tranSpeed;
-				if (Main.bgAlpha2[2] < 0f)
-				{
-					Main.bgAlpha2[2] = 0f;
-				}
-				Main.bgAlpha2[3] -= Main.tranSpeed;
-				if (Main.bgAlpha2[3] < 0f)
-				{
-					Main.bgAlpha2[3] = 0f;
-				}
-				Main.bgAlpha2[4] += Main.tranSpeed;
-				if (Main.bgAlpha2[4] > 1f)
-				{
-					Main.bgAlpha2[4] = 1f;
-				}
-				Main.bgAlpha2[5] -= Main.tranSpeed;
-				if (Main.bgAlpha2[5] < 0f)
-				{
-					Main.bgAlpha2[5] = 0f;
-				}
-				Main.bgAlpha2[6] -= Main.tranSpeed;
-				if (Main.bgAlpha2[6] < 0f)
-				{
-					Main.bgAlpha2[6] = 0f;
-				}
-			}
-			else if (Main.bgStyle == 8)
-			{
-				Main.bgAlpha2[0] -= Main.tranSpeed;
-				if (Main.bgAlpha2[0] < 0f)
-				{
-					Main.bgAlpha2[0] = 0f;
-				}
-				Main.bgAlpha2[1] -= Main.tranSpeed;
-				if (Main.bgAlpha2[1] < 0f)
-				{
-					Main.bgAlpha2[1] = 0f;
-				}
-				Main.bgAlpha2[2] -= Main.tranSpeed;
-				if (Main.bgAlpha2[2] < 0f)
-				{
-					Main.bgAlpha2[2] = 0f;
-				}
-				Main.bgAlpha2[3] -= Main.tranSpeed;
-				if (Main.bgAlpha2[3] < 0f)
-				{
-					Main.bgAlpha2[3] = 0f;
-				}
-				Main.bgAlpha2[4] -= Main.tranSpeed;
-				if (Main.bgAlpha2[4] < 0f)
-				{
-					Main.bgAlpha2[4] = 0f;
-				}
-				Main.bgAlpha2[5] += Main.tranSpeed;
-				if (Main.bgAlpha2[5] > 1f)
-				{
-					Main.bgAlpha2[5] = 1f;
-				}
-				Main.bgAlpha2[6] -= Main.tranSpeed;
-				if (Main.bgAlpha2[6] < 0f)
-				{
-					Main.bgAlpha2[6] = 0f;
-				}
-			}
-			else if (Main.bgStyle == 9)
-			{
-				Main.bgAlpha2[0] += Main.tranSpeed;
-				if (Main.bgAlpha2[0] > 1f)
-				{
-					Main.bgAlpha2[0] = 1f;
-				}
-				Main.bgAlpha2[1] -= Main.tranSpeed;
-				if (Main.bgAlpha2[1] < 0f)
-				{
-					Main.bgAlpha2[1] = 0f;
-				}
-				Main.bgAlpha2[2] -= Main.tranSpeed;
-				if (Main.bgAlpha2[2] < 0f)
-				{
-					Main.bgAlpha2[2] = 0f;
-				}
-				Main.bgAlpha2[3] -= Main.tranSpeed;
-				if (Main.bgAlpha2[3] < 0f)
-				{
-					Main.bgAlpha2[3] = 0f;
-				}
-				Main.bgAlpha2[4] -= Main.tranSpeed;
-				if (Main.bgAlpha2[4] < 0f)
-				{
-					Main.bgAlpha2[4] = 0f;
-				}
-				Main.bgAlpha2[5] -= Main.tranSpeed;
-				if (Main.bgAlpha2[5] < 0f)
-				{
-					Main.bgAlpha2[5] = 0f;
-				}
-				Main.bgAlpha2[6] += Main.tranSpeed;
-				if (Main.bgAlpha2[6] > 1f)
-				{
-					Main.bgAlpha2[6] = 1f;
-				}
-			}
-			else
-			{
-				Main.bgAlpha2[0] += Main.tranSpeed;
-				if (Main.bgAlpha2[0] > 1f)
-				{
-					Main.bgAlpha2[0] = 1f;
-				}
-				Main.bgAlpha2[1] -= Main.tranSpeed;
-				if (Main.bgAlpha2[1] < 0f)
-				{
-					Main.bgAlpha2[1] = 0f;
-				}
-				Main.bgAlpha2[2] -= Main.tranSpeed;
-				if (Main.bgAlpha2[2] < 0f)
-				{
-					Main.bgAlpha2[2] = 0f;
-				}
-				Main.bgAlpha2[3] -= Main.tranSpeed;
-				if (Main.bgAlpha2[3] < 0f)
-				{
-					Main.bgAlpha2[3] = 0f;
-				}
-				Main.bgAlpha2[4] -= Main.tranSpeed;
-				if (Main.bgAlpha2[4] < 0f)
-				{
-					Main.bgAlpha2[4] = 0f;
-				}
-				Main.bgAlpha2[5] -= Main.tranSpeed;
-				if (Main.bgAlpha2[5] < 0f)
-				{
-					Main.bgAlpha2[5] = 0f;
-				}
-				Main.bgAlpha2[6] -= Main.tranSpeed;
-				if (Main.bgAlpha2[6] < 0f)
-				{
-					Main.bgAlpha2[6] = 0f;
-				}
-			}
-			if (Main.ignoreErrors)
-			{
-				try
-				{
-					this.DrawSurfaceBG();
-					if (Main.owBack)
+					Main.bgAlpha2[0] += Main.tranSpeed;
+					if (Main.bgAlpha2[0] > 1f)
 					{
-						this.DrawUnderworldBackground(false);
+						Main.bgAlpha2[0] = 1f;
 					}
-					goto IL_45A1;
-				}
-				catch (Exception e)
-				{
-					TimeLogger.DrawException(e);
-					goto IL_45A1;
-				}
-			}
-			this.DrawSurfaceBG();
-			if (Main.owBack)
-			{
-				this.DrawUnderworldBackground(false);
-			}
-			IL_45A1:
-			TimeLogger.DetailedDrawTime(8);
-			if (Main.gameMenu || Main.netMode == 2)
-			{
-				bool isActive = base.IsActive;
-				Microsoft.Xna.Framework.Rectangle[] array = new Microsoft.Xna.Framework.Rectangle[6];
-				for (int k = 0; k < array.Length; k++)
-				{
-					array[k] = new Microsoft.Xna.Framework.Rectangle(k * 4, 0, 2, 40);
-				}
-				Microsoft.Xna.Framework.Color color8 = Main.bgColor * 0.85f;
-				for (int l = 0; l < Main.maxRain; l++)
-				{
-					if (Main.rain[l].active)
+					Main.bgAlpha2[1] -= Main.tranSpeed;
+					if (Main.bgAlpha2[1] < 0f)
 					{
-						Rain rain = Main.rain[l];
-						Main.spriteBatch.Draw(Main.rainTexture, rain.position - Main.screenPosition, new Microsoft.Xna.Framework.Rectangle?(array[(int)rain.type]), color8, rain.rotation, Vector2.Zero, rain.scale, SpriteEffects.None, 0f);
-						if (isActive)
-						{
-							rain.Update();
-						}
+						Main.bgAlpha2[1] = 0f;
+					}
+					Main.bgAlpha2[2] -= Main.tranSpeed;
+					if (Main.bgAlpha2[2] < 0f)
+					{
+						Main.bgAlpha2[2] = 0f;
+					}
+					Main.bgAlpha2[3] -= Main.tranSpeed;
+					if (Main.bgAlpha2[3] < 0f)
+					{
+						Main.bgAlpha2[3] = 0f;
+					}
+					Main.bgAlpha2[4] -= Main.tranSpeed;
+					if (Main.bgAlpha2[4] < 0f)
+					{
+						Main.bgAlpha2[4] = 0f;
+					}
+					Main.bgAlpha2[5] -= Main.tranSpeed;
+					if (Main.bgAlpha2[5] < 0f)
+					{
+						Main.bgAlpha2[5] = 0f;
+					}
+					Main.bgAlpha2[6] -= Main.tranSpeed;
+					if (Main.bgAlpha2[6] < 0f)
+					{
+						Main.bgAlpha2[6] = 0f;
 					}
 				}
-				this.DrawMenu(gameTime);
-				TimeLogger.MenuDrawTime(stopwatch.Elapsed.TotalMilliseconds);
-				TimeLogger.EndDrawFrame();
-				return;
-			}
-			this.firstTileX = (int)(Main.screenPosition.X / 16f - 1f);
-			this.lastTileX = (int)((Main.screenPosition.X + (float)Main.screenWidth) / 16f) + 2;
-			this.firstTileY = (int)(Main.screenPosition.Y / 16f - 1f);
-			this.lastTileY = (int)((Main.screenPosition.Y + (float)Main.screenHeight) / 16f) + 2;
-			if (this.firstTileX < 0)
-			{
-				this.firstTileX = 0;
-			}
-			if (this.lastTileX > Main.maxTilesX)
-			{
-				this.lastTileX = Main.maxTilesX;
-			}
-			if (this.firstTileY < 0)
-			{
-				this.firstTileY = 0;
-			}
-			if (this.lastTileY > Main.maxTilesY)
-			{
-				this.lastTileY = Main.maxTilesY;
-			}
-			if (!Main.drawSkip)
-			{
-				Lighting.LightTiles(this.firstTileX, this.lastTileX, this.firstTileY, this.lastTileY);
-			}
-			TimeLogger.DetailedDrawReset();
-			if (!Main.mapFullscreen)
-			{
-				Microsoft.Xna.Framework.Color arg_4871_0 = Microsoft.Xna.Framework.Color.White;
-				if (Main.drawToScreen)
-				{
-					this.drawWaters(true, -1, true);
-				}
-				else
-				{
-					Main.spriteBatch.Draw(this.backWaterTarget, Main.sceneBackgroundPos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-					TimeLogger.DetailedDrawTime(11);
-				}
-				float x = (Main.sceneBackgroundPos.X - Main.screenPosition.X + (float)Main.offScreenRange) * Main.caveParallax - (float)Main.offScreenRange;
-				if (Main.drawToScreen)
-				{
-					Main.tileBatch.Begin();
-					this.DrawBackground();
-					Main.tileBatch.End();
-				}
-				else
-				{
-					Main.spriteBatch.Draw(this.backgroundTarget, new Vector2(x, Main.sceneBackgroundPos.Y - Main.screenPosition.Y), Microsoft.Xna.Framework.Color.White);
-					TimeLogger.DetailedDrawTime(12);
-				}
-				ScreenDarkness.DrawBack(Main.spriteBatch);
-				Main.magmaBGFrameCounter++;
-				if (Main.magmaBGFrameCounter >= 8)
-				{
-					Main.magmaBGFrameCounter = 0;
-					Main.magmaBGFrame++;
-					if (Main.magmaBGFrame >= 3)
-					{
-						Main.magmaBGFrame = 0;
-					}
-				}
-				try
-				{
-					this.CacheNPCDraws();
-					this.CacheProjDraws();
-					this.DrawCachedNPCs(this.DrawCacheNPCsMoonMoon, true);
-					if (Main.drawToScreen)
-					{
-						this.DrawBlack(false);
-						Main.tileBatch.Begin();
-						this.DrawWalls();
-						Main.tileBatch.End();
-					}
-					else
-					{
-						Main.spriteBatch.Draw(this.blackTarget, Main.sceneTilePos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-						TimeLogger.DetailedDrawTime(13);
-						Main.spriteBatch.Draw(this.wallTarget, Main.sceneWallPos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-						TimeLogger.DetailedDrawTime(14);
-					}
-					this.DrawWoF();
-					if (Main.drawBackGore)
-					{
-						Main.drawBackGore = false;
-						if (Main.ignoreErrors)
-						{
-							try
-							{
-								this.DrawGoreBehind();
-								goto IL_4A3F;
-							}
-							catch (Exception e2)
-							{
-								TimeLogger.DrawException(e2);
-								goto IL_4A3F;
-							}
-						}
-						this.DrawGoreBehind();
-					}
-					IL_4A3F:
-					MoonlordDeathDrama.DrawPieces(Main.spriteBatch);
-					MoonlordDeathDrama.DrawExplosions(Main.spriteBatch);
-					if (Main.player[Main.myPlayer].detectCreature)
-					{
-						if (Main.drawToScreen)
-						{
-							this.DrawTiles(false, -1);
-							TimeLogger.DetailedDrawReset();
-							this.waterfallManager.Draw(Main.spriteBatch);
-							TimeLogger.DetailedDrawTime(16);
-							this.DrawTiles(true, -1);
-						}
-						else
-						{
-							Main.spriteBatch.Draw(this.tile2Target, Main.sceneTile2Pos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-							TimeLogger.DetailedDrawTime(15);
-							this.waterfallManager.Draw(Main.spriteBatch);
-							TimeLogger.DetailedDrawTime(16);
-							Main.spriteBatch.Draw(this.tileTarget, Main.sceneTilePos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-							TimeLogger.DetailedDrawTime(17);
-						}
-						TimeLogger.DetailedDrawReset();
-						Main.spriteBatch.End();
-						this.DrawCachedProjs(this.DrawCacheProjsBehindNPCsAndTiles);
-						Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-						this.DrawNPCs(true);
-						TimeLogger.DetailedDrawTime(18);
-						Main.spriteBatch.End();
-						this.DrawCachedProjs(this.DrawCacheProjsBehindNPCs);
-						Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-						this.DrawNPCs(false);
-						this.DrawCachedNPCs(this.DrawCacheNPCProjectiles, false);
-						TimeLogger.DetailedDrawTime(19);
-					}
-					else
-					{
-						if (Main.drawToScreen)
-						{
-							this.DrawTiles(false, -1);
-							TimeLogger.DetailedDrawReset();
-							this.waterfallManager.Draw(Main.spriteBatch);
-							TimeLogger.DetailedDrawTime(16);
-							Main.spriteBatch.End();
-							this.DrawCachedProjs(this.DrawCacheProjsBehindNPCsAndTiles);
-							Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-			/*!!!!!!*/		drawDummyGhosts();
-							this.DrawNPCs(true);
-							TimeLogger.DetailedDrawTime(18);
-							this.DrawTiles(true, -1);
-						}
-						else
-						{
-							Main.spriteBatch.Draw(this.tile2Target, Main.sceneTile2Pos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-							TimeLogger.DetailedDrawTime(15);
-							this.waterfallManager.Draw(Main.spriteBatch);
-							TimeLogger.DetailedDrawTime(16);
-							Main.spriteBatch.End();
-							this.DrawCachedProjs(this.DrawCacheProjsBehindNPCsAndTiles);
-							Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-			/*!!!!!!*/		drawDummyGhosts();
-							this.DrawNPCs(true);
-							TimeLogger.DetailedDrawTime(18);
-							Main.spriteBatch.Draw(this.tileTarget, Main.sceneTilePos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-							TimeLogger.DetailedDrawTime(17);
-						}
-
-
-
-
-						Main.spriteBatch.End();
-						this.DrawCachedProjs(this.DrawCacheProjsBehindNPCs);
-						Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-						TimeLogger.DetailedDrawReset();
-						this.DrawNPCs(false);
-						this.DrawCachedNPCs(this.DrawCacheNPCProjectiles, false);
-						TimeLogger.DetailedDrawTime(19);
-					}
-				}
-				catch (Exception e3)
-				{
-					TimeLogger.DrawException(e3);
-				}
-				if (!Main.mapFullscreen && Main.mapStyle == 2)
-				{
-					if (Main.ignoreErrors)
-					{
-						try
-						{
-							this.DrawMap();
-							goto IL_4D8B;
-						}
-						catch (Exception e4)
-						{
-							TimeLogger.DrawException(e4);
-							goto IL_4D8B;
-						}
-					}
-					this.DrawMap();
-				}
-				IL_4D8B:
-				TimeLogger.DetailedDrawReset();
-				Main.spriteBatch.End();
-				TimeLogger.DetailedDrawTime(35);
-				this.SortDrawCacheWorms();
-				this.DrawCachedProjs(this.DrawCacheProjsBehindProjectiles);
-				this.DrawProjectiles();
-				this.DrawPlayers();
-				Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-				this.DrawCachedNPCs(this.DrawCacheNPCsOverPlayers, false);
-				if (!Main.gamePaused)
-				{
-					Main.essScale += (float)Main.essDir * 0.01f;
-					if (Main.essScale > 1f)
-					{
-						Main.essDir = -1;
-						Main.essScale = 1f;
-					}
-					if ((double)Main.essScale < 0.7)
-					{
-						Main.essDir = 1;
-						Main.essScale = 0.7f;
-					}
-				}
-				this.DrawItems();
-				TimeLogger.DetailedDrawTime(22);
-				this.DrawRain();
 				if (Main.ignoreErrors)
 				{
 					try
 					{
-						this.DrawGore();
-						goto IL_4E81;
+						this.DrawSurfaceBG();
+						if (Main.owBack)
+						{
+							this.DrawUnderworldBackground(false);
+						}
+						goto IL_45A1;
 					}
-					catch (Exception e5)
+					catch (Exception e)
 					{
-						TimeLogger.DrawException(e5);
-						goto IL_4E81;
+						TimeLogger.DrawException(e);
+						goto IL_45A1;
 					}
 				}
-				this.DrawGore();
-				IL_4E81:
-				Main.spriteBatch.End();
-				this.DrawDust();
-				Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
-				if (Main.drawToScreen)
+				this.DrawSurfaceBG();
+				if (Main.owBack)
 				{
-					this.drawWaters(false, -1, true);
-					if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].mech)
+					this.DrawUnderworldBackground(false);
+				}
+				IL_45A1:
+				TimeLogger.DetailedDrawTime(8);
+				if (Main.gameMenu || Main.netMode == 2)
+				{
+					bool isActive = base.IsActive;
+					Microsoft.Xna.Framework.Rectangle[] array = new Microsoft.Xna.Framework.Rectangle[6];
+					for (int k = 0; k < array.Length; k++)
 					{
-						this.DrawWires();
+						array[k] = new Microsoft.Xna.Framework.Rectangle(k * 4, 0, 2, 40);
 					}
+					Microsoft.Xna.Framework.Color color8 = Main.bgColor * 0.85f;
+					for (int l = 0; l < Main.maxRain; l++)
+					{
+						if (Main.rain[l].active)
+						{
+							Rain rain = Main.rain[l];
+							Main.spriteBatch.Draw(Main.rainTexture, rain.position - Main.screenPosition, new Microsoft.Xna.Framework.Rectangle?(array[(int)rain.type]), color8, rain.rotation, Vector2.Zero, rain.scale, SpriteEffects.None, 0f);
+							if (isActive)
+							{
+								rain.Update();
+							}
+						}
+					}
+					this.DrawMenu(gameTime);
+					TimeLogger.MenuDrawTime(stopwatch.Elapsed.TotalMilliseconds);
+					TimeLogger.EndDrawFrame();
+					return;
 				}
-				else
+				this.firstTileX = (int)(Main.screenPosition.X / 16f - 1f);
+				this.lastTileX = (int)((Main.screenPosition.X + (float)Main.screenWidth) / 16f) + 2;
+				this.firstTileY = (int)(Main.screenPosition.Y / 16f - 1f);
+				this.lastTileY = (int)((Main.screenPosition.Y + (float)Main.screenHeight) / 16f) + 2;
+				if (this.firstTileX < 0)
 				{
-					Main.spriteBatch.Draw(this.waterTarget, Main.sceneWaterPos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
-					TimeLogger.DetailedDrawTime(26);
+					this.firstTileX = 0;
 				}
-				this.DrawInfernoRings();
-				ScreenDarkness.DrawFront(Main.spriteBatch);
-				MoonlordDeathDrama.DrawWhite(Main.spriteBatch);
-				ScreenObstruction.Draw(Main.spriteBatch);
+				if (this.lastTileX > Main.maxTilesX)
+				{
+					this.lastTileX = Main.maxTilesX;
+				}
+				if (this.firstTileY < 0)
+				{
+					this.firstTileY = 0;
+				}
+				if (this.lastTileY > Main.maxTilesY)
+				{
+					this.lastTileY = Main.maxTilesY;
+				}
+				if (!Main.drawSkip)
+				{
+					Lighting.LightTiles(this.firstTileX, this.lastTileX, this.firstTileY, this.lastTileY);
+				}
 				TimeLogger.DetailedDrawReset();
-				Main.spriteBatch.End();
-				Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
-				Overlays.Scene.Draw(Main.spriteBatch);
-				Main.spriteBatch.End();
-				if (flag)
+				if (!Main.mapFullscreen)
 				{
-					base.GraphicsDevice.SetRenderTarget(null);
-					base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-					Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
-					Filters.Scene.Apply();
-					Main.spriteBatch.Draw(this.screenTarget, Vector2.Zero, Microsoft.Xna.Framework.Color.White);
-					Main.spriteBatch.End();
-				}
-				TimeLogger.DetailedDrawTime(36);
-				Main.spriteBatch.Begin();
-				if (!Main.hideUI)
-				{
-					TimeLogger.DetailedDrawReset();
-					for (int m = 0; m < 255; m++)
+					Microsoft.Xna.Framework.Color arg_4871_0 = Microsoft.Xna.Framework.Color.White;
+					if (Main.drawToScreen)
 					{
-						if (Main.player[m].active && Main.player[m].chatOverhead.timeLeft > 0 && !Main.player[m].dead)
+						this.drawWaters(true, -1, true);
+					}
+					else
+					{
+						Main.spriteBatch.Draw(this.backWaterTarget, Main.sceneBackgroundPos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+						TimeLogger.DetailedDrawTime(11);
+					}
+					float x = (Main.sceneBackgroundPos.X - Main.screenPosition.X + (float)Main.offScreenRange) * Main.caveParallax - (float)Main.offScreenRange;
+					if (Main.drawToScreen)
+					{
+						Main.tileBatch.Begin();
+						this.DrawBackground();
+						Main.tileBatch.End();
+					}
+					else
+					{
+						Main.spriteBatch.Draw(this.backgroundTarget, new Vector2(x, Main.sceneBackgroundPos.Y - Main.screenPosition.Y), Microsoft.Xna.Framework.Color.White);
+						TimeLogger.DetailedDrawTime(12);
+					}
+					ScreenDarkness.DrawBack(Main.spriteBatch);
+					Main.magmaBGFrameCounter++;
+					if (Main.magmaBGFrameCounter >= 8)
+					{
+						Main.magmaBGFrameCounter = 0;
+						Main.magmaBGFrame++;
+						if (Main.magmaBGFrame >= 3)
 						{
-							Vector2 messageSize = Main.player[m].chatOverhead.messageSize;
-							Vector2 vector;
-							vector.X = Main.player[m].position.X + (float)(Main.player[m].width / 2) - messageSize.X / 2f;
-							vector.Y = Main.player[m].position.Y - messageSize.Y - 2f;
-							vector.Y += Main.player[m].gfxOffY;
-							vector = vector.Floor();
-							if (Main.player[Main.myPlayer].gravDir == -1f)
-							{
-								vector.Y -= Main.screenPosition.Y;
-								vector.Y = Main.screenPosition.Y + (float)Main.screenHeight - vector.Y;
-							}
-							int num70 = 0;
-							ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, Main.player[m].chatOverhead.snippets, vector - Main.screenPosition, 0f, Vector2.Zero, Vector2.One, out num70, -1f, 2f);
+							Main.magmaBGFrame = 0;
 						}
 					}
-					for (int n = 0; n < 100; n++)
+					try
 					{
-						if (Main.combatText[n].active)
+						this.CacheNPCDraws();
+						this.CacheProjDraws();
+						this.DrawCachedNPCs(this.DrawCacheNPCsMoonMoon, true);
+						if (Main.drawToScreen)
 						{
-							int num71 = 0;
-							if (Main.combatText[n].crit)
+							this.DrawBlack(false);
+							Main.tileBatch.Begin();
+							this.DrawWalls();
+							Main.tileBatch.End();
+						}
+						else
+						{
+							Main.spriteBatch.Draw(this.blackTarget, Main.sceneTilePos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+							TimeLogger.DetailedDrawTime(13);
+							Main.spriteBatch.Draw(this.wallTarget, Main.sceneWallPos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+							TimeLogger.DetailedDrawTime(14);
+						}
+						this.DrawWoF();
+						if (Main.drawBackGore)
+						{
+							Main.drawBackGore = false;
+							if (Main.ignoreErrors)
 							{
-								num71 = 1;
-							}
-							Vector2 vector2 = Main.fontCombatText[num71].MeasureString(Main.combatText[n].text);
-							Vector2 origin = new Vector2(vector2.X * 0.5f, vector2.Y * 0.5f);
-							float arg_51FF_0 = Main.combatText[n].scale;
-							float num72 = (float)Main.combatText[n].color.R;
-							float num73 = (float)Main.combatText[n].color.G;
-							float num74 = (float)Main.combatText[n].color.B;
-							float num75 = (float)Main.combatText[n].color.A;
-							num72 *= Main.combatText[n].scale * Main.combatText[n].alpha * 0.3f;
-							num74 *= Main.combatText[n].scale * Main.combatText[n].alpha * 0.3f;
-							num73 *= Main.combatText[n].scale * Main.combatText[n].alpha * 0.3f;
-							num75 *= Main.combatText[n].scale * Main.combatText[n].alpha;
-							Microsoft.Xna.Framework.Color color9 = new Microsoft.Xna.Framework.Color((int)num72, (int)num73, (int)num74, (int)num75);
-							for (int num76 = 0; num76 < 5; num76++)
-							{
-								int num77 = 0;
-								int num78 = 0;
-								if (num76 == 0)
+								try
 								{
-									num77--;
+									this.DrawGoreBehind();
+									goto IL_4A3F;
 								}
-								else if (num76 == 1)
+								catch (Exception e2)
 								{
-									num77++;
-								}
-								else if (num76 == 2)
-								{
-									num78--;
-								}
-								else if (num76 == 3)
-								{
-									num78++;
-								}
-								else
-								{
-									num72 = (float)Main.combatText[n].color.R * Main.combatText[n].scale * Main.combatText[n].alpha;
-									num74 = (float)Main.combatText[n].color.B * Main.combatText[n].scale * Main.combatText[n].alpha;
-									num73 = (float)Main.combatText[n].color.G * Main.combatText[n].scale * Main.combatText[n].alpha;
-									num75 = (float)Main.combatText[n].color.A * Main.combatText[n].scale * Main.combatText[n].alpha;
-									color9 = new Microsoft.Xna.Framework.Color((int)num72, (int)num73, (int)num74, (int)num75);
-								}
-								if (Main.player[Main.myPlayer].gravDir == -1f)
-								{
-									float num79 = Main.combatText[n].position.Y - Main.screenPosition.Y;
-									num79 = (float)Main.screenHeight - num79;
-									Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, num79 + (float)num78 + origin.Y), color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
-								}
-								else
-								{
-									Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, Main.combatText[n].position.Y - Main.screenPosition.Y + (float)num78 + origin.Y), color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
+									TimeLogger.DrawException(e2);
+									goto IL_4A3F;
 								}
 							}
+							this.DrawGoreBehind();
 						}
-					}
-					for (int num80 = 0; num80 < 20; num80++)
-					{
-						if (Main.itemText[num80].active)
+						IL_4A3F:
+						MoonlordDeathDrama.DrawPieces(Main.spriteBatch);
+						MoonlordDeathDrama.DrawExplosions(Main.spriteBatch);
+						if (Main.player[Main.myPlayer].detectCreature)
 						{
-							string text = Main.itemText[num80].name;
-							if (Main.itemText[num80].stack > 1)
+							if (Main.drawToScreen)
 							{
-								text = string.Concat(new object[]
-								{
-									text,
-									" (",
-									Main.itemText[num80].stack,
-									")"
-								});
+								this.DrawTiles(false, -1);
+								TimeLogger.DetailedDrawReset();
+								this.waterfallManager.Draw(Main.spriteBatch);
+								TimeLogger.DetailedDrawTime(16);
+								this.DrawTiles(true, -1);
 							}
-							Vector2 vector3 = Main.fontMouseText.MeasureString(text);
-							Vector2 origin2 = new Vector2(vector3.X * 0.5f, vector3.Y * 0.5f);
-							float arg_5650_0 = Main.itemText[num80].scale;
-							float num81 = (float)Main.itemText[num80].color.R;
-							float num82 = (float)Main.itemText[num80].color.G;
-							float num83 = (float)Main.itemText[num80].color.B;
-							float num84 = (float)Main.itemText[num80].color.A;
-							num81 *= Main.itemText[num80].scale * Main.itemText[num80].alpha * 0.3f;
-							num83 *= Main.itemText[num80].scale * Main.itemText[num80].alpha * 0.3f;
-							num82 *= Main.itemText[num80].scale * Main.itemText[num80].alpha * 0.3f;
-							num84 *= Main.itemText[num80].scale * Main.itemText[num80].alpha;
-							Microsoft.Xna.Framework.Color color10 = new Microsoft.Xna.Framework.Color((int)num81, (int)num82, (int)num83, (int)num84);
-							for (int num85 = 0; num85 < 5; num85++)
+							else
 							{
-								int num86 = 0;
-								int num87 = 0;
-								if (num85 == 0)
-								{
-									num86 -= 2;
-								}
-								else if (num85 == 1)
-								{
-									num86 += 2;
-								}
-								else if (num85 == 2)
-								{
-									num87 -= 2;
-								}
-								else if (num85 == 3)
-								{
-									num87 += 2;
-								}
-								else
-								{
-									num81 = (float)Main.itemText[num80].color.R * Main.itemText[num80].scale * Main.itemText[num80].alpha;
-									num83 = (float)Main.itemText[num80].color.B * Main.itemText[num80].scale * Main.itemText[num80].alpha;
-									num82 = (float)Main.itemText[num80].color.G * Main.itemText[num80].scale * Main.itemText[num80].alpha;
-									num84 = (float)Main.itemText[num80].color.A * Main.itemText[num80].scale * Main.itemText[num80].alpha;
-									color10 = new Microsoft.Xna.Framework.Color((int)num81, (int)num82, (int)num83, (int)num84);
-								}
-								if (num85 < 4)
-								{
-									num84 = (float)Main.itemText[num80].color.A * Main.itemText[num80].scale * Main.itemText[num80].alpha;
-									color10 = new Microsoft.Xna.Framework.Color(0, 0, 0, (int)num84);
-								}
-								float num88 = Main.itemText[num80].position.Y - Main.screenPosition.Y + (float)num87;
-								if (Main.player[Main.myPlayer].gravDir == -1f)
-								{
-									num88 = (float)Main.screenHeight - num88;
-								}
-								Main.spriteBatch.DrawString(Main.fontMouseText, text, new Vector2(Main.itemText[num80].position.X - Main.screenPosition.X + (float)num86 + origin2.X, num88 + origin2.Y), color10, Main.itemText[num80].rotation, origin2, Main.itemText[num80].scale, SpriteEffects.None, 0f);
+								Main.spriteBatch.Draw(this.tile2Target, Main.sceneTile2Pos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+								TimeLogger.DetailedDrawTime(15);
+								this.waterfallManager.Draw(Main.spriteBatch);
+								TimeLogger.DetailedDrawTime(16);
+								Main.spriteBatch.Draw(this.tileTarget, Main.sceneTilePos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+								TimeLogger.DetailedDrawTime(17);
 							}
+							TimeLogger.DetailedDrawReset();
+							Main.spriteBatch.End();
+							this.DrawCachedProjs(this.DrawCacheProjsBehindNPCsAndTiles);
+							Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+							this.DrawNPCs(true);
+							TimeLogger.DetailedDrawTime(18);
+							Main.spriteBatch.End();
+							this.DrawCachedProjs(this.DrawCacheProjsBehindNPCs);
+							Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+							this.DrawNPCs(false);
+							this.DrawCachedNPCs(this.DrawCacheNPCProjectiles, false);
+							TimeLogger.DetailedDrawTime(19);
 						}
-					}
-					if (Main.netMode == 1 && Netplay.Connection.StatusText != "" && Netplay.Connection.StatusText != null)
-					{
-						string text2 = string.Concat(new object[]
+						else
 						{
-							Netplay.Connection.StatusText,
-							": ",
-							(int)((float)Netplay.Connection.StatusCount / (float)Netplay.Connection.StatusMax * 100f),
-							"%"
-						});
-						Main.spriteBatch.DrawString(Main.fontMouseText, text2, new Vector2(628f - Main.fontMouseText.MeasureString(text2).X * 0.5f + (float)(Main.screenWidth - 800), 84f), new Microsoft.Xna.Framework.Color((int)Main.mouseTextColor, (int)Main.mouseTextColor, (int)Main.mouseTextColor, (int)Main.mouseTextColor), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
-					}
-					if (Main.BlackFadeIn > 0)
-					{
-						if (Main.BlackFadeIn < 0)
-						{
-							Main.BlackFadeIn = 0;
-						}
-						int num89 = Main.BlackFadeIn;
-						if (num89 > 255)
-						{
-							num89 = 255;
-						}
-						Main.BlackFadeIn -= 25;
-						Main.spriteBatch.Draw(Main.loTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Microsoft.Xna.Framework.Color(0, 0, 0, num89));
-					}
-					this.DrawFPS();
+							if (Main.drawToScreen)
+							{
+								this.DrawTiles(false, -1);
+								TimeLogger.DetailedDrawReset();
+								this.waterfallManager.Draw(Main.spriteBatch);
+								TimeLogger.DetailedDrawTime(16);
+								Main.spriteBatch.End();
+								this.DrawCachedProjs(this.DrawCacheProjsBehindNPCsAndTiles);
+								Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+								/*!!!!!!*/
+								drawDummyGhosts();
+								this.DrawNPCs(true);
+								TimeLogger.DetailedDrawTime(18);
+								this.DrawTiles(true, -1);
+							}
+							else
+							{
+								Main.spriteBatch.Draw(this.tile2Target, Main.sceneTile2Pos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+								TimeLogger.DetailedDrawTime(15);
+								this.waterfallManager.Draw(Main.spriteBatch);
+								TimeLogger.DetailedDrawTime(16);
+								Main.spriteBatch.End();
+								this.DrawCachedProjs(this.DrawCacheProjsBehindNPCsAndTiles);
+								Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+								/*!!!!!!*/
+								drawDummyGhosts();
+								this.DrawNPCs(true);
+								TimeLogger.DetailedDrawTime(18);
+								Main.spriteBatch.Draw(this.tileTarget, Main.sceneTilePos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+								TimeLogger.DetailedDrawTime(17);
+							}
 
-					
 
-					if (!Main.mapFullscreen)
+
+
+							Main.spriteBatch.End();
+							this.DrawCachedProjs(this.DrawCacheProjsBehindNPCs);
+							Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+							TimeLogger.DetailedDrawReset();
+							this.DrawNPCs(false);
+							this.DrawCachedNPCs(this.DrawCacheNPCProjectiles, false);
+							TimeLogger.DetailedDrawTime(19);
+						}
+					}
+					catch (Exception e3)
+					{
+						TimeLogger.DrawException(e3);
+					}
+					if (!Main.mapFullscreen && Main.mapStyle == 2)
 					{
 						if (Main.ignoreErrors)
 						{
 							try
 							{
-								this.DrawInterface(gameTime);
-								goto IL_5B16;
+								this.DrawMap();
+								goto IL_4D8B;
 							}
-							catch (Exception e6)
+							catch (Exception e4)
 							{
-								TimeLogger.DrawException(e6);
-								goto IL_5B16;
+								TimeLogger.DrawException(e4);
+								goto IL_4D8B;
 							}
 						}
-						this.DrawInterface(gameTime);
-
+						this.DrawMap();
 					}
-					IL_5B16:
-					TimeLogger.DetailedDrawTime(27);
+					IL_4D8B:
+					TimeLogger.DetailedDrawReset();
+					Main.spriteBatch.End();
+					TimeLogger.DetailedDrawTime(35);
+					this.SortDrawCacheWorms();
+					this.DrawCachedProjs(this.DrawCacheProjsBehindProjectiles);
+					this.DrawProjectiles();
+					this.DrawPlayers();
+					Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+					this.DrawCachedNPCs(this.DrawCacheNPCsOverPlayers, false);
+					if (!Main.gamePaused)
+					{
+						Main.essScale += (float)Main.essDir * 0.01f;
+						if (Main.essScale > 1f)
+						{
+							Main.essDir = -1;
+							Main.essScale = 1f;
+						}
+						if ((double)Main.essScale < 0.7)
+						{
+							Main.essDir = 1;
+							Main.essScale = 0.7f;
+						}
+					}
+					this.DrawItems();
+					TimeLogger.DetailedDrawTime(22);
+					this.DrawRain();
+					if (Main.ignoreErrors)
+					{
+						try
+						{
+							this.DrawGore();
+							goto IL_4E81;
+						}
+						catch (Exception e5)
+						{
+							TimeLogger.DrawException(e5);
+							goto IL_4E81;
+						}
+					}
+					this.DrawGore();
+					IL_4E81:
+					Main.spriteBatch.End();
+					this.DrawDust();
+					Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+					if (Main.drawToScreen)
+					{
+						this.drawWaters(false, -1, true);
+						if (Main.player[Main.myPlayer].inventory[Main.player[Main.myPlayer].selectedItem].mech)
+						{
+							this.DrawWires();
+						}
+					}
+					else
+					{
+						Main.spriteBatch.Draw(this.waterTarget, Main.sceneWaterPos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
+						TimeLogger.DetailedDrawTime(26);
+					}
+					this.DrawInfernoRings();
+					ScreenDarkness.DrawFront(Main.spriteBatch);
+					MoonlordDeathDrama.DrawWhite(Main.spriteBatch);
+					ScreenObstruction.Draw(Main.spriteBatch);
+					TimeLogger.DetailedDrawReset();
+					Main.spriteBatch.End();
+					Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
+					Overlays.Scene.Draw(Main.spriteBatch);
+					Main.spriteBatch.End();
+					if (flag)
+					{
+						base.GraphicsDevice.SetRenderTarget(null);
+						base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+						Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
+						Filters.Scene.Apply();
+						Main.spriteBatch.Draw(this.screenTarget, Vector2.Zero, Microsoft.Xna.Framework.Color.White);
+						Main.spriteBatch.End();
+					}
+					TimeLogger.DetailedDrawTime(36);
+					Main.spriteBatch.Begin();
+					if (!Main.hideUI)
+					{
+						TimeLogger.DetailedDrawReset();
+						for (int m = 0; m < 255; m++)
+						{
+							if (Main.player[m].active && Main.player[m].chatOverhead.timeLeft > 0 && !Main.player[m].dead)
+							{
+								Vector2 messageSize = Main.player[m].chatOverhead.messageSize;
+								Vector2 vector;
+								vector.X = Main.player[m].position.X + (float)(Main.player[m].width / 2) - messageSize.X / 2f;
+								vector.Y = Main.player[m].position.Y - messageSize.Y - 2f;
+								vector.Y += Main.player[m].gfxOffY;
+								vector = vector.Floor();
+								if (Main.player[Main.myPlayer].gravDir == -1f)
+								{
+									vector.Y -= Main.screenPosition.Y;
+									vector.Y = Main.screenPosition.Y + (float)Main.screenHeight - vector.Y;
+								}
+								int num70 = 0;
+								ChatManager.DrawColorCodedStringWithShadow(Main.spriteBatch, Main.fontMouseText, Main.player[m].chatOverhead.snippets, vector - Main.screenPosition, 0f, Vector2.Zero, Vector2.One, out num70, -1f, 2f);
+							}
+						}
+						for (int n = 0; n < 100; n++)
+						{
+							if (Main.combatText[n].active)
+							{
+								int num71 = 0;
+								if (Main.combatText[n].crit)
+								{
+									num71 = 1;
+								}
+								Vector2 vector2 = Main.fontCombatText[num71].MeasureString(Main.combatText[n].text);
+								Vector2 origin = new Vector2(vector2.X * 0.5f, vector2.Y * 0.5f);
+								float arg_51FF_0 = Main.combatText[n].scale;
+								float num72 = (float)Main.combatText[n].color.R;
+								float num73 = (float)Main.combatText[n].color.G;
+								float num74 = (float)Main.combatText[n].color.B;
+								float num75 = (float)Main.combatText[n].color.A;
+								num72 *= Main.combatText[n].scale * Main.combatText[n].alpha * 0.3f;
+								num74 *= Main.combatText[n].scale * Main.combatText[n].alpha * 0.3f;
+								num73 *= Main.combatText[n].scale * Main.combatText[n].alpha * 0.3f;
+								num75 *= Main.combatText[n].scale * Main.combatText[n].alpha;
+								Microsoft.Xna.Framework.Color color9 = new Microsoft.Xna.Framework.Color((int)num72, (int)num73, (int)num74, (int)num75);
+								for (int num76 = 0; num76 < 5; num76++)
+								{
+									int num77 = 0;
+									int num78 = 0;
+									if (num76 == 0)
+									{
+										num77--;
+									}
+									else if (num76 == 1)
+									{
+										num77++;
+									}
+									else if (num76 == 2)
+									{
+										num78--;
+									}
+									else if (num76 == 3)
+									{
+										num78++;
+									}
+									else
+									{
+										num72 = (float)Main.combatText[n].color.R * Main.combatText[n].scale * Main.combatText[n].alpha;
+										num74 = (float)Main.combatText[n].color.B * Main.combatText[n].scale * Main.combatText[n].alpha;
+										num73 = (float)Main.combatText[n].color.G * Main.combatText[n].scale * Main.combatText[n].alpha;
+										num75 = (float)Main.combatText[n].color.A * Main.combatText[n].scale * Main.combatText[n].alpha;
+										color9 = new Microsoft.Xna.Framework.Color((int)num72, (int)num73, (int)num74, (int)num75);
+									}
+									if (Main.player[Main.myPlayer].gravDir == -1f)
+									{
+										float num79 = Main.combatText[n].position.Y - Main.screenPosition.Y;
+										num79 = (float)Main.screenHeight - num79;
+										Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, num79 + (float)num78 + origin.Y), color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
+									}
+									else
+									{
+										Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, Main.combatText[n].position.Y - Main.screenPosition.Y + (float)num78 + origin.Y), color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
+									}
+								}
+							}
+						}
+						for (int num80 = 0; num80 < 20; num80++)
+						{
+							if (Main.itemText[num80].active)
+							{
+								string text = Main.itemText[num80].name;
+								if (Main.itemText[num80].stack > 1)
+								{
+									text = string.Concat(new object[]
+									{
+									text,
+									" (",
+									Main.itemText[num80].stack,
+									")"
+									});
+								}
+								Vector2 vector3 = Main.fontMouseText.MeasureString(text);
+								Vector2 origin2 = new Vector2(vector3.X * 0.5f, vector3.Y * 0.5f);
+								float arg_5650_0 = Main.itemText[num80].scale;
+								float num81 = (float)Main.itemText[num80].color.R;
+								float num82 = (float)Main.itemText[num80].color.G;
+								float num83 = (float)Main.itemText[num80].color.B;
+								float num84 = (float)Main.itemText[num80].color.A;
+								num81 *= Main.itemText[num80].scale * Main.itemText[num80].alpha * 0.3f;
+								num83 *= Main.itemText[num80].scale * Main.itemText[num80].alpha * 0.3f;
+								num82 *= Main.itemText[num80].scale * Main.itemText[num80].alpha * 0.3f;
+								num84 *= Main.itemText[num80].scale * Main.itemText[num80].alpha;
+								Microsoft.Xna.Framework.Color color10 = new Microsoft.Xna.Framework.Color((int)num81, (int)num82, (int)num83, (int)num84);
+								for (int num85 = 0; num85 < 5; num85++)
+								{
+									int num86 = 0;
+									int num87 = 0;
+									if (num85 == 0)
+									{
+										num86 -= 2;
+									}
+									else if (num85 == 1)
+									{
+										num86 += 2;
+									}
+									else if (num85 == 2)
+									{
+										num87 -= 2;
+									}
+									else if (num85 == 3)
+									{
+										num87 += 2;
+									}
+									else
+									{
+										num81 = (float)Main.itemText[num80].color.R * Main.itemText[num80].scale * Main.itemText[num80].alpha;
+										num83 = (float)Main.itemText[num80].color.B * Main.itemText[num80].scale * Main.itemText[num80].alpha;
+										num82 = (float)Main.itemText[num80].color.G * Main.itemText[num80].scale * Main.itemText[num80].alpha;
+										num84 = (float)Main.itemText[num80].color.A * Main.itemText[num80].scale * Main.itemText[num80].alpha;
+										color10 = new Microsoft.Xna.Framework.Color((int)num81, (int)num82, (int)num83, (int)num84);
+									}
+									if (num85 < 4)
+									{
+										num84 = (float)Main.itemText[num80].color.A * Main.itemText[num80].scale * Main.itemText[num80].alpha;
+										color10 = new Microsoft.Xna.Framework.Color(0, 0, 0, (int)num84);
+									}
+									float num88 = Main.itemText[num80].position.Y - Main.screenPosition.Y + (float)num87;
+									if (Main.player[Main.myPlayer].gravDir == -1f)
+									{
+										num88 = (float)Main.screenHeight - num88;
+									}
+									Main.spriteBatch.DrawString(Main.fontMouseText, text, new Vector2(Main.itemText[num80].position.X - Main.screenPosition.X + (float)num86 + origin2.X, num88 + origin2.Y), color10, Main.itemText[num80].rotation, origin2, Main.itemText[num80].scale, SpriteEffects.None, 0f);
+								}
+							}
+						}
+						if (Main.netMode == 1 && Netplay.Connection.StatusText != "" && Netplay.Connection.StatusText != null)
+						{
+							string text2 = string.Concat(new object[]
+							{
+							Netplay.Connection.StatusText,
+							": ",
+							(int)((float)Netplay.Connection.StatusCount / (float)Netplay.Connection.StatusMax * 100f),
+							"%"
+							});
+							Main.spriteBatch.DrawString(Main.fontMouseText, text2, new Vector2(628f - Main.fontMouseText.MeasureString(text2).X * 0.5f + (float)(Main.screenWidth - 800), 84f), new Microsoft.Xna.Framework.Color((int)Main.mouseTextColor, (int)Main.mouseTextColor, (int)Main.mouseTextColor, (int)Main.mouseTextColor), 0f, default(Vector2), 1f, SpriteEffects.None, 0f);
+						}
+						if (Main.BlackFadeIn > 0)
+						{
+							if (Main.BlackFadeIn < 0)
+							{
+								Main.BlackFadeIn = 0;
+							}
+							int num89 = Main.BlackFadeIn;
+							if (num89 > 255)
+							{
+								num89 = 255;
+							}
+							Main.BlackFadeIn -= 25;
+							Main.spriteBatch.Draw(Main.loTexture, new Microsoft.Xna.Framework.Rectangle(0, 0, Main.screenWidth, Main.screenHeight), new Microsoft.Xna.Framework.Color(0, 0, 0, num89));
+						}
+						this.DrawFPS();
+
+
+
+						if (!Main.mapFullscreen)
+						{
+							if (Main.ignoreErrors)
+							{
+								try
+								{
+									this.DrawInterface(gameTime);
+									goto IL_5B16;
+								}
+								catch (Exception e6)
+								{
+									TimeLogger.DrawException(e6);
+									goto IL_5B16;
+								}
+							}
+							this.DrawInterface(gameTime);
+
+						}
+						IL_5B16:
+						TimeLogger.DetailedDrawTime(27);
+					}
+					else
+					{
+						Main.maxQ = true;
+					}
+					Main.spriteBatch.End();
+					TimeLogger.DetailedDrawTime(37);
+					if (Main.mouseLeft)
+					{
+						Main.mouseLeftRelease = false;
+					}
+					else
+					{
+						Main.mouseLeftRelease = true;
+					}
+					if (Main.mouseRight)
+					{
+						Main.mouseRightRelease = false;
+					}
+					else
+					{
+						Main.mouseRightRelease = true;
+					}
+					if (Main.mouseState.RightButton != Microsoft.Xna.Framework.Input.ButtonState.Pressed)
+					{
+						Main.stackSplit = 0;
+					}
+					if (Main.stackSplit > 0)
+					{
+						Main.stackSplit--;
+					}
+					TimeLogger.RenderTime(Main.renderCount, stopwatch.Elapsed.TotalMilliseconds);
+					TimeLogger.EndDrawFrame();
+					return;
 				}
-				else
+				if (Main.player[Main.myPlayer].talkNPC >= 0 || Main.player[Main.myPlayer].sign >= 0 || (Main.playerInventory && !CaptureManager.Instance.Active))
 				{
-					Main.maxQ = true;
+					Main.player[Main.myPlayer].ToggleInv();
+				}
+				this.DrawMap();
+				this.DrawFPS();
+				this.DrawPlayerChat();
+
+
+
+				TimeLogger.MapDrawTime(stopwatch.Elapsed.TotalMilliseconds);
+				TimeLogger.EndDrawFrame();
+				CaptureManager.Instance.Update();
+				if (CaptureManager.Instance.Active)
+				{
+					CaptureManager.Instance.Draw(Main.spriteBatch);
 				}
 				Main.spriteBatch.End();
-				TimeLogger.DetailedDrawTime(37);
 				if (Main.mouseLeft)
 				{
 					Main.mouseLeftRelease = false;
+					return;
 				}
-				else
-				{
-					Main.mouseLeftRelease = true;
-				}
-				if (Main.mouseRight)
-				{
-					Main.mouseRightRelease = false;
-				}
-				else
-				{
-					Main.mouseRightRelease = true;
-				}
-				if (Main.mouseState.RightButton != Microsoft.Xna.Framework.Input.ButtonState.Pressed)
-				{
-					Main.stackSplit = 0;
-				}
-				if (Main.stackSplit > 0)
-				{
-					Main.stackSplit--;
-				}
-				TimeLogger.RenderTime(Main.renderCount, stopwatch.Elapsed.TotalMilliseconds);
-				TimeLogger.EndDrawFrame();
-				return;
-			}
-			if (Main.player[Main.myPlayer].talkNPC >= 0 || Main.player[Main.myPlayer].sign >= 0 || (Main.playerInventory && !CaptureManager.Instance.Active))
-			{
-				Main.player[Main.myPlayer].ToggleInv();
-			}
-			this.DrawMap();
-			this.DrawFPS();
-			this.DrawPlayerChat();
-
-			
-
-			TimeLogger.MapDrawTime(stopwatch.Elapsed.TotalMilliseconds);
-			TimeLogger.EndDrawFrame();
-			CaptureManager.Instance.Update();
-			if (CaptureManager.Instance.Active)
-			{
-				CaptureManager.Instance.Draw(Main.spriteBatch);
-			}
-			Main.spriteBatch.End();
-			if (Main.mouseLeft)
-			{
-				Main.mouseLeftRelease = false;
-				return;
-			}
-			Main.mouseLeftRelease = true;
+				Main.mouseLeftRelease = true;
+			//} catch { }
 		}
 		public void DrawInfernoRings()
 		{
