@@ -8,3 +8,21 @@ C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.pdb
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.csprojResolveAssemblyReference.cache
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Debug\Terraria.exe
 C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Debug\Terraria.pdb
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Terraria.exe
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Terraria.pdb
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Libraries.DotNetZip.Ionic.Zip.CF.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Libraries.JSON.NET.Newtonsoft.Json.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Libraries.Steamworks.NET.Steamworks.NET.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Game.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Graphics.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Xact.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.GamerServices.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Input.Touch.dll
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Game.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Graphics.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Xact.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.GamerServices.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\bin\Debug\Microsoft.Xna.Framework.Input.Touch.xml
+C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\mefbaea\obj\x86\Debug\Terraria.csprojResolveAssemblyReference.cache

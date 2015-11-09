@@ -42,6 +42,9 @@ using Terraria.UI;
 using Terraria.UI.Chat;
 using Terraria.Utilities;
 using Terraria.World.Generation;
+
+using SpriteBatch = Terraria.Utilities.SpriteBatch;
+using SpriteBatchX = Microsoft.Xna.Framework.Graphics.SpriteBatch;
 namespace Terraria
 {
 	public class Main : Game
@@ -148,6 +151,8 @@ namespace Terraria
 		public static bool slomoToggle;
 		public static bool slomoPressed;
         public static bool slomoReleased;
+		//Zoom
+		public static float zoomLevel = 1f;
 		
 
 
@@ -12622,116 +12627,16 @@ namespace Terraria
 				if (textArray[0] == "/place" && textArray[1] != "set")
 				{         //Format: /place <type> <dir> <count>
 						  //           0     1      2      3
-					if (textArray.Length < 4)
+					return TmecUtils.placeSet(textArray);
+				}
+				if(textArray[0] == "/zoom" || textArray[0] == "/z")
+				{
+					Main.zoomLevel = Convert.ToInt32(textArray[1]);
+					if(Main.zoomLevel < 0.1)
 					{
-						Main.NewText("Invalid format. /place <type> <direction> <count> [wire|actuator|force]", 213, 0, 0, true);
-						return;
+						Main.NewText("Bad zoom level.");
+						Main.zoomLevel = 1;
 					}
-					int count;
-					if(placePosition.X == 0f && placePosition.Y == 0f)
-						placePosition = new Vector2((int)(Math.Floor(Main.player[Main.myPlayer].position.X / 16)), (int)(Math.Floor(Main.player[Main.myPlayer].position.Y / 16) + 3)); //get players pos as tile
-					if (!int.TryParse(textArray[1], out blockType) || !int.TryParse(textArray[3], out count)) //if type or count aren't a number, fail
-					{
-						Main.NewText("Invalid format. /place <type> <direction> <count> [wire|actuator|force]", 213, 0, 0);
-						return;
-					}
-
-					bool forceIt = false;
-					bool wire = false;
-					bool actu = false;
-					int slope = 0;
-					try
-					{
-						for (int i = 3; i < textArray.Length; i++)
-						{
-							switch (textArray[i])
-							{
-								case "force":
-								case "f":
-									forceIt = true;
-									Main.NewText("force", 0, 0, 213);
-									break;
-								case "wire":
-								case "w":
-									wire = true;
-									break;
-								case "actuator":
-								case "act":
-								case "a":
-									actu = true;
-									break;
-							}
-							
-							if (textArray[i][0] == 'h')
-							{
-								Main.NewText(textArray[i].Substring(1, 2) + textArray[i], 0, 213, 0);
-								if ( !int.TryParse(textArray[i].Substring(1,2), out slope) || slope <= 5)
-								{
-									Main.NewText("Error: Hoik format: h1|h5" + slope.ToString(), 213, 0, 0, false);
-								}
-							}
-
-						}
-					}
-					catch { }
-					Main.NewText("/place " + blockType.ToString() + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString() + ""+slope.ToString(), 0, 213, 0, true);
-
-					Vector2 coords = new Vector2(0, 0);
-					for (int i = 0; i <= count; i++)
-					{
-						switch (textArray[2])
-						{
-							case "left":
-								coords = new Vector2((int)placePosition.X - i, (int)placePosition.Y);
-								break;
-							case "right":
-								coords = new Vector2((int)placePosition.X + i, (int)placePosition.Y);
-								break;
-							case "down":
-								coords = new Vector2((int)placePosition.X, (int)placePosition.Y + i);
-								break;
-							case "up":
-								coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
-								break;
-						}
-					//	Main.NewText("/place " + blockType.ToString() + " " + textArray[3] + " " + count.ToString() + " - " + wire.ToString() + actu.ToString() + forceIt.ToString(), 0, 213, 0);
-					//	Main.NewText("coords: " + coords.ToString(), 255, 213, 0);
-
-						WorldGen.PlaceTile((int)coords.X, (int)coords.Y, blockType, false, forceIt);
-						if (wire)
-							WorldGen.PlaceWire((int)coords.X, (int)coords.Y);
-						if (actu)
-							WorldGen.PlaceActuator((int)coords.X, (int)coords.Y);
-					}
-
-					//doing it again to avoid it murdering everything
-					if (slope != 0)
-					{
-						WorldGen.gen = true;
-						for (int i = 0; i <= count; i++)
-						{
-							switch (textArray[2])
-							{
-								case "left":
-									coords = new Vector2((int)placePosition.X - i, (int)placePosition.Y);
-									break;
-								case "right":
-									coords = new Vector2((int)placePosition.X + i, (int)placePosition.Y);
-									break;
-								case "down":
-									coords = new Vector2((int)placePosition.X, (int)placePosition.Y + i);
-									break;
-								case "up":
-									coords = new Vector2((int)placePosition.X, (int)placePosition.Y - i);
-									break;
-							}
-							//WorldGen.SlopeTile((int)coords.X, (int)coords.Y, slope);
-							Main.tile[coords.X, coords.Y].slope(slope);
-							Main.NewText(slope.ToString());
-						}
-						WorldGen.gen = false;
-					}
-					return true;
 				}
 			}
 			catch (Exception e)
@@ -49043,6 +48948,28 @@ namespace Terraria
 				{
 					Main.manualPauseReleased = true;
 				}
+
+
+
+
+
+
+
+				//ZOOOOOOOOOOOOOOOM
+				if (zoomLevel != 1)
+				{
+					float widthIncrease = (Main.screenWidth * zoomLevel - Main.screenWidth) / 2;
+					Main.screenPosition.X += widthIncrease;
+					Main.screenWidth += (int)widthIncrease;
+					float heightIncrease = (Main.screenHeight * zoomLevel - Main.screenHeight) / 2;
+					Main.screenPosition.Y += heightIncrease;
+					Main.screenHeight += (int)heightIncrease;
+				}
+
+
+
+
+
 
 
 
