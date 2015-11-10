@@ -154,7 +154,7 @@ namespace Terraria
 		//Zoom
 		public static float zoomLevel = 1f;
 		public static float oldZoomLevel = 1f;
-
+		public static Vector2 zoomOffset;
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -26708,6 +26708,8 @@ namespace Terraria
 		}
 		public void DrawPlayer(Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow = 0f)
 		{
+			if(Main.zoomLevel % 1 == 0.03)
+				Position -= Main.zoomOffset;
 			DrawData value = default(DrawData);
 			int num = -1;
 			Main.playerDrawData.Clear();
@@ -48832,6 +48834,7 @@ namespace Terraria
 							Main.cameraX = 0f;
 						}
 					}
+
 					Vector2 value = Main.screenPosition;
 
 
@@ -48907,7 +48910,7 @@ namespace Terraria
 						//default code
 						Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
 						Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
-
+					                  //                                                               center of player       -     what?  21?   -           half screen           + what?
 					}
 
 
@@ -48958,51 +48961,76 @@ namespace Terraria
 
 
 					//ZOOOOOOOOOOOOOOOM
-					if (zoomLevel != 1)
-					{
-						float widthIncrease = (Main.screenWidth * zoomLevel - Main.screenWidth) / 2;
-						Main.screenPosition.X += widthIncrease;
-						Main.screenWidth += (int)widthIncrease;
-						float heightIncrease = (Main.screenHeight * zoomLevel - Main.screenHeight) / 2;
-						Main.screenPosition.Y += heightIncrease;
-						Main.screenHeight += (int)heightIncrease;
-					}
+					
 					if (zoomLevel != oldZoomLevel)
 					{
-						Lighting.Initialize();
-						Main.drawToScreen = false;
-						oldZoomLevel = zoomLevel;
-						return;
-					}//    /^\
-					 /*      |
-	  *                      |                                                                                                                                                                    
-	  *                                                                                                                                                                                         
-	  *    DDDDDDDDDDDDD       UUUUUUUU     UUUUUUUU       CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTT     TTTTTTTTTTTTTTTTTTTTTTT         AAA               PPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEE
-	  *    D::::::::::::DDD    U::::::U     U::::::U    CCC::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T        A:::A              P::::::::::::::::P  E::::::::::::::::::::E
-	  *    D:::::::::::::::DD  U::::::U     U::::::U  CC:::::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T       A:::::A             P::::::PPPPPP:::::P E::::::::::::::::::::E
-	  *    DDD:::::DDDDD:::::D UU:::::U     U:::::UU C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::T     T:::::TT:::::::TT:::::T      A:::::::A            PP:::::P     P:::::PEE::::::EEEEEEEEE::::E
-	  *      D:::::D    D:::::D U:::::U     U:::::U C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTT     TTTTTT  T:::::T  TTTTTT     A:::::::::A             P::::P     P:::::P  E:::::E       EEEEEE
-	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T            A:::::A:::::A            P::::P     P:::::P  E:::::E             
-	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T           A:::::A A:::::A           P::::PPPPPP:::::P   E::::::EEEEEEEEEE   
-	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T          A:::::A   A:::::A          P:::::::::::::PP    E:::::::::::::::E   
-	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T         A:::::A     A:::::A         P::::PPPPPPPPP      E:::::::::::::::E   
-	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T        A:::::AAAAAAAAA:::::A        P::::P              E::::::EEEEEEEEEE   
-	  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T       A:::::::::::::::::::::A       P::::P              E:::::E             
-	  *      D:::::D    D:::::D U::::::U   U::::::U C:::::C       CCCCCC        T:::::T                     T:::::T      A:::::AAAAAAAAAAAAA:::::A      P::::P              E:::::E       EEEEEE
-	  *    DDD:::::DDDDD:::::D  U:::::::UUU:::::::U  C:::::CCCCCCCC::::C      TT:::::::TT                 TT:::::::TT   A:::::A             A:::::A   PP::::::PP          EE::::::EEEEEEEE:::::E
-	  *    D:::::::::::::::DD    UU:::::::::::::UU    CC:::::::::::::::C      T:::::::::T                 T:::::::::T  A:::::A               A:::::A  P::::::::P          E::::::::::::::::::::E
-	  *    D::::::::::::DDD        UU:::::::::UU        CCC::::::::::::C      T:::::::::T                 T:::::::::T A:::::A                 A:::::A P::::::::P          E::::::::::::::::::::E
-	  *    DDDDDDDDDDDDD             UUUUUUUUU             CCCCCCCCCCCCC      TTTTTTTTTTT                 TTTTTTTTTTTAAAAAAA                   AAAAAAAPPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEE
-	  *                                                                                                                                                                                         
-	  *                                                                                                                                                                                         
-	  *                                                                                                                                                                                         
-	  *                                                                                                                                                                                         
-	  *                                                                                                                                                                                         
-	  *                                                                                                                                                                                         
-	  *                                                                                                                                                                                         
-	  */
-					oldZoomLevel = zoomLevel;
 
+						zoomOffset.X = (Main.screenWidth * zoomLevel - Main.screenWidth) / 2;
+						Main.screenPosition.X += zoomOffset.X;
+						Main.screenWidth += (int)zoomOffset.X;
+						zoomOffset.Y = (Main.screenHeight * zoomLevel - Main.screenHeight) / 2;
+						Main.screenPosition.Y += zoomOffset.Y;
+						Main.screenHeight += (int)zoomOffset.Y;
+
+						oldZoomLevel = zoomLevel;
+
+						this.InitTargets(screenWidth, screenHeight);
+
+						//UserInterface.ActiveInstance.Recalculate();
+
+						Main.mapTime = 0;
+						if (Main.gamePaused)
+						{
+							Main.renderNow = true;
+						}
+
+						//Form form = (Form)Control.FromHandle(Main.instance.Window.Handle);
+						//if (!Main.toggleFullscreen)
+						//{
+						//	form.SendToBack();
+						//	form.BringToFront();
+						//}
+
+						Lighting.states = null;
+						Lighting.Initialize(true);
+
+						//	if (!Main.drawToScreen)
+						//	{
+							//	Main.instance.InitTargets();
+						//	}
+							//UserInterface.ActiveInstance.Recalculate();
+							//this.Draw(gameTime);
+							//return;
+					}// /^\
+				 /*      |
+  *                      |                                                                                                                                                                    
+  *                                                                                                                                                                                         
+  *    DDDDDDDDDDDDD       UUUUUUUU     UUUUUUUU       CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTT     TTTTTTTTTTTTTTTTTTTTTTT         AAA               PPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEE
+  *    D::::::::::::DDD    U::::::U     U::::::U    CCC::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T        A:::A              P::::::::::::::::P  E::::::::::::::::::::E
+  *    D:::::::::::::::DD  U::::::U     U::::::U  CC:::::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T       A:::::A             P::::::PPPPPP:::::P E::::::::::::::::::::E
+  *    DDD:::::DDDDD:::::D UU:::::U     U:::::UU C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::T     T:::::TT:::::::TT:::::T      A:::::::A            PP:::::P     P:::::PEE::::::EEEEEEEEE::::E
+  *      D:::::D    D:::::D U:::::U     U:::::U C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTT     TTTTTT  T:::::T  TTTTTT     A:::::::::A             P::::P     P:::::P  E:::::E       EEEEEE
+  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T            A:::::A:::::A            P::::P     P:::::P  E:::::E             
+  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T           A:::::A A:::::A           P::::PPPPPP:::::P   E::::::EEEEEEEEEE   
+  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T          A:::::A   A:::::A          P:::::::::::::PP    E:::::::::::::::E   
+  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T         A:::::A     A:::::A         P::::PPPPPPPPP      E:::::::::::::::E   
+  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T        A:::::AAAAAAAAA:::::A        P::::P              E::::::EEEEEEEEEE   
+  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T       A:::::::::::::::::::::A       P::::P              E:::::E             
+  *      D:::::D    D:::::D U::::::U   U::::::U C:::::C       CCCCCC        T:::::T                     T:::::T      A:::::AAAAAAAAAAAAA:::::A      P::::P              E:::::E       EEEEEE
+  *    DDD:::::DDDDD:::::D  U:::::::UUU:::::::U  C:::::CCCCCCCC::::C      TT:::::::TT                 TT:::::::TT   A:::::A             A:::::A   PP::::::PP          EE::::::EEEEEEEE:::::E
+  *    D:::::::::::::::DD    UU:::::::::::::UU    CC:::::::::::::::C      T:::::::::T                 T:::::::::T  A:::::A               A:::::A  P::::::::P          E::::::::::::::::::::E
+  *    D::::::::::::DDD        UU:::::::::UU        CCC::::::::::::C      T:::::::::T                 T:::::::::T A:::::A                 A:::::A P::::::::P          E::::::::::::::::::::E
+  *    DDDDDDDDDDDDD             UUUUUUUUU             CCCCCCCCCCCCC      TTTTTTTTTTT                 TTTTTTTTTTTAAAAAAA                   AAAAAAAPPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEE
+  *                                                                                                                                                                                         
+  *                                                                                                                                                                                         
+  *                                                                                                                                                                                         
+  *                                                                                                                                                                                         
+  *                                                                                                                                                                                         
+  *                                                                                                                                                                                         
+  *                                                                                                                                                                                         
+  */
+				oldZoomLevel = zoomLevel;
+			
 
 
 
@@ -51113,7 +51141,7 @@ namespace Terraria
 					return;
 				}
 				Main.mouseLeftRelease = true;
-			//} catch { }
+			//} catch { }D
 		}
 		public void DrawInfernoRings()
 		{

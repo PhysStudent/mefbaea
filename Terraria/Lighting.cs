@@ -43,7 +43,7 @@ namespace Terraria
 				this.jaggedArray = from.jaggedArray;
 			}
 		}
-		private class LightingState
+		public class LightingState
 		{
 			public float r;
 			public float r2;
@@ -92,7 +92,7 @@ namespace Terraria
 		private static int firstTileY;
 		private static int lastTileY;
 		public static int LightingThreads = 0;
-		private static Lighting.LightingState[][] states;
+		public static Lighting.LightingState[][] states;
 		private static Lighting.LightingState[][] axisFlipStates;
 		private static Lighting.LightingSwipeData swipe;
 		private static Lighting.LightingSwipeData[] threadSwipes;
