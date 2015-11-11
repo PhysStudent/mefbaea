@@ -48965,11 +48965,11 @@ namespace Terraria
 					if (zoomLevel != oldZoomLevel)
 					{
 
-						zoomOffset.X = (Main.screenWidth * zoomLevel - Main.screenWidth) / 2;
-						Main.screenPosition.X += zoomOffset.X;
+						zoomOffset.X = (Main.screenWidth * zoomLevel - Main.screenWidth);
+						//Main.screenPosition.X += zoomOffset.X;
 						Main.screenWidth += (int)zoomOffset.X;
-						zoomOffset.Y = (Main.screenHeight * zoomLevel - Main.screenHeight) / 2;
-						Main.screenPosition.Y += zoomOffset.Y;
+						zoomOffset.Y = (Main.screenHeight * zoomLevel - Main.screenHeight);
+						//Main.screenPosition.Y += zoomOffset.Y;
 						Main.screenHeight += (int)zoomOffset.Y;
 
 						oldZoomLevel = zoomLevel;

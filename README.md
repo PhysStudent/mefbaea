@@ -21,3 +21,4 @@ This name really annoys me.
 - Easier hoiks. (Like a hammer that will always make a right-up slope) 
 - Copy-paste things? 
 - Perhaps we could set something up, similar to the WorldEdit that TShock has, where you can place hoiks automatically (Straight lines/boxes), or make a hoik mode where all blocks place are hoiks. 
+- actuator wand?
