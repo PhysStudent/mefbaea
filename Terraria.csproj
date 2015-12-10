@@ -314,7 +314,6 @@
     <Compile Include="Terraria.UI\UIScrollWheelEvent.cs" />
     <Compile Include="Terraria.UI\UIState.cs" />
     <Compile Include="Terraria.UI\UserInterface.cs" />
-    <Compile Include="Terraria.Utilities\SpriteBatch.cs" />
     <Compile Include="Terraria.Utilities\SpritebatchQueue.cs" />
     <Compile Include="Terraria.Utilities\TmecUtils.cs" />
     <Compile Include="Terraria.Utilities\CrashDump.cs" />
@@ -409,6 +408,6 @@
 copy /Y "$(TargetDir)\Terraria.pdb" "%25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\"
 cd %25USERPROFILE%25\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\
 echo Done...!!
-::Terraria</PostBuildEvent>
+Terraria</PostBuildEvent>
   </PropertyGroup>
 </Project>

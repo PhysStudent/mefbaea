@@ -43,8 +43,9 @@ using Terraria.UI.Chat;
 using Terraria.Utilities;
 using Terraria.World.Generation;
 
-using SpriteBatch = Terraria.Utilities.SpriteBatch;
-using SpriteBatchX = Microsoft.Xna.Framework.Graphics.SpriteBatch;
+//using SpriteBatch = Terraria.Utilities.SpriteBatch;
+//using SpriteBatchX = Microsoft.Xna.Framework.Graphics.SpriteBatch;
+
 namespace Terraria
 {
 	public class Main : Game
@@ -155,6 +156,8 @@ namespace Terraria
 		public static float zoomLevel = 1f;
 		public static float oldZoomLevel = 1f;
 		public static Vector2 zoomOffset;
+		public static int origScreenWidth = screenWidth;
+		
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -26708,8 +26711,6 @@ namespace Terraria
 		}
 		public void DrawPlayer(Player drawPlayer, Vector2 Position, float rotation, Vector2 rotationOrigin, float shadow = 0f)
 		{
-			if(Main.zoomLevel % 1 == 0.03)
-				Position -= Main.zoomOffset;
 			DrawData value = default(DrawData);
 			int num = -1;
 			Main.playerDrawData.Clear();
@@ -43657,7 +43658,7 @@ namespace Terraria
 			int num = Main.holyTiles;
 			Main.holyTiles = ((settings.Biome.BackgroundIndex == 6) ? 400 : 0);
 			int num2 = Main.offScreenRange;
-			Main.offScreenRange = 0;
+			Main.offScreenRange = 0; //tmec capture?
 			this.Transform = Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f));
 			this.Rasterizer = RasterizerState.CullCounterClockwise;
 			bool captureEntities = settings.CaptureEntities;
@@ -48963,45 +48964,14 @@ namespace Terraria
 					//ZOOOOOOOOOOOOOOOM
 					
 					if (zoomLevel != oldZoomLevel)
-					{
+				{
 
-						zoomOffset.X = (Main.screenWidth * 1/zoomLevel);
-						//Main.screenPosition.X += zoomOffset.X;
-						Main.screenWidth = (int)zoomOffset.X;
-						zoomOffset.Y = (Main.screenHeight * 1/zoomLevel);
-						//Main.screenPosition.Y += zoomOffset.Y;
-						Main.screenHeight = (int)zoomOffset.Y;
+						Main.screenWidth = (int)(GraphicsDevice.Viewport.Width / zoomLevel); //times window width
+					Main.screenHeight = (int)(GraphicsDevice.Viewport.Height / zoomLevel); //times window width
 
-						oldZoomLevel = zoomLevel;
-
-						this.InitTargets(screenWidth, screenHeight);
-
-						//UserInterface.ActiveInstance.Recalculate();
-
-						Main.mapTime = 0;
-						if (Main.gamePaused)
-						{
-							Main.renderNow = true;
-						}
-
-						//Form form = (Form)Control.FromHandle(Main.instance.Window.Handle);
-						//if (!Main.toggleFullscreen)
-						//{
-						//	form.SendToBack();
-						//	form.BringToFront();
-						//}
-
-						Lighting.states = null;
-						Lighting.Initialize(true);
-
-						//	if (!Main.drawToScreen)
-						//	{
-							//	Main.instance.InitTargets();
-						//	}
-							//UserInterface.ActiveInstance.Recalculate();
-							//this.Draw(gameTime);
-							//return;
-					}// /^\
+					Lighting.states = null;
+					Lighting.Initialize(true);
+				}// /^\
 				 /*      |
   *                      |                                                                                                                                                                    
   *                                                                                                                                                                                         
@@ -49963,13 +49933,21 @@ namespace Terraria
 				base.Draw(gameTime);
 				if (Main.gameMenu || Main.player[Main.myPlayer].gravDir == 1f)
 				{
-					this.Transform = Matrix.CreateScale(1f, 1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, 0f, 0f));
-					this.Rasterizer = RasterizerState.CullCounterClockwise;
+					if(zoomLevel == 1)
+						this.Transform = Matrix.CreateScale(zoomLevel, zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                             // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f));
+					else
+						this.Transform = Matrix.CreateScale(zoomLevel, zoomLevel, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation((float)Main.screenWidth * .5f / zoomLevel, (float)Main.screenHeight * .5f / zoomLevel, 1f);                                             // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f));
+
+
+				this.Rasterizer = RasterizerState.CullCounterClockwise;
 				}
-				else
+				else//tmec matrix!
 				{
-					this.Transform = Matrix.CreateScale(1f, -1f, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation(new Vector3(0f, (float)Main.screenHeight, 0f));
-					this.Rasterizer = RasterizerState.CullClockwise;
+					if(zoomLevel == 1)
+						this.Transform = Matrix.CreateScale(zoomLevel, -zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                            // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f)); //SHOULD still work
+					else
+						this.Transform = Matrix.CreateScale(zoomLevel, -zoomLevel, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation((float)Main.screenWidth * .5f / zoomLevel, (float)Main.screenHeight * .5f /zoomLevel, 1f);                                            // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f)); //SHOULD still work
+				this.Rasterizer = RasterizerState.CullClockwise;
 				}
 				bool flag = !Main.drawToScreen && Main.netMode != 2 && !Main.gameMenu && !Main.mapFullscreen && Filters.Scene.HasActiveFilter();
 				if (flag)
