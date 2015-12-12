@@ -5,4 +5,10 @@
     <StartProgram>C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\Terraria.exe</StartProgram>
     <StartWorkingDirectory>C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\</StartWorkingDirectory>
   </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <StartAction>Program</StartAction>
+    <StartProgram>C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\Terraria.exe</StartProgram>
+    <StartWorkingDirectory>C:\Users\charlesbgknight\Desktop\Terraria Mod\MEFBEA\Terraria.v1.3.0.8\</StartWorkingDirectory>
+    <RemoteDebugEnabled>false</RemoteDebugEnabled>
+  </PropertyGroup>
 </Project>

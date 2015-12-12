@@ -1159,8 +1159,8 @@ namespace Terraria
             bool flag = true;
             if (Main.mouseItem.type > 0 && Main.mouseItem.stack > 0 && !Main.gamePaused)
             {
-                Player.tileTargetX = (int)(((float)Main.mouseX + Main.screenPosition.X) / 16f);
-                Player.tileTargetY = (int)(((float)Main.mouseY + Main.screenPosition.Y) / 16f);
+                Player.tileTargetX = (int)(((Main.mouseX/Main.zoomLevel) + Main.screenPosition.X) / 16f);
+                Player.tileTargetY = (int)(((Main.mouseY/Main.zoomLevel) + Main.screenPosition.Y) / 16f);
                 if (this.gravDir == -1f)
                 {
                     Player.tileTargetY = (int)((Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY) / 16f);
@@ -1923,8 +1923,8 @@ namespace Terraria
                 }
             IL_65E:
                 Vector2 vector = new Vector2(this.position.X + (float)this.width * 0.5f, this.position.Y + (float)this.height * 0.5f);
-                float num16 = (float)Main.mouseX + Main.screenPosition.X - vector.X;
-                float num17 = (float)Main.mouseY + Main.screenPosition.Y - vector.Y;
+                float num16 = (Main.mouseX / Main.zoomLevel) + Main.screenPosition.X - vector.X;
+                float num17 = (Main.mouseY / Main.zoomLevel) + Main.screenPosition.Y - vector.Y;
                 if (this.gravDir == -1f)
                 {
                     num17 = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY - vector.Y;
@@ -9770,7 +9770,7 @@ namespace Terraria
                 return;
             }
             Item item = this.inventory[this.selectedItem];
-            Vector2 vector = Main.screenPosition + new Vector2((float)Main.mouseX, (float)Main.mouseY);
+            Vector2 vector = Main.screenPosition + new Vector2((Main.mouseX / Main.zoomLevel), (Main.mouseY / Main.zoomLevel));
             if (this.gravDir == -1f)
             {
                 vector.Y = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
@@ -11532,8 +11532,8 @@ namespace Terraria
             if (this.controlTorch && this.itemAnimation == 0)
             {
                 int num = 0;
-                int num2 = (int)(((float)Main.mouseX + Main.screenPosition.X) / 16f);
-                int num3 = (int)(((float)Main.mouseY + Main.screenPosition.Y) / 16f);
+                int num2 = (int)(((Main.mouseX / Main.zoomLevel) + Main.screenPosition.X) / 16f);
+                int num3 = (int)(((Main.mouseY / Main.zoomLevel) + Main.screenPosition.Y) / 16f);
                 if (this.gravDir == -1f)
                 {
                     num3 = (int)((Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY) / 16f);
@@ -16836,8 +16836,8 @@ namespace Terraria
             {
                 this.delayUseItem = true;
             }
-            Player.tileTargetX = (int)(((float)Main.mouseX + Main.screenPosition.X) / 16f);
-            Player.tileTargetY = (int)(((float)Main.mouseY + Main.screenPosition.Y) / 16f);
+            Player.tileTargetX = (int)(((Main.mouseX/Main.zoomLevel) + Main.screenPosition.X) / 16f);//tmec unlimited range!
+            Player.tileTargetY = (int)(((Main.mouseY/Main.zoomLevel) + Main.screenPosition.Y) / 16f);
             if (this.gravDir == -1f)
             {
                 Player.tileTargetY = (int)((Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY) / 16f);
@@ -28992,8 +28992,8 @@ namespace Terraria
                             vector2.X -= (float)(4 * this.direction);
                             vector2.Y -= 1f * this.gravDir;
                         }
-                        float num78 = (float)Main.mouseX + Main.screenPosition.X - vector2.X;
-                        float num79 = (float)Main.mouseY + Main.screenPosition.Y - vector2.Y;
+                        float num78 = (Main.mouseX/Main.zoomLevel) + Main.screenPosition.X - vector2.X;
+                        float num79 = (Main.mouseY/Main.zoomLevel) + Main.screenPosition.Y - vector2.Y;
                         if (this.gravDir == -1f)
                         {
                             num79 = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY - vector2.Y;
@@ -29041,8 +29041,8 @@ namespace Terraria
                             if (item.type == 3029)
                             {
                                 Vector2 vector4 = new Vector2(num78, num79);
-                                vector4.X = (float)Main.mouseX + Main.screenPosition.X - vector2.X;
-                                vector4.Y = (float)Main.mouseY + Main.screenPosition.Y - vector2.Y - 1000f;
+                                vector4.X = (Main.mouseX/Main.zoomLevel) + Main.screenPosition.X - vector2.X;
+                                vector4.Y = (Main.mouseY/Main.zoomLevel) + Main.screenPosition.Y - vector2.Y - 1000f;
                                 this.itemRotation = (float)Math.Atan2((double)(vector4.Y * (float)this.direction), (double)(vector4.X * (float)this.direction));
                                 NetMessage.SendData(13, -1, -1, "", this.whoAmI, 0f, 0f, 0f, 0, 0, 0);
                                 NetMessage.SendData(41, -1, -1, "", this.whoAmI, 0f, 0f, 0f, 0, 0, 0);
@@ -29056,8 +29056,8 @@ namespace Terraria
                         }
                         if (num71 == 17)
                         {
-                            vector2.X = (float)Main.mouseX + Main.screenPosition.X;
-                            vector2.Y = (float)Main.mouseY + Main.screenPosition.Y;
+                            vector2.X = (Main.mouseX/Main.zoomLevel) + Main.screenPosition.X;
+                            vector2.Y = (Main.mouseY/Main.zoomLevel) + Main.screenPosition.Y;
                             if (this.gravDir == -1f)
                             {
                                 vector2.Y = Main.screenPosition.Y + (float)Main.screenHeight - (float)Main.mouseY;
@@ -29789,7 +29789,7 @@ namespace Terraria
                             {
                                 num78 = 0f;
                                 num79 = 0f;
-                                vector2.X = (float)Main.mouseX + Main.screenPosition.X;
+                                vector2.X = (Main.mouseX/Main.zoomLevel) + Main.screenPosition.X;
                                 vector2.Y = (float)Main.mouseY + Main.screenPosition.Y;
                                 int num185 = Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, num71, num73, num74, i, 0f, 0f);
                                 num185 = Projectile.NewProjectile(vector2.X, vector2.Y, num78, num79, num71 + 1, num73, num74, i, (float)num185, 0f);

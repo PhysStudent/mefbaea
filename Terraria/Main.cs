@@ -157,7 +157,12 @@ namespace Terraria
 		public static float oldZoomLevel = 1f;
 		public static Vector2 zoomOffset;
 		public static int origScreenWidth = screenWidth;
-		
+		public static int zoomedMouseX = 0;
+		public static int zoomedMouseY = 0;
+		public static bool useZoomedMouseCoordinates = false;
+		//true if game logic	(world space)
+		//false if ui/inventory	(screen space)
+
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -3949,6 +3954,7 @@ namespace Terraria
 			Main.instance = this;
 			Main.graphics = new GraphicsDeviceManager((Game)this);
 			base.Content.RootDirectory = "Content";
+
 		}
 		protected void SetTitle()
 		{
@@ -10543,6 +10549,7 @@ namespace Terraria
 		}
 		protected override void Update(GameTime gameTime)
 		{
+			//zmc Main.useZoomedMouseCoordinates = false;
 			if (Main.OnTick != null)
 			{
 				Main.OnTick();
@@ -10844,7 +10851,6 @@ namespace Terraria
 				}//tmec slomo
 				if (Main.slomoToggle)
 				{
-					//MessageBox.Show("bruh we in " + slomoCount.ToString() + " " + (!(Main.slomoCount >= Main.SLOMO_RATE)).ToString());
 					Main.slomoCount++;
 					if (Main.slomoCount >= Main.SLOMO_RATE)
 					{
@@ -11817,8 +11823,10 @@ namespace Terraria
 					Main.mouseState = Mouse.GetState();
 					Main.lastMouseX = Main.mouseX;
 					Main.lastMouseY = Main.mouseY;
-					Main.mouseX = Main.mouseState.X;
-					Main.mouseY = Main.mouseState.Y;
+
+						mouseX = mouseState.X;
+						mouseY = mouseState.Y;
+
 					Main.mouseLeft = false;
 					Main.mouseRight = false;
 					if (base.IsActive)
@@ -11884,14 +11892,22 @@ namespace Terraria
 					{
 						Main.chatMode = false;
 					}
-					string a = Main.chatText;
+					string a = Main.chatText + "";
 					Main.chatText = Main.GetInputText(Main.chatText);
-					int num7 = Main.screenWidth - 330;
+					int num7 = Main.screenWidth - 330 * (int)(1/zoomLevel); //scale it up or down according to zoom
+					//eg, if zoom is 2, the threshold will be halved. ~~~Might still screw up at high zoom levels.~~~ (not anymore) 
 					if (a != Main.chatText)
 					{
-						while (ChatManager.GetStringSize(Main.fontMouseText, Main.chatText, Vector2.One, -1f).X > (float)num7)
+						try {
+							while (ChatManager.GetStringSize(Main.fontMouseText, Main.chatText, Vector2.One, -1f).X > (float)num7 && Main.chatText.Length > 1)
+							{
+								Main.chatText = Main.chatText.Substring(0, Main.chatText.Length - 1);
+								//Try/catch seems like a really dirty solution, but typing works 100% now at low res.
+							}
+						}
+						catch (Exception e)
 						{
-							Main.chatText = Main.chatText.Substring(0, Main.chatText.Length - 1);
+							MessageBox.Show(e.ToString() + "\n" + Main.chatText + ", " + a + "\n" + num7.ToString() + ", " + zoomLevel.ToString());
 						}
 					}
 					if (a != Main.chatText)
@@ -11919,10 +11935,10 @@ namespace Terraria
 							newText = NameTagHandler.GenerateTag(Main.player[Main.myPlayer].name) + " " + Main.chatText;
 							Main.player[Main.myPlayer].chatOverhead.NewMessage(Main.chatText, Main.chatLength / 2);
 							Main.NewText(newText, white.R, white.G, white.B, false);
+						//doTheThing
 							Main.checkForTMecModChat(Main.chatText);
 						}
 
-						//doTheThing
 
 
 						Main.chatText = "";
@@ -12288,7 +12304,7 @@ namespace Terraria
 				Main.gamePaused = true;
 				return;
 			}
-			Main.gamePaused = false; // I know I could use this but just to be safe bruh 
+			Main.gamePaused = false;
 			if (!Main.dedServ && (double)Main.screenPosition.Y < Main.worldSurface * 16.0 + 16.0 && Main.netMode != 2)
 			{
 				Star.UpdateStars();
@@ -12297,6 +12313,7 @@ namespace Terraria
 			PortalHelper.UpdatePortalPoints();
 			Main.tileSolid[379] = false;
 			Main.numPlayers = 0;
+			//zmc Main.useZoomedMouseCoordinates = true;
 			int num21 = 0;
 			while (num21 < 255)
 			{
@@ -12599,6 +12616,7 @@ namespace Terraria
 					Main.cameraLerp = 1f;
 				}
 			}
+			//zmc useZoomedMouseCoordinates = false;
 			base.Update(gameTime);
 		}
 		public static bool checkForTMecModChat(string text) //tmec checkForTMecModChat
@@ -12636,11 +12654,11 @@ namespace Terraria
 				if (textArray[0] == "/zoom" || textArray[0] == "/z")
 				{
 					Main.zoomLevel = Convert.ToSingle(textArray[1]);
-					if (Main.zoomLevel < 0.1)
-					{
-						Main.NewText("Bad zoom level.");
-						Main.zoomLevel = 1;
-					}
+					//if (Main.zoomLevel < 0)
+					//{
+					//	Main.NewText("");
+					//	Main.zoomLevel = 1;
+					//}
 				}
 			}
 			catch (Exception e)
@@ -18654,6 +18672,9 @@ namespace Terraria
 			int num2 = (int)(36f * num);
 			float num3 = X - 18f * scale;
 			float num4 = Y;
+
+			num3 /= zoomLevel;
+			num4 /= zoomLevel;
 			if (Main.player[Main.myPlayer].gravDir == -1f)
 			{
 				num4 -= Main.screenPosition.Y;
@@ -48705,7 +48726,6 @@ namespace Terraria
 		}
 		protected override void Draw(GameTime gameTime)
 		{
-			//try {
 				if (Main._drawCycleCounter == 0uL)
 				{
 					Main._tileFrameSeed = Utils.RandomNextSeed(Main._tileFrameSeed);
@@ -48911,7 +48931,7 @@ namespace Terraria
 						//default code
 						Main.screenPosition.X = Main.player[Main.myPlayer].position.X + (float)Main.player[Main.myPlayer].width * 0.5f - (float)Main.screenWidth * 0.5f + Main.cameraX;
 						Main.screenPosition.Y = Main.player[Main.myPlayer].position.Y + (float)Main.player[Main.myPlayer].height - (float)num2 - (float)Main.screenHeight * 0.5f + Main.player[Main.myPlayer].gfxOffY;
-					                  //                                                               center of player       -     what?  21?   -           half screen           + what?
+										//                                                               center of player       -     what?  21?   -           half screen           + what?
 					}
 
 
@@ -48927,7 +48947,7 @@ namespace Terraria
 					{
 						Main.dummyLightReleased = true;
 					}//Why did I put this here?
-					 //I like to pretend to be organized. 
+						//I like to pretend to be organized. 
 
 
 					if (Main.slomoPressed)
@@ -48972,33 +48992,33 @@ namespace Terraria
 					Lighting.states = null;
 					Lighting.Initialize(true);
 				}// /^\
-				 /*      |
-  *                      |                                                                                                                                                                    
-  *                                                                                                                                                                                         
-  *    DDDDDDDDDDDDD       UUUUUUUU     UUUUUUUU       CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTT     TTTTTTTTTTTTTTTTTTTTTTT         AAA               PPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEE
-  *    D::::::::::::DDD    U::::::U     U::::::U    CCC::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T        A:::A              P::::::::::::::::P  E::::::::::::::::::::E
-  *    D:::::::::::::::DD  U::::::U     U::::::U  CC:::::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T       A:::::A             P::::::PPPPPP:::::P E::::::::::::::::::::E
-  *    DDD:::::DDDDD:::::D UU:::::U     U:::::UU C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::T     T:::::TT:::::::TT:::::T      A:::::::A            PP:::::P     P:::::PEE::::::EEEEEEEEE::::E
-  *      D:::::D    D:::::D U:::::U     U:::::U C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTT     TTTTTT  T:::::T  TTTTTT     A:::::::::A             P::::P     P:::::P  E:::::E       EEEEEE
-  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T            A:::::A:::::A            P::::P     P:::::P  E:::::E             
-  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T           A:::::A A:::::A           P::::PPPPPP:::::P   E::::::EEEEEEEEEE   
-  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T          A:::::A   A:::::A          P:::::::::::::PP    E:::::::::::::::E   
-  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T         A:::::A     A:::::A         P::::PPPPPPPPP      E:::::::::::::::E   
-  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T        A:::::AAAAAAAAA:::::A        P::::P              E::::::EEEEEEEEEE   
-  *      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T       A:::::::::::::::::::::A       P::::P              E:::::E             
-  *      D:::::D    D:::::D U::::::U   U::::::U C:::::C       CCCCCC        T:::::T                     T:::::T      A:::::AAAAAAAAAAAAA:::::A      P::::P              E:::::E       EEEEEE
-  *    DDD:::::DDDDD:::::D  U:::::::UUU:::::::U  C:::::CCCCCCCC::::C      TT:::::::TT                 TT:::::::TT   A:::::A             A:::::A   PP::::::PP          EE::::::EEEEEEEE:::::E
-  *    D:::::::::::::::DD    UU:::::::::::::UU    CC:::::::::::::::C      T:::::::::T                 T:::::::::T  A:::::A               A:::::A  P::::::::P          E::::::::::::::::::::E
-  *    D::::::::::::DDD        UU:::::::::UU        CCC::::::::::::C      T:::::::::T                 T:::::::::T A:::::A                 A:::::A P::::::::P          E::::::::::::::::::::E
-  *    DDDDDDDDDDDDD             UUUUUUUUU             CCCCCCCCCCCCC      TTTTTTTTTTT                 TTTTTTTTTTTAAAAAAA                   AAAAAAAPPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEE
-  *                                                                                                                                                                                         
-  *                                                                                                                                                                                         
-  *                                                                                                                                                                                         
-  *                                                                                                                                                                                         
-  *                                                                                                                                                                                         
-  *                                                                                                                                                                                         
-  *                                                                                                                                                                                         
-  */
+					/*      |
+	*                      |                                                                                                                                                                    
+	*                                                                                                                                                                                         
+	*    DDDDDDDDDDDDD       UUUUUUUU     UUUUUUUU       CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTT     TTTTTTTTTTTTTTTTTTTTTTT         AAA               PPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEE
+	*    D::::::::::::DDD    U::::::U     U::::::U    CCC::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T        A:::A              P::::::::::::::::P  E::::::::::::::::::::E
+	*    D:::::::::::::::DD  U::::::U     U::::::U  CC:::::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T       A:::::A             P::::::PPPPPP:::::P E::::::::::::::::::::E
+	*    DDD:::::DDDDD:::::D UU:::::U     U:::::UU C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::T     T:::::TT:::::::TT:::::T      A:::::::A            PP:::::P     P:::::PEE::::::EEEEEEEEE::::E
+	*      D:::::D    D:::::D U:::::U     U:::::U C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTT     TTTTTT  T:::::T  TTTTTT     A:::::::::A             P::::P     P:::::P  E:::::E       EEEEEE
+	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T            A:::::A:::::A            P::::P     P:::::P  E:::::E             
+	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T           A:::::A A:::::A           P::::PPPPPP:::::P   E::::::EEEEEEEEEE   
+	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T          A:::::A   A:::::A          P:::::::::::::PP    E:::::::::::::::E   
+	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T         A:::::A     A:::::A         P::::PPPPPPPPP      E:::::::::::::::E   
+	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T        A:::::AAAAAAAAA:::::A        P::::P              E::::::EEEEEEEEEE   
+	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T       A:::::::::::::::::::::A       P::::P              E:::::E             
+	*      D:::::D    D:::::D U::::::U   U::::::U C:::::C       CCCCCC        T:::::T                     T:::::T      A:::::AAAAAAAAAAAAA:::::A      P::::P              E:::::E       EEEEEE
+	*    DDD:::::DDDDD:::::D  U:::::::UUU:::::::U  C:::::CCCCCCCC::::C      TT:::::::TT                 TT:::::::TT   A:::::A             A:::::A   PP::::::PP          EE::::::EEEEEEEE:::::E
+	*    D:::::::::::::::DD    UU:::::::::::::UU    CC:::::::::::::::C      T:::::::::T                 T:::::::::T  A:::::A               A:::::A  P::::::::P          E::::::::::::::::::::E
+	*    D::::::::::::DDD        UU:::::::::UU        CCC::::::::::::C      T:::::::::T                 T:::::::::T A:::::A                 A:::::A P::::::::P          E::::::::::::::::::::E
+	*    DDDDDDDDDDDDD             UUUUUUUUU             CCCCCCCCCCCCC      TTTTTTTTTTT                 TTTTTTTTTTTAAAAAAA                   AAAAAAAPPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEE
+	*                                                                                                                                                                                         
+	*                                                                                                                                                                                         
+	*                                                                                                                                                                                         
+	*                                                                                                                                                                                         
+	*                                                                                                                                                                                         
+	*                                                                                                                                                                                         
+	*                                                                                                                                                                                         
+	*/
 				oldZoomLevel = zoomLevel;
 			
 
@@ -49933,21 +49953,13 @@ namespace Terraria
 				base.Draw(gameTime);
 				if (Main.gameMenu || Main.player[Main.myPlayer].gravDir == 1f)
 				{
-					if(zoomLevel == 1)
 						this.Transform = Matrix.CreateScale(zoomLevel, zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                             // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f));
-					else
-						this.Transform = Matrix.CreateScale(zoomLevel, zoomLevel, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation((float)Main.screenWidth * .5f / zoomLevel, (float)Main.screenHeight * .5f / zoomLevel, 1f);                                             // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f));
-
-
-				this.Rasterizer = RasterizerState.CullCounterClockwise;
+						this.Rasterizer = RasterizerState.CullCounterClockwise;
 				}
 				else//tmec matrix!
 				{
-					if(zoomLevel == 1)
 						this.Transform = Matrix.CreateScale(zoomLevel, -zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                            // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f)); //SHOULD still work
-					else
-						this.Transform = Matrix.CreateScale(zoomLevel, -zoomLevel, 1f) * Matrix.CreateRotationZ(0f) * Matrix.CreateTranslation((float)Main.screenWidth * .5f / zoomLevel, (float)Main.screenHeight * .5f /zoomLevel, 1f);                                            // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f)); //SHOULD still work
-				this.Rasterizer = RasterizerState.CullClockwise;
+						this.Rasterizer = RasterizerState.CullCounterClockwise;//^ invert y for upside down - antigrav
 				}
 				bool flag = !Main.drawToScreen && Main.netMode != 2 && !Main.gameMenu && !Main.mapFullscreen && Filters.Scene.HasActiveFilter();
 				if (flag)
@@ -50843,7 +50855,10 @@ namespace Terraria
 					MoonlordDeathDrama.DrawWhite(Main.spriteBatch);
 					ScreenObstruction.Draw(Main.spriteBatch);
 					TimeLogger.DetailedDrawReset();
-					Main.spriteBatch.End();
+					Main.spriteBatch.End(); //tmec Everything from this point doesn't use this.transform -- ui and things
+					Main.screenWidth = GraphicsDevice.Viewport.Width;
+					Main.screenHeight = GraphicsDevice.Viewport.Height;
+					//Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, this.Transform);
 					Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 					Overlays.Scene.Draw(Main.spriteBatch);
 					Main.spriteBatch.End();
@@ -50851,12 +50866,14 @@ namespace Terraria
 					{
 						base.GraphicsDevice.SetRenderTarget(null);
 						base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
+						//Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, this.Transform);
 						Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
 						Filters.Scene.Apply();
 						Main.spriteBatch.Draw(this.screenTarget, Vector2.Zero, Microsoft.Xna.Framework.Color.White);
 						Main.spriteBatch.End();
 					}
 					TimeLogger.DetailedDrawTime(36);
+					//Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, this.Transform);
 					Main.spriteBatch.Begin();
 					if (!Main.hideUI)
 					{
@@ -50870,6 +50887,7 @@ namespace Terraria
 								vector.X = Main.player[m].position.X + (float)(Main.player[m].width / 2) - messageSize.X / 2f;
 								vector.Y = Main.player[m].position.Y - messageSize.Y - 2f;
 								vector.Y += Main.player[m].gfxOffY;
+								vector *= zoomLevel;
 								vector = vector.Floor();
 								if (Main.player[Main.myPlayer].gravDir == -1f)
 								{
@@ -50933,11 +50951,11 @@ namespace Terraria
 									{
 										float num79 = Main.combatText[n].position.Y - Main.screenPosition.Y;
 										num79 = (float)Main.screenHeight - num79;
-										Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, num79 + (float)num78 + origin.Y), color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
+										Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, num79 + (float)num78 + origin.Y) * zoomLevel, color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
 									}
 									else
 									{
-										Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, Main.combatText[n].position.Y - Main.screenPosition.Y + (float)num78 + origin.Y), color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
+										Main.spriteBatch.DrawString(Main.fontCombatText[num71], Main.combatText[n].text, new Vector2(Main.combatText[n].position.X - Main.screenPosition.X + (float)num77 + origin.X, Main.combatText[n].position.Y - Main.screenPosition.Y + (float)num78 + origin.Y) * zoomLevel, color9, Main.combatText[n].rotation, origin, Main.combatText[n].scale, SpriteEffects.None, 0f);
 									}
 								}
 							}
@@ -51007,7 +51025,7 @@ namespace Terraria
 									{
 										num88 = (float)Main.screenHeight - num88;
 									}
-									Main.spriteBatch.DrawString(Main.fontMouseText, text, new Vector2(Main.itemText[num80].position.X - Main.screenPosition.X + (float)num86 + origin2.X, num88 + origin2.Y), color10, Main.itemText[num80].rotation, origin2, Main.itemText[num80].scale, SpriteEffects.None, 0f);
+									Main.spriteBatch.DrawString(Main.fontMouseText, text, new Vector2(Main.itemText[num80].position.X - Main.screenPosition.X + (float)num86 + origin2.X, num88 + origin2.Y) * zoomLevel, color10, Main.itemText[num80].rotation, origin2, Main.itemText[num80].scale, SpriteEffects.None, 0f);
 								}
 							}
 						}
@@ -51093,6 +51111,8 @@ namespace Terraria
 					}
 					TimeLogger.RenderTime(Main.renderCount, stopwatch.Elapsed.TotalMilliseconds);
 					TimeLogger.EndDrawFrame();
+					screenWidth =  (int)(screenWidth / zoomLevel); 
+					screenHeight = (int)(screenHeight / zoomLevel);
 					return;
 				}
 				if (Main.player[Main.myPlayer].talkNPC >= 0 || Main.player[Main.myPlayer].sign >= 0 || (Main.playerInventory && !CaptureManager.Instance.Active))
@@ -51119,8 +51139,7 @@ namespace Terraria
 					return;
 				}
 				Main.mouseLeftRelease = true;
-			//} catch { }D
-		}
+			}
 		public void DrawInfernoRings()
 		{
 			for (int i = 0; i < 255; i++)
