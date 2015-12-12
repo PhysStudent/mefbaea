@@ -43,9 +43,6 @@ using Terraria.UI.Chat;
 using Terraria.Utilities;
 using Terraria.World.Generation;
 
-//using SpriteBatch = Terraria.Utilities.SpriteBatch;
-//using SpriteBatchX = Microsoft.Xna.Framework.Graphics.SpriteBatch;
-
 namespace Terraria
 {
 	public class Main : Game
@@ -124,7 +121,7 @@ namespace Terraria
 
 
 		//tmec defs
-		public static string tmecversion = String.Format("v1.21 ({0}-{1})", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString()); //Line 39600
+		public static string tmecversion = String.Format("v1.22 ({0}-{1})", System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Build.ToString(), System.Reflection.Assembly.GetExecutingAssembly().GetName().Version.Revision.ToString()); //Line 39600
 																																																															//Camera lock
 		public static Vector2 lockPosition = new Vector2(0, 0);
 		public static bool screenLocked = false;
@@ -155,14 +152,6 @@ namespace Terraria
 		//Zoom
 		public static float zoomLevel = 1f;
 		public static float oldZoomLevel = 1f;
-		public static Vector2 zoomOffset;
-		public static int origScreenWidth = screenWidth;
-		public static int zoomedMouseX = 0;
-		public static int zoomedMouseY = 0;
-		public static bool useZoomedMouseCoordinates = false;
-		//true if game logic	(world space)
-		//false if ui/inventory	(screen space)
-
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -48986,39 +48975,13 @@ namespace Terraria
 					if (zoomLevel != oldZoomLevel)
 				{
 
-						Main.screenWidth = (int)(GraphicsDevice.Viewport.Width / zoomLevel); //times window width
-					Main.screenHeight = (int)(GraphicsDevice.Viewport.Height / zoomLevel); //times window width
+						Main.screenWidth = (int)(GraphicsDevice.Viewport.Width / Math.Abs(zoomLevel)); //Math.abs just for negative fun :p
+					Main.screenHeight = (int)(GraphicsDevice.Viewport.Height / Math.Abs(zoomLevel));
 
 					Lighting.states = null;
 					Lighting.Initialize(true);
-				}// /^\
-					/*      |
-	*                      |                                                                                                                                                                    
-	*                                                                                                                                                                                         
-	*    DDDDDDDDDDDDD       UUUUUUUU     UUUUUUUU       CCCCCCCCCCCCCTTTTTTTTTTTTTTTTTTTTTTT     TTTTTTTTTTTTTTTTTTTTTTT         AAA               PPPPPPPPPPPPPPPPP   EEEEEEEEEEEEEEEEEEEEEE
-	*    D::::::::::::DDD    U::::::U     U::::::U    CCC::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T        A:::A              P::::::::::::::::P  E::::::::::::::::::::E
-	*    D:::::::::::::::DD  U::::::U     U::::::U  CC:::::::::::::::CT:::::::::::::::::::::T     T:::::::::::::::::::::T       A:::::A             P::::::PPPPPP:::::P E::::::::::::::::::::E
-	*    DDD:::::DDDDD:::::D UU:::::U     U:::::UU C:::::CCCCCCCC::::CT:::::TT:::::::TT:::::T     T:::::TT:::::::TT:::::T      A:::::::A            PP:::::P     P:::::PEE::::::EEEEEEEEE::::E
-	*      D:::::D    D:::::D U:::::U     U:::::U C:::::C       CCCCCCTTTTTT  T:::::T  TTTTTT     TTTTTT  T:::::T  TTTTTT     A:::::::::A             P::::P     P:::::P  E:::::E       EEEEEE
-	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T            A:::::A:::::A            P::::P     P:::::P  E:::::E             
-	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T           A:::::A A:::::A           P::::PPPPPP:::::P   E::::::EEEEEEEEEE   
-	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T          A:::::A   A:::::A          P:::::::::::::PP    E:::::::::::::::E   
-	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T         A:::::A     A:::::A         P::::PPPPPPPPP      E:::::::::::::::E   
-	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T        A:::::AAAAAAAAA:::::A        P::::P              E::::::EEEEEEEEEE   
-	*      D:::::D     D:::::DU:::::D     D:::::UC:::::C                      T:::::T                     T:::::T       A:::::::::::::::::::::A       P::::P              E:::::E             
-	*      D:::::D    D:::::D U::::::U   U::::::U C:::::C       CCCCCC        T:::::T                     T:::::T      A:::::AAAAAAAAAAAAA:::::A      P::::P              E:::::E       EEEEEE
-	*    DDD:::::DDDDD:::::D  U:::::::UUU:::::::U  C:::::CCCCCCCC::::C      TT:::::::TT                 TT:::::::TT   A:::::A             A:::::A   PP::::::PP          EE::::::EEEEEEEE:::::E
-	*    D:::::::::::::::DD    UU:::::::::::::UU    CC:::::::::::::::C      T:::::::::T                 T:::::::::T  A:::::A               A:::::A  P::::::::P          E::::::::::::::::::::E
-	*    D::::::::::::DDD        UU:::::::::UU        CCC::::::::::::C      T:::::::::T                 T:::::::::T A:::::A                 A:::::A P::::::::P          E::::::::::::::::::::E
-	*    DDDDDDDDDDDDD             UUUUUUUUU             CCCCCCCCCCCCC      TTTTTTTTTTT                 TTTTTTTTTTTAAAAAAA                   AAAAAAAPPPPPPPPPP          EEEEEEEEEEEEEEEEEEEEEE
-	*                                                                                                                                                                                         
-	*                                                                                                                                                                                         
-	*                                                                                                                                                                                         
-	*                                                                                                                                                                                         
-	*                                                                                                                                                                                         
-	*                                                                                                                                                                                         
-	*                                                                                                                                                                                         
-	*/
+				}
+
 				oldZoomLevel = zoomLevel;
 			
 
@@ -50856,9 +50819,8 @@ namespace Terraria
 					ScreenObstruction.Draw(Main.spriteBatch);
 					TimeLogger.DetailedDrawReset();
 					Main.spriteBatch.End(); //tmec Everything from this point doesn't use this.transform -- ui and things
-					Main.screenWidth = GraphicsDevice.Viewport.Width;
+					Main.screenWidth = GraphicsDevice.Viewport.Width; //set screensize to vanilla window dimensions
 					Main.screenHeight = GraphicsDevice.Viewport.Height;
-					//Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend, null, null, null, null, this.Transform);
 					Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.AlphaBlend);
 					Overlays.Scene.Draw(Main.spriteBatch);
 					Main.spriteBatch.End();
@@ -50866,14 +50828,12 @@ namespace Terraria
 					{
 						base.GraphicsDevice.SetRenderTarget(null);
 						base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
-						//Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive, null, null, null, null, this.Transform);
 						Main.spriteBatch.Begin(SpriteSortMode.Immediate, BlendState.Additive);
 						Filters.Scene.Apply();
 						Main.spriteBatch.Draw(this.screenTarget, Vector2.Zero, Microsoft.Xna.Framework.Color.White);
 						Main.spriteBatch.End();
 					}
 					TimeLogger.DetailedDrawTime(36);
-					//Main.spriteBatch.Begin(SpriteSortMode.Deferred, null, null, null, null, null, this.Transform);
 					Main.spriteBatch.Begin();
 					if (!Main.hideUI)
 					{
@@ -53623,12 +53583,6 @@ namespace Terraria
 					}
 
 					}
-			}
-			//LoggingUtils.log(Path.Combine(LoggingUtils.writePath, "DummyLog-Main.Draw.txt"), "Succeeded: Dummies: " + Main.trainingDummies.Count);
-			//Main.spriteBatch.DrawString(Main.fontMouseText, TileEntity.ByID.Count.ToString() + " dummies", new Vector2(4, Main.screenHeight - 24), Color.White);
-			if (Main.showFrameRate)
-			{
-				Main.spriteBatch.DrawString(Main.fontMouseText, derp.ToString() + " dummies, " + derp3.ToString() + " active", new Vector2(4, Main.screenHeight - 24), Color.Blue);
 			}
 
 			foreach (SpritebatchQueue gonnaDraw in SpritebatchQueue.queue)
