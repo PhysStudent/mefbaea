@@ -152,6 +152,15 @@ namespace Terraria
 		//Zoom
 		public static float zoomLevel = 1f;
 		public static float oldZoomLevel = 1f;
+		public static bool experimentalZoom1 = false;
+		public static bool experimentalZoom2 = false;
+		public static SamplerState x2Sampler = SamplerState.PointWrap;
+		//Toggles!
+		public static bool infiniteWire = false;
+		public static bool infiniteActuators;
+		public static bool drawRedWire = true;
+		public static bool drawBlueWire = true;
+		public static bool drawGreenWire = true;
 
 
 		public static string SavePath = Program.LaunchParameters.ContainsKey("-savedirectory") ? Program.LaunchParameters["-savedirectory"] : PlatformUtilties.GetStoragePath();
@@ -11905,6 +11914,9 @@ namespace Terraria
 					}
 					if (Main.inputTextEnter && Main.chatRelease)
 					{
+						if (Main.checkForTMecModChat(Main.chatText))
+							Main.chatText = "";
+
 						if (Main.chatText != "")
 						{
 							NetMessage.SendData(25, -1, -1, Main.chatText, Main.myPlayer, 0f, 0f, 0f, 0, 0, 0);
@@ -11924,8 +11936,7 @@ namespace Terraria
 							newText = NameTagHandler.GenerateTag(Main.player[Main.myPlayer].name) + " " + Main.chatText;
 							Main.player[Main.myPlayer].chatOverhead.NewMessage(Main.chatText, Main.chatLength / 2);
 							Main.NewText(newText, white.R, white.G, white.B, false);
-						//doTheThing
-							Main.checkForTMecModChat(Main.chatText);
+							
 						}
 
 
@@ -12642,12 +12653,27 @@ namespace Terraria
 				}
 				if (textArray[0] == "/zoom" || textArray[0] == "/z")
 				{
+					if(textArray[1] == "x1")
+					{
+						experimentalZoom1 = !experimentalZoom1;
+						Main.NewText("Experiental zoom mode 1 " + (experimentalZoom1 ? "enabled." : "disabled."), 128, 255, 128);
+						return true;
+					}
+					if (textArray[1] == "x2")
+					{
+						experimentalZoom2 = !experimentalZoom2;
+						Main.NewText("Experiental zoom mode 2 " + (experimentalZoom2 ? "enabled." : "disabled."), 100, 255, 255);
+						return true;
+					}
 					Main.zoomLevel = Convert.ToSingle(textArray[1]);
-					//if (Main.zoomLevel < 0)
-					//{
-					//	Main.NewText("");
-					//	Main.zoomLevel = 1;
-					//}
+					return true;
+				}
+				if(textArray[0] == "/toggle" || textArray[0] == "/tog")
+				{
+					if(textArray[1] == "wire")
+					{
+						
+					}
 				}
 			}
 			catch (Exception e)
@@ -49916,13 +49942,17 @@ namespace Terraria
 				base.Draw(gameTime);
 				if (Main.gameMenu || Main.player[Main.myPlayer].gravDir == 1f)
 				{
-						this.Transform = Matrix.CreateScale(zoomLevel, zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                             // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f));
-						this.Rasterizer = RasterizerState.CullCounterClockwise;
+				this.Transform = Matrix.CreateScale(zoomLevel, zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                         // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f));
+					if (experimentalZoom1)
+						this.Transform *= Matrix.CreateTranslation(0.5f, 0.5f, 0f);
+                    this.Rasterizer = RasterizerState.CullCounterClockwise;
 				}
 				else//tmec matrix!
 				{
-						this.Transform = Matrix.CreateScale(zoomLevel, -zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                            // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f)); //SHOULD still work
-						this.Rasterizer = RasterizerState.CullCounterClockwise;//^ invert y for upside down - antigrav
+					this.Transform = Matrix.CreateScale(zoomLevel, -zoomLevel, 1f) * Matrix.CreateRotationZ(0f);                                            // * Matrix.CreateTranslation(new Vector3(Main.screenWidth * zoomLevel * .5f, -Main.screenHeight * zoomLevel * .5f, 1f)); //SHOULD still work
+					if (experimentalZoom1)
+						this.Transform *= Matrix.CreateTranslation(0.5f, 0.5f, 0f);
+					this.Rasterizer = RasterizerState.CullCounterClockwise;//^ invert y for upside down - antigrav
 				}
 				bool flag = !Main.drawToScreen && Main.netMode != 2 && !Main.gameMenu && !Main.mapFullscreen && Filters.Scene.HasActiveFilter();
 				if (flag)
@@ -49930,7 +49960,7 @@ namespace Terraria
 					base.GraphicsDevice.SetRenderTarget(this.screenTarget);
 					base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Black);
 				}
-				Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, SamplerState.LinearClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
+				Main.spriteBatch.Begin(SpriteSortMode.Deferred, BlendState.AlphaBlend, experimentalZoom2 ? SamplerState.LinearClamp : SamplerState.PointClamp, DepthStencilState.None, this.Rasterizer, null, this.Transform);
 				TimeLogger.DetailedDrawReset();
 				if (!Main.mapFullscreen)
 				{
