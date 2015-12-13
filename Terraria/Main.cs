@@ -43,6 +43,9 @@ using Terraria.UI.Chat;
 using Terraria.Utilities;
 using Terraria.World.Generation;
 
+using SpriteBatchX = Microsoft.Xna.Framework.Graphics.SpriteBatch;
+using SpriteBatch = Terraria.Utilities.SpriteBatch;
+
 namespace Terraria
 {
 	public class Main : Game
@@ -44298,6 +44301,7 @@ namespace Terraria
 			}
 			Main.tileBatch.Begin();
 			Main.spriteBatch.Begin();
+			Main.spriteBatch.useIntegerCoords = true;
 			if (biome == null)
 			{
 				this.DrawTiles(true, -1);
@@ -44318,6 +44322,7 @@ namespace Terraria
 			{
 				this.DrawTiles(false, Main.bloodMoon ? 9 : biome.WaterStyle);
 			}
+			Main.spriteBatch.useIntegerCoords = false;
 			Main.tileBatch.End();
 			Main.spriteBatch.End();
 			if (captureEntities)
@@ -44410,6 +44415,7 @@ namespace Terraria
 			base.GraphicsDevice.SetRenderTarget(this.tileTarget);
 			base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent);
 			Main.spriteBatch.Begin();
+			Main.spriteBatch.useIntegerCoords = true;
 			if (Main.ignoreErrors)
 			{
 				try
@@ -44425,6 +44431,7 @@ namespace Terraria
 			}
 			this.DrawTiles(true, -1);
 			IL_5B:
+			Main.spriteBatch.useIntegerCoords = false;
 			TimeLogger.DetailedDrawReset();
 			Main.spriteBatch.End();
 			TimeLogger.DetailedDrawTime(28);
@@ -44439,6 +44446,7 @@ namespace Terraria
 			base.GraphicsDevice.SetRenderTarget(this.tile2Target);
 			base.GraphicsDevice.Clear(Microsoft.Xna.Framework.Color.Transparent);
 			Main.spriteBatch.Begin();
+			Main.spriteBatch.useIntegerCoords = true;
 			if (Main.ignoreErrors)
 			{
 				try
@@ -44454,6 +44462,7 @@ namespace Terraria
 			}
 			this.DrawTiles(false, -1);
 			IL_55:
+			Main.spriteBatch.useIntegerCoords = false;
 			TimeLogger.DetailedDrawReset();
 			Main.spriteBatch.End();
 			TimeLogger.DetailedDrawTime(29);
@@ -47074,7 +47083,20 @@ namespace Terraria
 					"Tiles_",
 					i
 				}));
+				Color[] colorArray = new Color[Main.tileTexture[i].Width * Main.tileTexture[i].Height];
+				Main.tileTexture[i].GetData<Color>(colorArray);
+				Color magicPink = new Color(247, 119, 249, 255);
+				int count = 0;
+				for (int j = 0; j < colorArray.Length; j++)
+				{
+					if (colorArray[j] == magicPink)
+					{
+						colorArray[j] = Color.Transparent;
+						count++;
+					}
+				}
 				Main.tileSetsLoaded[i] = true;
+				//MessageBox.Show(i.ToString() + ", " + count.ToString() + ", " + colorArray[8].ToString());
 			}
 		}
 		protected void LoadItemFlames(int i)
@@ -50690,12 +50712,14 @@ namespace Terraria
 						{
 							if (Main.drawToScreen)
 							{
+								Main.spriteBatch.useIntegerCoords = true;
 								this.DrawTiles(false, -1);
 								TimeLogger.DetailedDrawReset();
 								this.waterfallManager.Draw(Main.spriteBatch);
 								TimeLogger.DetailedDrawTime(16);
 								this.DrawTiles(true, -1);
-							}
+								Main.spriteBatch.useIntegerCoords = false;
+						}
 							else
 							{
 								Main.spriteBatch.Draw(this.tile2Target, Main.sceneTile2Pos - Main.screenPosition, Microsoft.Xna.Framework.Color.White);
@@ -50722,7 +50746,9 @@ namespace Terraria
 						{
 							if (Main.drawToScreen)
 							{
+								Main.spriteBatch.useIntegerCoords = true;
 								this.DrawTiles(false, -1);
+								Main.spriteBatch.useIntegerCoords = false;
 								TimeLogger.DetailedDrawReset();
 								this.waterfallManager.Draw(Main.spriteBatch);
 								TimeLogger.DetailedDrawTime(16);
@@ -50733,7 +50759,9 @@ namespace Terraria
 								drawDummyGhosts();
 								this.DrawNPCs(true);
 								TimeLogger.DetailedDrawTime(18);
+								Main.spriteBatch.useIntegerCoords = true;
 								this.DrawTiles(true, -1);
+								Main.spriteBatch.useIntegerCoords = false;
 							}
 							else
 							{
