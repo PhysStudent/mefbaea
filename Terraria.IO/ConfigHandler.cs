@@ -36,7 +36,7 @@ namespace Terraria.Utilities
             {
                 foreach (KeyValuePair<string, object> entry in configOptions)
                 {
-                    string[] currentLine = fileReader.ReadLine().Replace(" ", "").Split('=');
+                    string[] currentLine = fileReader.ReadLine().Replace(" ", "").Split('=');//breaks when you reach EOF
                     if (configOptions.ContainsKey(currentLine[0]))
                     {
                         configOptions[currentLine[0]] = currentLine[1];
