@@ -240,6 +240,7 @@
     <Compile Include="Terraria.Initializers\NetworkInitializer.cs" />
     <Compile Include="Terraria.Initializers\PlayerDataInitializer.cs" />
     <Compile Include="Terraria.Initializers\ScreenEffectInitializer.cs" />
+    <Compile Include="Terraria.IO\ConfigHandler.cs" />
     <Compile Include="Terraria.IO\FavoritesFile.cs" />
     <Compile Include="Terraria.IO\FileData.cs" />
     <Compile Include="Terraria.IO\FileMetadata.cs" />
