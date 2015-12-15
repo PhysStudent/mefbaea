@@ -3943,8 +3943,11 @@ namespace Terraria
 			Main.instance = this;
 			Main.graphics = new GraphicsDeviceManager((Game)this);
 			base.Content.RootDirectory = "Content";
+            //t-mec stuff that happens when Terraria is started
+            //ConfigHandler.configFileSetup();
+            //MessageBox.Show(ConfigHandler.configOptions.Keys.ToString(), "config");
 
-		}
+        }
 		protected void SetTitle()
 		{
 			if (Main._cachedTitle == null)

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using Terraria.IO;
+using System.Windows.Forms;
 
 namespace Terraria.Utilities
 {
@@ -13,9 +10,9 @@ namespace Terraria.Utilities
         /// <summary>
         /// Remember to cast them...
         /// </summary>
-        static Dictionary<string, object> configOptions = new Dictionary<string, object>();
+        public static Dictionary<string, object> configOptions = new Dictionary<string, object>();
 
-        static ConfigHandler()
+        public static void configFileSetup()
         {
             configOptions.Add("endlessWire", true);
             configOptions.Add("yellowWire", true); //For later
@@ -23,26 +20,28 @@ namespace Terraria.Utilities
             configOptions.Add("redwWire", true);
             configOptions.Add("bluewWire", true);
             configOptions.Add("camSpeed", 4);
+
             readConfig();
             foreach (string entry in writeLater)
             {
                 WriteConfig(entry.Split('=')[0], entry.Split('=')[1]);
             }
-
         }
         public static void readConfig() //Please work!
         {
             using (StreamReader fileReader = new StreamReader(Main.SavePath + "/MechmodConfig.txt", true))
             {
-                foreach (KeyValuePair<string, object> entry in configOptions)
+                string datLineRightNaow;
+                while ((datLineRightNaow = fileReader.ReadLine()) != null)
                 {
-                    string[] currentLine = fileReader.ReadLine().Replace(" ", "").Split('=');//breaks when you reach EOF
+                    string[] currentLine = datLineRightNaow.Replace(" ", "").Split('=');
                     if (configOptions.ContainsKey(currentLine[0]))
                     {
                         configOptions[currentLine[0]] = currentLine[1];
                     }
                     else
                     {
+                        //MessageBox.Show(string.Join("=", currentLine), "config");
                         //WriteConfig(entry.Key, entry.Value.ToString());
                         writeLater.Add(string.Join("=", currentLine));
                     }

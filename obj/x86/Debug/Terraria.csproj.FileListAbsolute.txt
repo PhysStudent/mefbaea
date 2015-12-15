@@ -25,4 +25,3 @@ C:\Users\stefan\Documents\GitHub\mefbaea\bin\Debug\Libraries.JSON.NET.Newtonsoft
 C:\Users\stefan\Documents\GitHub\mefbaea\bin\Debug\Libraries.Steamworks.NET.Steamworks.NET.dll
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.exe
 C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.pdb
-C:\Users\stefan\Documents\GitHub\mefbaea\obj\x86\Debug\Terraria.csprojResolveAssemblyReference.cache
