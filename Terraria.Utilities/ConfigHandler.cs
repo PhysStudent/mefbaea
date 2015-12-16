@@ -14,15 +14,13 @@ namespace Terraria.Utilities
 {
     static class ConfigHandler //I wanted to use the name "ConfigMagic" but sanity won...
     {
-        private static Dictionary<string, object> writeLater;
         /// <summary>
         /// Remember to cast them...
         /// </summary>
         public static Dictionary<string, object> configOptions = new Dictionary<string, object>();
 
-        /// <summary>
-        /// Worthless file reader
-        /// </summary>
+        private static Dictionary<string, object> writeLater;
+        
         private static StreamReader fileReader = new StreamReader(Main.SavePath + "/MechmodConfig.txt", true);
 
         static ConfigHandler()
@@ -37,7 +35,6 @@ namespace Terraria.Utilities
             configOptions.Add("redWire", true);
             configOptions.Add("blueWire", true);
             configOptions.Add("camSpeed", 4);
-
             readConfig();
             fileReader.Close();
             foreach (KeyValuePair<string, object> entry in writeLater)
