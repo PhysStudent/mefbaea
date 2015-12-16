@@ -22,3 +22,5 @@ This name really annoys me.
 - Copy-paste things? 
 - Perhaps we could set something up, similar to the WorldEdit that TShock has, where you can place hoiks automatically (Straight lines/boxes), or make a hoik mode where all blocks place are hoiks. 
 - actuator wand?
+- Dummy ghost sanity check 
+- Text file that explains how to "install" the mod
