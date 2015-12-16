@@ -3944,7 +3944,7 @@ namespace Terraria
 			Main.graphics = new GraphicsDeviceManager((Game)this);
 			base.Content.RootDirectory = "Content";
             //t-mec stuff that happens when Terraria is started
-            //ConfigHandler.configFileSetup();
+            ConfigHandler.configFileSetup();
             //MessageBox.Show(ConfigHandler.configOptions.Keys.ToString(), "config");
 
         }
